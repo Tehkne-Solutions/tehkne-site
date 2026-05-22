@@ -1,4 +1,6 @@
 import { ArrowUpRight, Bot, Code2, Layers3, MousePointer2, ShieldCheck, Sparkles, Workflow, Wrench } from 'lucide-react';
+import ContactForm from '../components/ContactForm';
+import { whatsAppHref, whatsappMessages } from '../contact';
 
 const solutions = [
   {
@@ -53,6 +55,8 @@ export const metadata = {
 };
 
 export default function SolucoesPage() {
+  const pageWhatsApp = whatsAppHref(whatsappMessages.solucoes);
+
   return (
     <main className="site-shell">
       <div className="background-grid" />
@@ -66,9 +70,9 @@ export default function SolucoesPage() {
           <a href="/#portfolio">Portfólio</a>
           <a href="/#metodo">Método</a>
           <a href="/#os">Tehkné OS</a>
-          <a href="/#contato">Contato</a>
+          <a href={pageWhatsApp} target="_blank" rel="noreferrer">Contato</a>
         </nav>
-        <a className="btn btn-primary coin" href="/#contato">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+        <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
       </header>
 
       <section className="section-frame solutions-hero">
@@ -77,7 +81,7 @@ export default function SolucoesPage() {
           <h1>Da ideia solta à operação digital estruturada.</h1>
           <p>A Tehkné combina arquitetura, design, desenvolvimento, automações e IA para criar sites, sistemas e produtos digitais com clareza técnica, experiência premium e evolução contínua.</p>
           <div className="hero-actions">
-            <a className="btn btn-primary coin" href="/#contato">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+            <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
             <a className="btn btn-secondary" href="#solucoes-lista">Ver soluções <ArrowUpRight size={16} /></a>
           </div>
         </div>
@@ -92,6 +96,7 @@ export default function SolucoesPage() {
         <div className="service-grid solutions-grid">
           {solutions.map((solution) => {
             const Icon = solution.icon;
+            const solutionWhatsApp = whatsAppHref(`Olá, Tehkné! Vim pela página de Soluções e quero planejar a solução ${solution.title}. Quero entender escopo, arquitetura, investimento e próximos passos.`);
             return (
               <article className="glass-card service-card solution-card" key={solution.title}>
                 <Icon className="card-icon" size={34} />
@@ -100,7 +105,7 @@ export default function SolucoesPage() {
                 <ul>
                   {solution.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
                 </ul>
-                <a href="/#contato">Planejar esta solução <ArrowUpRight size={15} /></a>
+                <a href={solutionWhatsApp} target="_blank" rel="noreferrer">Planejar esta solução <ArrowUpRight size={15} /></a>
               </article>
             );
           })}
@@ -124,6 +129,13 @@ export default function SolucoesPage() {
         </div>
       </section>
 
+      <ContactForm
+        page="Soluções"
+        context="arquitetura, desenvolvimento, WordPress avançado, IA, automações, UX de produto e sustentação técnica"
+        title="Vamos transformar sua demanda em um plano claro de execução?"
+        description="Use o formulário para organizar a intenção do projeto e chame a Tehkné pelo WhatsApp com uma mensagem contextualizada para a página de Soluções."
+      />
+
       <section className="final-cta">
         <div>
           <span className="eyebrow">Diagnóstico técnico</span>
@@ -131,7 +143,7 @@ export default function SolucoesPage() {
           <p>Conte o que você precisa criar, melhorar ou automatizar. A Tehkné organiza o caminho técnico e comercial para tornar isso real.</p>
         </div>
         <div className="hero-actions">
-          <a className="btn btn-primary coin" href="mailto:contato@tehkne.com.br">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+          <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
           <a className="btn btn-secondary" href="/">Voltar para Home <ArrowUpRight size={16} /></a>
         </div>
       </section>
