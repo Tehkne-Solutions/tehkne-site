@@ -24,7 +24,7 @@ export default function SiteHeader() {
           <img
             src="/images/tehkne-simbolo-isolado-logo.png"
             alt="Tehkné"
-            style={{ height: 48 }}
+            className="brand-symbol-img"
           />
         </span>
         <span className="brand-wordmark">
