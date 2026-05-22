@@ -16,7 +16,6 @@ import {
   Workflow
 } from 'lucide-react';
 import ContactForm from './components/ContactForm';
-import { whatsAppHref, whatsappMessages } from './contact';
 import { portfolioCases } from './portfolio/portfolio-data';
 
 const services = [
@@ -93,7 +92,7 @@ function MetatronCore() {
 }
 
 export default function Home() {
-  const homeWhatsApp = whatsAppHref(whatsappMessages.home);
+  const contactHref = '/contato#contato-form';
 
   return (
     <main>
@@ -103,8 +102,8 @@ export default function Home() {
           <h1>Transformamos ideias, processos e operações em <span>sistemas digitais reais.</span></h1>
           <p>Arquitetura, design, desenvolvimento, automações e IA para criar produtos digitais com clareza, performance, segurança e evolução contínua.</p>
           <div className="hero-actions">
-            <a className="btn btn-primary coin" href={homeWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-            <a className="btn btn-secondary" href="/portfolio">Ver portfólio <ArrowUpRight size={16} /></a>
+            <a className="btn btn-primary coin" href={contactHref}>Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href={contactHref}>Agendar diagnóstico <ArrowUpRight size={16} /></a>
           </div>
           <div className="trust-strip">
             <span><ShieldCheck size={15} /> Arquitetura sólida</span>
@@ -135,13 +134,12 @@ export default function Home() {
         <div className="service-grid">
           {services.map((service, index) => {
             const Icon = service.icon;
-            const serviceWhatsApp = whatsAppHref(`Olá, Tehkné! Vim pela Home e quero planejar uma solução de ${service.title}. Quero entender escopo, arquitetura e próximos passos.`);
             return (
               <motion.article className="glass-card service-card" key={service.title} initial={{ opacity: 0, y: 34, rotateX: -8 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08, duration: 0.55 }}>
                 <Icon className="card-icon" size={34} />
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
-                <a href={serviceWhatsApp} target="_blank" rel="noreferrer">Planejar solução <ArrowUpRight size={15} /></a>
+                <a href={contactHref}>Planejar solução <ArrowUpRight size={15} /></a>
               </motion.article>
             );
           })}

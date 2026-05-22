@@ -1,19 +1,25 @@
-import { ArrowUpRight } from 'lucide-react';
+'use client';
+
+import { useState } from 'react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 
 const navItems = [
   ['Serviços', '/servicos'],
-  ['Solu\u00e7\u00f5es', '/solucoes'],
-  ['Portf\u00f3lio', '/portfolio'],
-  ['M\u00e9todo', '/metodo'],
-  ['Tehkn\u00e9 OS', '/tehkne-os'],
+  ['Soluções', '/solucoes'],
+  ['Portfólio', '/portfolio'],
+  ['Método', '/metodo'],
+  ['Tehkné OS', '/tehkne-os'],
   ['Sobre', '/sobre'],
   ['Contato', '/contato']
 ];
 
 export default function SiteHeader() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const contactHref = '/contato#contato-form';
+
   return (
     <header className="nav-shell nav-shell-premium">
-      <a className="brand brand-official" href="/" aria-label="Tehkn\u00e9 Solutions">
+      <a className="brand brand-official" href="/" aria-label="Tehkné Solutions">
         <span className="brand-symbol">
           <img
             src="/images/tehkne-simbolo-isolado-logo.png"
@@ -22,16 +28,40 @@ export default function SiteHeader() {
           />
         </span>
         <span className="brand-wordmark">
-          <strong>{'TEHKN\u00c9'}</strong>
+          <strong>TEHKNÉ</strong>
           <small>SOLUTIONS</small>
         </span>
       </a>
-      <nav className="main-nav" aria-label="Navega\u00e7\u00e3o principal">
-        {navItems.map(([label, url]) => <a href={url} key={label}>{label}</a>)}
+
+      <nav className="main-nav" aria-label="Navegação principal">
+        {navItems.map(([label, url]) => (
+          <a key={label} href={url}>{label}</a>
+        ))}
       </nav>
-      <a className="btn btn-primary coin nav-cta" href="/contato#contato-form">
-        {'Solicitar diagn\u00f3stico'} <ArrowUpRight size={16} />
+
+      <button
+        type="button"
+        className="mobile-menu-toggle"
+        aria-expanded={mobileOpen}
+        aria-controls="mobile-navigation"
+        aria-label={mobileOpen ? 'Fechar menu' : 'Abrir menu'}
+        onClick={() => setMobileOpen((current) => !current)}
+      >
+        {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
+
+      <a className="btn btn-primary coin nav-cta" href={contactHref}>
+        Solicitar diagnóstico <ArrowUpRight size={16} />
       </a>
+
+      <div id="mobile-navigation" className={`mobile-nav${mobileOpen ? ' open' : ''}`} role="menu">
+        {navItems.map(([label, url]) => (
+          <a key={label} href={url} onClick={() => setMobileOpen(false)}>{label}</a>
+        ))}
+        <a className="btn btn-primary coin nav-cta" href={contactHref} onClick={() => setMobileOpen(false)}>
+          Solicitar diagnóstico <ArrowUpRight size={16} />
+        </a>
+      </div>
     </header>
   );
 }
