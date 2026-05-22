@@ -49,13 +49,13 @@ export default function MetodoPage() {
         <div><strong>∞</strong><span>evolução contínua depois do lançamento</span></div>
       </section>
 
-      <section className="section-frame method-section">
+      <section id="fluxo-gip" className="section-frame method-section method-wheel-section">
         <div className="section-heading">
           <span className="eyebrow">Fluxo operacional</span>
-          <h2>Da descoberta à evolução, cada etapa tem função clara.</h2>
-          <p>O método evita começar pelo código sem entender negócio, produto, experiência, integrações e operação.</p>
+          <h2>Da descoberta à evolução, cada etapa ocupa um ponto do sistema.</h2>
+          <p>O método evita começar pelo código sem entender negócio, produto, experiência, integrações e operação. A leitura agora funciona como uma roleta técnica: centro, trilha e etapas ao redor.</p>
         </div>
-        <div className="method-line">
+        <div className="method-line method-wheel-grid">
           {steps.map(([number, title, text]) => (
             <article className="method-step" key={title}>
               <span>{number}</span>
