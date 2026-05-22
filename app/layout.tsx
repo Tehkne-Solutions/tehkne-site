@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import BackToTop from './components/BackToTop';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 import './globals.css';
@@ -33,11 +34,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="pt-BR">
       <body>
-        <div className="site-shell">
+        <div id="top" className="site-shell">
           <div className="background-grid" />
           <SiteHeader />
           {children}
           <SiteFooter />
+          <BackToTop />
         </div>
       </body>
     </html>
