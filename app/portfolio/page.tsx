@@ -1,6 +1,17 @@
-import { ArrowUpRight, Braces, Code2, Globe2, LayoutDashboard, Orbit, Sparkles, Workflow } from 'lucide-react';
+import { ArrowUpRight, Orbit, Sparkles } from 'lucide-react';
 
-const cases = [
+type PortfolioCase = {
+  title: string;
+  type: string;
+  category: string;
+  stack: string;
+  text: string;
+  tone: 'violet' | 'cyan' | 'blue' | 'orange' | 'amber' | 'pink';
+  status: string;
+  href?: string;
+};
+
+const cases: PortfolioCase[] = [
   {
     title: 'Tehkné Flow',
     type: 'Projeto Tehkné',
@@ -8,8 +19,8 @@ const cases = [
     stack: 'Next.js • Gestão • Analytics • Operação',
     text: 'Produto interno para gestão de projetos, tarefas, automações e visão operacional de times digitais.',
     tone: 'violet',
-    icon: LayoutDashboard,
-    status: 'Laboratório Tehkné'
+    status: 'Laboratório Tehkné',
+    href: '/portfolio/tehkne-flow'
   },
   {
     title: 'Vacina One',
@@ -18,8 +29,8 @@ const cases = [
     stack: 'Next.js • Saúde • Conteúdo • Franquias',
     text: 'Estrutura institucional moderna para clínica de vacinação, com comunicação clara, navegação objetiva e base preparada para expansão.',
     tone: 'cyan',
-    icon: Globe2,
-    status: 'Projeto direto / staging'
+    status: 'Projeto direto / staging',
+    href: '/portfolio/vacina-one'
   },
   {
     title: 'UNTI Digital',
@@ -28,8 +39,8 @@ const cases = [
     stack: 'Next.js • Integrações • Operação digital',
     text: 'Atuação como braço técnico em operação digital com foco em sites, plataformas, integrações, APIs e sustentação.',
     tone: 'blue',
-    icon: Code2,
-    status: 'Cliente fixo / ecossistema'
+    status: 'Cliente fixo / ecossistema',
+    href: '/portfolio/unti-digital'
   },
   {
     title: 'Savol Seminovos',
@@ -38,8 +49,8 @@ const cases = [
     stack: 'WordPress • Elementor • Filtros • Catálogo',
     text: 'Portal automotivo com listagem de veículos, filtros comerciais, cards dinâmicos e estrutura de manutenção contínua.',
     tone: 'orange',
-    icon: Braces,
-    status: 'Participação técnica'
+    status: 'Participação técnica',
+    href: '/portfolio/savol-seminovos'
   },
   {
     title: 'Beggin',
@@ -48,8 +59,8 @@ const cases = [
     stack: 'WordPress • Elementor • Produto • Performance',
     text: 'Site de marca e produto com narrativa visual, experiência editorial, páginas comerciais e ajustes técnicos de performance.',
     tone: 'amber',
-    icon: Globe2,
-    status: 'Participação técnica'
+    status: 'Participação técnica',
+    href: '/portfolio/beggin'
   },
   {
     title: 'HNK Agent',
@@ -58,7 +69,6 @@ const cases = [
     stack: 'GIP • Agentes • Prompts • Automação',
     text: 'Sistema conceitual e operacional para arquitetura de soluções, agentes, documentação viva e governança de criação digital.',
     tone: 'cyan',
-    icon: Orbit,
     status: 'Produto interno'
   },
   {
@@ -68,7 +78,6 @@ const cases = [
     stack: 'WordPress • Sites • Marketing • Suporte',
     text: 'Experiência técnica em ecossistema martech, com sites institucionais, suporte a operações digitais e projetos web.',
     tone: 'pink',
-    icon: Workflow,
     status: 'Histórico profissional'
   },
   {
@@ -78,239 +87,41 @@ const cases = [
     stack: 'WordPress • Elementor • Branding • Campanhas',
     text: 'Experiência em ecossistema de agência com sites, campanhas, comunicação visual e sustentação técnica para projetos digitais.',
     tone: 'violet',
-    icon: Sparkles,
     status: 'Histórico profissional'
   },
-  {
-    title: 'Grupo Savol',
+  ...[
+    ['Grupo Savol', 'Automotivo / Ecossistema', 'Next.js • Tailwind CSS • CRM', 'Case UNTI com atuação técnica em marcas, operação e captação regional para ecossistema automotivo.', 'blue'],
+    ['Toriba', 'Automotivo / Leads', 'Next.js • Framer Motion • CRM', 'Plataforma de leads com foco em velocidade comercial, captação e experiência digital objetiva.', 'cyan'],
+    ['Auto Shopping Tiquatira', 'Automotivo / Catálogo', 'API • Catálogo web • SEO', 'Catálogo conectado ao estoque real, com organização comercial e estrutura preparada para busca e conversão.', 'orange'],
+    ['Dr. Eduardo Ursolino', 'Saúde / Odontologia', 'Next.js • SEO • Framer Motion', 'Case de autoridade clínica e agendamento premium, com foco em confiança, clareza e posicionamento profissional.', 'cyan'],
+    ['Dr. Alessandro Linder', 'Saúde / Estética', 'Next.js • SEO local • UX', 'Experiência digital para saúde e estética, com foco em confiança clínica e geração de consultas qualificadas.', 'violet'],
+    ['Uroclínica de Joinville', 'Saúde / Clínica especializada', 'Next.js • Tailwind CSS • SEO local', 'Clareza institucional, contato qualificado e navegação objetiva para clínica especializada.', 'blue'],
+    ['Hospital Thereza Mussi', 'Saúde / Hospital', 'Next.js • Conteúdo • SEO local', 'Organização de serviços e confiança digital para instituição hospitalar, com base de conteúdo escalável.', 'cyan'],
+    ['Human Clinic', 'Saúde / Clínica premium', 'Next.js • UX premium • Tailwind CSS', 'Refinamento visual e fluxo de contato mais objetivo para experiência clínica premium.', 'violet'],
+    ['Dra. Isabel Borelli', 'Saúde / Estética', 'Next.js • SEO local • UX', 'Posicionamento profissional, proximidade e jornada de contato clara para marca médica pessoal.', 'pink'],
+    ['Dra. Gionvana Bombonatto', 'Saúde / Estética', 'Next.js • UX premium • SEO local', 'Autoridade médica com experiência premium, visual refinado e arquitetura voltada para conversão.', 'violet'],
+    ['Dr. Thiago Azuaga', 'Saúde especializada', 'Next.js • Tailwind CSS • SEO local', 'Confiança e jornada de contato enxuta para atuação médica especializada.', 'blue'],
+    ['Grupo ALJR', 'Corporativo / Grupo empresarial', 'Next.js • SEO • UX B2B', 'Marca corporativa e relacionamento comercial com foco em clareza institucional e presença B2B.', 'violet'],
+    ['Conect 7G', 'Tecnologia & Serviços', 'Next.js • Performance web • Tailwind CSS', 'Autoridade técnica e geração de demanda para empresa de tecnologia e serviços.', 'cyan'],
+    ['Landing Page Conect 7G', 'Landing page / CRO', 'Next.js • Framer Motion • CRO', 'Landing page com foco em captação de leads, resposta rápida e comunicação objetiva.', 'cyan'],
+    ['Clube Recreativo de Sumaré', 'Institucional & Serviços', 'Next.js • Conteúdo • Performance web', 'Agenda, serviços e relacionamento institucional organizados em uma experiência digital clara.', 'blue'],
+    ['Odete Design', 'Marca criativa', 'Next.js • UX premium • SEO', 'Posicionamento premium e percepção de valor para marca criativa com presença digital refinada.', 'pink'],
+    ['Renata Pimentel', 'Marca pessoal', 'Next.js • SEO local • UX', 'Autoridade, oferta e proximidade em uma presença digital orientada a contato qualificado.', 'violet'],
+    ['Plataforma Wiki das Celebridades', 'Plataforma web / Conteúdo', 'Next.js • SEO técnico • Conteúdo', 'Estrutura editorial, navegação e escala para plataforma web orientada a conteúdo.', 'blue'],
+    ['Nerd ao Máximo', 'Mídia & Conteúdo', 'Next.js • Conteúdo • Performance web', 'Comunidade, conteúdo e experiência editorial para ecossistema de mídia digital.', 'cyan'],
+    ['Catálogo Grupo Niks', 'Indústria / Catálogo digital', 'Next.js • Catálogo digital • Tailwind CSS', 'Organização comercial da oferta em catálogo digital estruturado para apresentação e venda.', 'orange'],
+    ['E-commerce Onile Alimentos', 'E-commerce', 'Next.js • E-commerce • UX', 'Jornada de compra mais clara para operação de alimentos, com foco em navegação e conversão.', 'amber'],
+    ['Website SuporteShop', 'E-commerce & Suporte', 'Next.js • SEO técnico • UX', 'Serviços e operação de suporte digital organizados em presença web comercial.', 'orange'],
+    ['SOS Pistolas', 'Indústria & Varejo', 'Next.js • SEO local • Performance web', 'Nicho técnico com clareza comercial, arquitetura de conteúdo e navegação objetiva.', 'amber']
+  ].map(([title, category, stack, text, tone]) => ({
+    title,
     type: 'Participação técnica autorizada',
-    category: 'Automotivo / Ecossistema',
-    stack: 'Next.js • Tailwind CSS • CRM',
-    text: 'Case UNTI com atuação técnica em marcas, operação e captação regional para ecossistema automotivo.',
-    tone: 'blue',
-    icon: Globe2,
+    category,
+    stack,
+    text,
+    tone: tone as PortfolioCase['tone'],
     status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Toriba',
-    type: 'Participação técnica autorizada',
-    category: 'Automotivo / Leads',
-    stack: 'Next.js • Framer Motion • CRM',
-    text: 'Plataforma de leads com foco em velocidade comercial, captação e experiência digital objetiva.',
-    tone: 'cyan',
-    icon: Workflow,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Auto Shopping Tiquatira',
-    type: 'Participação técnica autorizada',
-    category: 'Automotivo / Catálogo',
-    stack: 'API • Catálogo web • SEO',
-    text: 'Catálogo conectado ao estoque real, com organização comercial e estrutura preparada para busca e conversão.',
-    tone: 'orange',
-    icon: Braces,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Dr. Eduardo Ursolino',
-    type: 'Participação técnica autorizada',
-    category: 'Saúde / Odontologia',
-    stack: 'Next.js • SEO • Framer Motion',
-    text: 'Case de autoridade clínica e agendamento premium, com foco em confiança, clareza e posicionamento profissional.',
-    tone: 'cyan',
-    icon: Globe2,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Dr. Alessandro Linder',
-    type: 'Participação técnica autorizada',
-    category: 'Saúde / Estética',
-    stack: 'Next.js • SEO local • UX',
-    text: 'Experiência digital para saúde e estética, com foco em confiança clínica e geração de consultas qualificadas.',
-    tone: 'violet',
-    icon: Sparkles,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Uroclínica de Joinville',
-    type: 'Participação técnica autorizada',
-    category: 'Saúde / Clínica especializada',
-    stack: 'Next.js • Tailwind CSS • SEO local',
-    text: 'Clareza institucional, contato qualificado e navegação objetiva para clínica especializada.',
-    tone: 'blue',
-    icon: Globe2,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Hospital Thereza Mussi',
-    type: 'Participação técnica autorizada',
-    category: 'Saúde / Hospital',
-    stack: 'Next.js • Conteúdo • SEO local',
-    text: 'Organização de serviços e confiança digital para instituição hospitalar, com base de conteúdo escalável.',
-    tone: 'cyan',
-    icon: Globe2,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Human Clinic',
-    type: 'Participação técnica autorizada',
-    category: 'Saúde / Clínica premium',
-    stack: 'Next.js • UX premium • Tailwind CSS',
-    text: 'Refinamento visual e fluxo de contato mais objetivo para experiência clínica premium.',
-    tone: 'violet',
-    icon: Sparkles,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Dra. Isabel Borelli',
-    type: 'Participação técnica autorizada',
-    category: 'Saúde / Estética',
-    stack: 'Next.js • SEO local • UX',
-    text: 'Posicionamento profissional, proximidade e jornada de contato clara para marca médica pessoal.',
-    tone: 'pink',
-    icon: Globe2,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Dra. Gionvana Bombonatto',
-    type: 'Participação técnica autorizada',
-    category: 'Saúde / Estética',
-    stack: 'Next.js • UX premium • SEO local',
-    text: 'Autoridade médica com experiência premium, visual refinado e arquitetura voltada para conversão.',
-    tone: 'violet',
-    icon: Sparkles,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Dr. Thiago Azuaga',
-    type: 'Participação técnica autorizada',
-    category: 'Saúde especializada',
-    stack: 'Next.js • Tailwind CSS • SEO local',
-    text: 'Confiança e jornada de contato enxuta para atuação médica especializada.',
-    tone: 'blue',
-    icon: Globe2,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Grupo ALJR',
-    type: 'Participação técnica autorizada',
-    category: 'Corporativo / Grupo empresarial',
-    stack: 'Next.js • SEO • UX B2B',
-    text: 'Marca corporativa e relacionamento comercial com foco em clareza institucional e presença B2B.',
-    tone: 'violet',
-    icon: LayoutDashboard,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Conect 7G',
-    type: 'Participação técnica autorizada',
-    category: 'Tecnologia & Serviços',
-    stack: 'Next.js • Performance web • Tailwind CSS',
-    text: 'Autoridade técnica e geração de demanda para empresa de tecnologia e serviços.',
-    tone: 'cyan',
-    icon: Code2,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Landing Page Conect 7G',
-    type: 'Participação técnica autorizada',
-    category: 'Landing page / CRO',
-    stack: 'Next.js • Framer Motion • CRO',
-    text: 'Landing page com foco em captação de leads, resposta rápida e comunicação objetiva.',
-    tone: 'cyan',
-    icon: Workflow,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Clube Recreativo de Sumaré',
-    type: 'Participação técnica autorizada',
-    category: 'Institucional & Serviços',
-    stack: 'Next.js • Conteúdo • Performance web',
-    text: 'Agenda, serviços e relacionamento institucional organizados em uma experiência digital clara.',
-    tone: 'blue',
-    icon: Globe2,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Odete Design',
-    type: 'Participação técnica autorizada',
-    category: 'Marca criativa',
-    stack: 'Next.js • UX premium • SEO',
-    text: 'Posicionamento premium e percepção de valor para marca criativa com presença digital refinada.',
-    tone: 'pink',
-    icon: Sparkles,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Renata Pimentel',
-    type: 'Participação técnica autorizada',
-    category: 'Marca pessoal',
-    stack: 'Next.js • SEO local • UX',
-    text: 'Autoridade, oferta e proximidade em uma presença digital orientada a contato qualificado.',
-    tone: 'violet',
-    icon: Sparkles,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Plataforma Wiki das Celebridades',
-    type: 'Participação técnica autorizada',
-    category: 'Plataforma web / Conteúdo',
-    stack: 'Next.js • SEO técnico • Conteúdo',
-    text: 'Estrutura editorial, navegação e escala para plataforma web orientada a conteúdo.',
-    tone: 'blue',
-    icon: LayoutDashboard,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Nerd ao Máximo',
-    type: 'Participação técnica autorizada',
-    category: 'Mídia & Conteúdo',
-    stack: 'Next.js • Conteúdo • Performance web',
-    text: 'Comunidade, conteúdo e experiência editorial para ecossistema de mídia digital.',
-    tone: 'cyan',
-    icon: Globe2,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'Catálogo Grupo Niks',
-    type: 'Participação técnica autorizada',
-    category: 'Indústria / Catálogo digital',
-    stack: 'Next.js • Catálogo digital • Tailwind CSS',
-    text: 'Organização comercial da oferta em catálogo digital estruturado para apresentação e venda.',
-    tone: 'orange',
-    icon: Braces,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'E-commerce Onile Alimentos',
-    type: 'Participação técnica autorizada',
-    category: 'E-commerce',
-    stack: 'Next.js • E-commerce • UX',
-    text: 'Jornada de compra mais clara para operação de alimentos, com foco em navegação e conversão.',
-    tone: 'amber',
-    icon: Workflow,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'SWebsite SuporteShop',
-    type: 'Participação técnica autorizada',
-    category: 'E-commerce & Suporte',
-    stack: 'Next.js • SEO técnico • UX',
-    text: 'Serviços e operação de suporte digital organizados em presença web comercial.',
-    tone: 'orange',
-    icon: Globe2,
-    status: 'Ecossistema UNTI'
-  },
-  {
-    title: 'SOS Pistolas',
-    type: 'Participação técnica autorizada',
-    category: 'Indústria & Varejo',
-    stack: 'Next.js • SEO local • Performance web',
-    text: 'Nicho técnico com clareza comercial, arquitetura de conteúdo e navegação objetiva.',
-    tone: 'amber',
-    icon: Braces,
-    status: 'Ecossistema UNTI'
-  }
+  }))
 ];
 
 const filters = ['Todos', 'Projetos Tehkné', 'Participação Técnica', 'Ecossistemas', 'UNTI', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'Sites', 'Sistemas', 'WordPress', 'Next.js', 'IA'];
@@ -318,7 +129,7 @@ const stats = [
   ['31+', 'experiências listadas'],
   ['23', 'cases UNTI autorizados'],
   ['67+', 'repositórios mapeados'],
-  ['3', 'níveis editoriais de portfólio']
+  ['5', 'cases individuais publicados']
 ];
 
 export const metadata = {
@@ -366,27 +177,24 @@ export default function PortfolioPage() {
           <div>
             <span className="eyebrow">Inventário Tehkné Site v1</span>
             <h2>Uma vitrine organizada por autoria, participação e contexto.</h2>
-            <p>Os cases abaixo incluem os projetos próprios da Tehkné, participações técnicas e os cases autorizados do ecossistema UNTI Digital, mantendo clareza editorial sobre autoria e contexto.</p>
+            <p>Os cases abaixo incluem projetos próprios, participações técnicas e cases autorizados do ecossistema UNTI Digital. Os cards com página individual publicada levam para o case; os demais levam ao diagnóstico.</p>
           </div>
         </div>
         <div className="filters" aria-label="Filtros de portfólio">
           {filters.map((filter, index) => <button className={index === 0 ? 'active' : ''} key={filter}>{filter}</button>)}
         </div>
         <div className="project-grid">
-          {cases.map((item) => {
-            const Icon = item.icon;
-            return (
-              <article className="project-card" key={item.title}>
-                <div className={`project-thumb ${item.tone}`}><Icon size={46} /><span /></div>
-                <small>{item.type}</small>
-                <h3>{item.title}</h3>
-                <p><strong>{item.category}</strong></p>
-                <p>{item.text}</p>
-                <p>{item.stack}</p>
-                <a href="/#contato">Conversar sobre este tipo de projeto <ArrowUpRight size={14} /></a>
-              </article>
-            );
-          })}
+          {cases.map((item) => (
+            <article className="project-card" key={item.title}>
+              <div className={`project-thumb ${item.tone}`}><Orbit size={46} /><span /></div>
+              <small>{item.type}</small>
+              <h3>{item.title}</h3>
+              <p><strong>{item.category}</strong></p>
+              <p>{item.text}</p>
+              <p>{item.stack}</p>
+              <a href={item.href ?? '/#contato'}>{item.href ? 'Ver case' : 'Solicitar diagnóstico'} <ArrowUpRight size={14} /></a>
+            </article>
+          ))}
         </div>
       </section>
 
