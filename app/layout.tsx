@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import SiteFooter from './components/SiteFooter';
+import SiteHeader from './components/SiteHeader';
 import './globals.css';
 import './contact.css';
 
@@ -30,7 +32,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <div className="site-shell">
+          <div className="background-grid" />
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </div>
+      </body>
     </html>
   );
 }
