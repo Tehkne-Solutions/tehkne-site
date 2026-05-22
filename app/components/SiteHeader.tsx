@@ -14,14 +14,11 @@ export default function SiteHeader() {
   return (
     <header className="nav-shell nav-shell-premium">
       <a className="brand brand-official" href="/" aria-label="Tehkn\u00e9 Solutions">
-        <span className="brand-symbol"><Sparkles size={18} /></span>
-        <span className="brand-wordmark">
-          <img
-            src="/images/logo-tehkne-solutions-header.png"
-            alt="Tehkné Solutions"
-            style={{ height: 28 }}
-          />
-        </span>
+        <img
+          src="/images/logo-tehkne-solutions-header.png"
+          alt="Tehkné Solutions"
+          style={{ height: 48, display: 'block' }}
+        />
       </a>
       <nav className="main-nav" aria-label="Navega\u00e7\u00e3o principal">
         {navItems.map(([label, url]) => <a href={url} key={label}>{label}</a>)}
