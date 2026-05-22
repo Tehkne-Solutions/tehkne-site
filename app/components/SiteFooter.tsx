@@ -8,8 +8,14 @@ export default function SiteFooter() {
     <footer className="footer section-frame">
       <div className="footer-brand">
         <a className="brand" href="/" aria-label="Tehkné Solutions">
-          <span className="brand-symbol"><Sparkles size={18} /></span>
-          <span><strong>TEHKNÉ</strong><small>SOLUTIONS</small></span>
+            <span className="brand-symbol"><Sparkles size={18} /></span>
+            <span>
+              <img
+                src="/images/logo-tehkne-solutions-header.png"
+                alt="Tehkné Solutions"
+                style={{ height: 40 }}
+              />
+            </span>
         </a>
         <p>Arquitetura, tecnologia e design para criar soluções digitais com clareza, performance e evolução contínua.</p>
       </div>
