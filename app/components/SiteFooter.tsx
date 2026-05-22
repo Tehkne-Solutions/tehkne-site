@@ -14,11 +14,18 @@ export default function SiteFooter() {
         <p>Arquitetura, tecnologia e design para criar soluções digitais com clareza, performance e evolução contínua.</p>
       </div>
       <div>
+        <h4>Serviços</h4>
+        <a href="/servicos#site-institucional-alta-performance">Sites premium</a>
+        <a href="/servicos#plataforma-web-sob-medida">Plataformas web</a>
+        <a href="/servicos#integracoes-crm-erp-apis">Integrações</a>
+        <a href="/servicos#white-label-tecnico-agencias">White label</a>
+      </div>
+      <div>
         <h4>Soluções</h4>
         <a href="/solucoes#diagnostico-arquitetura">Arquitetura</a>
-        <a href="/solucoes#sites-plataformas">Web & Mobile</a>
         <a href="/solucoes#wordpress-avancado">WordPress</a>
         <a href="/solucoes#ia-automacoes">IA & Automações</a>
+        <a href="/solucoes#sustentacao-evolucao">Sustentação</a>
       </div>
       <div>
         <h4>Portfólio</h4>
@@ -37,7 +44,7 @@ export default function SiteFooter() {
       <div>
         <h4>Contato</h4>
         <a href={href} target="_blank" rel="noreferrer">{WHATSAPP_DISPLAY}</a>
-        <a href="mailto:contato@tehkne.com.br">contato@tehkne.com.br</a>
+        <a href="/contato#contato-form">Formulário de diagnóstico</a>
         <a href="/contato#localizacao">Campinas, SP • Brasil</a>
         <a href="/sobre">Sobre a Tehkné <ArrowUpRight size={12} /></a>
       </div>
