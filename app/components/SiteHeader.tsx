@@ -1,4 +1,4 @@
-import { ArrowUpRight, Menu } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const navItems = [
   ['Serviços', '/servicos'],
@@ -36,9 +36,10 @@ export default function SiteHeader() {
       </a>
 
       <details className="mobile-nav-panel">
-        <summary aria-label="Abrir menu">
-          <Menu size={20} />
-          <span>Menu</span>
+        <summary className="hamburger-button" aria-label="Abrir menu" title="Abrir menu">
+          <span className="hamburger-line" aria-hidden="true" />
+          <span className="hamburger-line" aria-hidden="true" />
+          <span className="hamburger-line" aria-hidden="true" />
         </summary>
         <div className="mobile-nav-links">
           {navItems.map(([label, url]) => <a href={url} key={label}>{label}</a>)}
