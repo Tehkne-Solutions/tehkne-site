@@ -230,8 +230,8 @@ export default function Home() {
           <p>Vamos mapear seu desafio e criar juntos a melhor solução digital para escalar com clareza.</p>
         </div>
         <div className="hero-actions">
-          <a className="btn btn-primary coin" href={homeWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-          <a className="btn btn-secondary" href="/contato">Página de contato <ArrowUpRight size={16} /></a>
+          <a className="btn btn-primary coin" href={contactHref}>Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+          <a className="btn btn-secondary" href={contactHref}>Página de contato <ArrowUpRight size={16} /></a>
         </div>
       </motion.section>
 
