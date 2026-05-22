@@ -1,9 +1,8 @@
-import { ArrowUpRight, Orbit } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import { whatsAppHref, whatsappMessages } from '../contact';
+import PortfolioGrid from './PortfolioGrid';
 import { portfolioCases, portfolioStats } from './portfolio-data';
-
-const filters = ['Todos', 'Projetos Tehkné', 'Participação Técnica', 'Ecossistemas', 'UNTI', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
 
 export const metadata = {
   title: 'Portfólio | Tehkné Solutions',
@@ -57,26 +56,7 @@ export default function PortfolioPage() {
             <p>Os cards abaixo incluem projetos próprios, produtos internos, laboratórios, participação técnica, histórico profissional e cases autorizados do ecossistema UNTI Digital. Cada card tem uma página individual usando o mesmo template de case.</p>
           </div>
         </div>
-        <div className="filters" aria-label="Filtros de portfólio">
-          {filters.map((filter, index) => <button className={index === 0 ? 'active' : ''} key={filter}>{filter}</button>)}
-        </div>
-        <div className="project-grid portfolio-grid-expanded">
-          {portfolioCases.map((item) => (
-            <article className="project-card portfolio-card-rich" key={item.slug}>
-              <div className={`project-thumb portfolio-thumb ${item.tone}`}>
-                <Orbit size={46} />
-                <strong>{item.imageLabel}</strong>
-                <span />
-              </div>
-              <small>{item.level}</small>
-              <h3>{item.title}</h3>
-              <p><strong>{item.category}</strong></p>
-              <p>{item.summary}</p>
-              <p className="portfolio-stack-line">{item.stack.slice(0, 4).join(' • ')}</p>
-              <a href={`/portfolio/${item.slug}`}>Ver case <ArrowUpRight size={14} /></a>
-            </article>
-          ))}
-        </div>
+        <PortfolioGrid cases={portfolioCases} />
       </section>
 
       <section className="section-frame os-section">
