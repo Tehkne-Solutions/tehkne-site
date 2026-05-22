@@ -1,0 +1,4 @@
+deploy: direct
+triggered_at: 2026-05-22
+scope: site-v1-cases
+notes: Trigger Vercel production deployment from main after case templates and logo fixes.
