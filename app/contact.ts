@@ -7,6 +7,7 @@ export function whatsAppHref(message: string) {
 
 export const whatsappMessages = {
   home: 'Olá, Tehkné! Vim pela Home do site e quero solicitar um diagnóstico estratégico para transformar uma ideia, processo ou operação em sistema digital real.',
+  servicos: 'Olá, Tehkné! Vim pela página de Serviços e quero entender qual serviço combina melhor com minha demanda: site premium, plataforma web, integrações, governança, sustentação ou white label técnico.',
   solucoes: 'Olá, Tehkné! Vim pela página de Soluções e quero conversar sobre arquitetura, desenvolvimento, WordPress, IA, automações, UX ou sustentação para minha operação.',
   portfolio: 'Olá, Tehkné! Vim pela página de Portfólio e quero conversar sobre um projeto parecido com os cases e experiências apresentados no site.',
   metodo: 'Olá, Tehkné! Vim pela página Método GIP e quero entender como aplicar descoberta, arquitetura, design, desenvolvimento, validação e evolução no meu projeto.',
