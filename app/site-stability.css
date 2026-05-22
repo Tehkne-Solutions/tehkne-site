@@ -87,8 +87,47 @@ html {
     display: none;
   }
 
+  .nav-shell-premium .nav-cta {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   .mobile-menu-toggle {
     display: grid;
+  }
+}
+
+@media (max-width: 920px) {
+  .hero-copy {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-copy h1,
+  .hero-copy p,
+  .hero-actions,
+  .trust-strip {
+    justify-content: center;
+  }
+
+  .hero-actions {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 24px auto 0;
+  }
+
+  .hero-actions .btn {
+    width: min(100%, 320px);
+  }
+
+  .trust-strip {
+    display: grid;
+    justify-items: center;
+    max-width: 320px;
+    margin: 18px auto 0;
   }
 }
 
