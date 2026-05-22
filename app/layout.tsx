@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './contact.css';
 
 export const metadata: Metadata = {
   title: 'Tehkné Solutions | Software House, Produto Digital, IA e Automações',
