@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import ContactForm from './components/ContactForm';
 import { whatsAppHref, whatsappMessages } from './contact';
+import { portfolioCases } from './portfolio/portfolio-data';
 
 const services = [
   {
@@ -41,22 +42,16 @@ const services = [
   }
 ];
 
-const projects = [
-  { title: 'Tehkné Flow', type: 'Sistema', stack: 'Produto interno • gestão • analytics', tone: 'violet', href: '/portfolio/tehkne-flow' },
-  { title: 'Beggin', type: 'Site', stack: 'Marca • produto • performance', tone: 'amber', href: '/portfolio/beggin' },
-  { title: 'UNTI Digital', type: 'Plataforma', stack: 'Parceria técnica • Next.js', tone: 'blue', href: '/portfolio/unti-digital' },
-  { title: 'HNK Agent', type: 'IA', stack: 'Agentes • GIP • automação', tone: 'cyan', href: '/portfolio' },
-  { title: 'Savol Seminovos', type: 'Catálogo', stack: 'WordPress avançado • filtros', tone: 'orange', href: '/portfolio/savol-seminovos' },
-  { title: 'Meme Digital', type: 'Ecossistema', stack: 'Martech • sites • suporte técnico', tone: 'pink', href: '/portfolio' }
-];
+const homeCases = portfolioCases.filter((item) => item.featured).slice(0, 8);
+const carouselCases = [...homeCases, ...homeCases];
 
 const method = [
-  ['Descoberta', 'Entendemos o desafio, contexto, objetivos, riscos e oportunidades.'],
-  ['Arquitetura', 'Definimos solução, escopo, stack, dados, integrações e plano técnico.'],
-  ['Design/Produto', 'Criamos jornadas, interfaces, protótipos e decisões de experiência.'],
-  ['Desenvolvimento', 'Construímos com código limpo, versionamento, qualidade e rastreabilidade.'],
-  ['Validação/Deploy', 'Testamos, ajustamos, implantamos e preparamos a operação.'],
-  ['Evolução', 'Monitoramos, mantemos e evoluímos continuamente o produto.']
+  ['01', 'Descoberta estratégica', 'Entendemos contexto, público, objetivos, riscos, gargalos, operação atual e critérios de sucesso antes de pensar em tela ou código.'],
+  ['02', 'Arquitetura da solução', 'Organizamos escopo, stack, dados, integrações, fluxos, prioridades e plano técnico para evitar retrabalho e decisões soltas.'],
+  ['03', 'Produto e experiência', 'Transformamos o mapa técnico em jornadas, interfaces, conteúdo, protótipos e decisões de UX orientadas a conversão e operação.'],
+  ['04', 'Desenvolvimento rastreável', 'Construímos com versionamento, componentes, documentação, boas práticas e entregas incrementais para manter clareza durante o projeto.'],
+  ['05', 'Validação e deploy', 'Testamos, revisamos, ajustamos, publicamos e preparamos a base para mensuração, manutenção e evolução contínua.'],
+  ['06', 'Evolução contínua', 'Acompanhamos melhorias, performance, novas demandas, automações e sustentação para o produto continuar vivo depois do lançamento.']
 ];
 
 const painPoints = [
@@ -122,10 +117,10 @@ export default function Home() {
       </section>
 
       <motion.section className="metrics section-frame compact" {...fadeUp}>
-        <div><strong>67+</strong><span>repositórios mapeados para inventário técnico</span></div>
-        <div><strong>33+</strong><span>cases catalogados para curadoria de portfólio</span></div>
-        <div><strong>5</strong><span>pilares: arquitetura, dev, design, IA e sustentação</span></div>
-        <div><strong>GIP</strong><span>método com descoberta, arquitetura, validação e evolução</span></div>
+        <div><strong>70+</strong><span>sites WordPress, páginas e experiências web acumuladas</span></div>
+        <div><strong>67+</strong><span>repositórios mapeados entre produtos, automações, sites e laboratórios</span></div>
+        <div><strong>30+</strong><span>experiências organizadas entre projetos Tehkné, participação técnica e ecossistemas</span></div>
+        <div><strong>7+</strong><span>anos reunindo desenvolvimento, produto, design, WordPress, IA e operação digital</span></div>
       </motion.section>
 
       <motion.section id="solucoes" className="section-frame" {...fadeUp}>
@@ -153,40 +148,44 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section id="portfolio" className="section-frame" {...fadeUp}>
+      <motion.section id="portfolio" className="section-frame portfolio-carousel-section" {...fadeUp}>
         <div className="section-heading inline">
           <div>
             <span className="eyebrow">Portfólio e experiências</span>
-            <h2>Projetos reais, produtos próprios e participação técnica em ecossistemas digitais.</h2>
+            <h2>Cases rodando em vitrine contínua, com narrativa editorial segura.</h2>
+            <p>Projetos próprios, participação técnica autorizada, produtos internos e ecossistemas parceiros organizados sem inflar autoria nem misturar contextos comerciais.</p>
           </div>
           <a className="text-link" href="/portfolio">Ver portfólio completo <ArrowUpRight size={16} /></a>
         </div>
-        <div className="filters" aria-label="Filtros de portfólio">
-          {['Todos', 'Projetos Tehkné', 'Participação Técnica', 'Parceiros', 'Sites', 'Sistemas', 'IA'].map((filter, index) => <button className={index === 0 ? 'active' : ''} key={filter}>{filter}</button>)}
-        </div>
-        <div className="project-grid">
-          {projects.map((project, index) => (
-            <motion.article className="project-card" key={project.title} initial={{ opacity: 0, scale: 0.94 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }}>
-              <div className={`project-thumb ${project.tone}`}><Orbit size={46} /><span /></div>
-              <small>{project.type}</small>
-              <h3>{project.title}</h3>
-              <p>{project.stack}</p>
-              <a href={project.href}>Abrir case <ArrowUpRight size={14} /></a>
-            </motion.article>
-          ))}
+        <div className="case-marquee" aria-label="Carrossel de cases Tehkné">
+          <div className="case-marquee-track">
+            {carouselCases.map((project, index) => (
+              <a className={`project-card home-case-card ${project.tone}`} href={`/portfolio/${project.slug}`} key={`${project.slug}-${index}`}>
+                <div className={`project-thumb ${project.tone}`}><Orbit size={46} /><span /></div>
+                <small>{project.level} • {project.category}</small>
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+                <div className="home-case-stack">{project.stack.slice(0, 3).map((tech) => <span key={tech}>{tech}</span>)}</div>
+                <strong>Abrir case <ArrowUpRight size={14} /></strong>
+              </a>
+            ))}
+          </div>
         </div>
       </motion.section>
 
-      <motion.section id="metodo" className="section-frame method-section" {...fadeUp}>
-        <div className="section-heading">
-          <span className="eyebrow">Tehkné OS / Método GIP</span>
-          <h2>Clareza, rastreabilidade e evolução contínua do diagnóstico ao deploy.</h2>
-          <p>O Guided Iterative Precision organiza descoberta, arquitetura, desenvolvimento, validação e evolução para reduzir retrabalho e dar previsibilidade à entrega.</p>
+      <motion.section id="metodo" className="section-frame method-section method-expanded" {...fadeUp}>
+        <div className="section-heading inline">
+          <div>
+            <span className="eyebrow">Tehkné OS / Método GIP</span>
+            <h2>Um método para tirar projetos do improviso e colocar a operação em trilhos.</h2>
+            <p>O Guided Iterative Precision é a forma como a Tehkné transforma intenção em execução: primeiro limpamos o problema, depois estruturamos arquitetura, prototipamos a experiência, desenvolvemos com rastreabilidade, validamos e mantemos evolução contínua.</p>
+          </div>
+          <a className="btn btn-secondary" href="/metodo">Conhecer o método <ArrowUpRight size={16} /></a>
         </div>
         <div className="method-line">
-          {method.map(([title, text], index) => (
+          {method.map(([number, title, text]) => (
             <motion.div className="method-step" key={title} whileHover={{ y: -8, scale: 1.03 }}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
+              <span>{number}</span>
               <GitBranch size={24} />
               <h3>{title}</h3>
               <p>{text}</p>
@@ -195,13 +194,18 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section id="os" className="section-frame os-section" {...fadeUp}>
+      <motion.section id="os" className="section-frame os-section os-expanded" {...fadeUp}>
         <div className="os-panel">
           <span className="eyebrow">Operação técnica para escalar</span>
           <h2>Tehkné OS conecta estratégia, produto, código, IA, documentação e sustentação.</h2>
-          <p>Uma camada operacional para transformar experiência acumulada em processo empresarial: arquitetura viva, prompts, agentes, automações, versionamento, curadoria de portfólio e governança técnica.</p>
+          <p>Mais do que um conjunto de ferramentas, o Tehkné OS é a camada operacional que transforma experiência técnica em processo empresarial: arquitetura viva, base de conhecimento, prompts, agentes, automações, versionamento, curadoria de portfólio e governança de entrega.</p>
+          <p>Na prática, ele organiza como a Tehkné pensa, constrói, documenta, valida e evolui soluções digitais — reduzindo dependência de improviso e aumentando previsibilidade para clientes, parceiros e produtos internos.</p>
           <div className="os-features">
             {['Diagnóstico técnico', 'Roadmap de produto', 'Documentação viva', 'Agentes de IA', 'Governança Git', 'Suporte evolutivo'].map((item) => <span key={item}>{item}</span>)}
+          </div>
+          <div className="hero-actions os-actions">
+            <a className="btn btn-primary coin" href="/tehkne-os">Explorar Tehkné OS <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href="/metodo">Ver Método GIP <ArrowUpRight size={16} /></a>
           </div>
         </div>
         <div className="stack-cloud">
