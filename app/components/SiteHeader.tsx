@@ -1,6 +1,7 @@
 import { ArrowUpRight, Sparkles } from 'lucide-react';
 
 const navItems = [
+  ['Serviços', '/servicos'],
   ['Solu\u00e7\u00f5es', '/solucoes'],
   ['Portf\u00f3lio', '/portfolio'],
   ['M\u00e9todo', '/metodo'],
@@ -19,7 +20,7 @@ export default function SiteHeader() {
       <nav className="main-nav" aria-label="Navega\u00e7\u00e3o principal">
         {navItems.map(([label, url]) => <a href={url} key={label}>{label}</a>)}
       </nav>
-      <a className="btn btn-primary coin nav-cta" href="/contato">
+      <a className="btn btn-primary coin nav-cta" href="/contato#contato-form">
         {'Solicitar diagn\u00f3stico'} <ArrowUpRight size={16} />
       </a>
     </header>
