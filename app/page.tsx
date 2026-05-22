@@ -12,10 +12,12 @@ import {
   MousePointer2,
   Orbit,
   Rocket,
+  Send,
   ShieldCheck,
   Sparkles,
   Workflow
 } from 'lucide-react';
+import { WHATSAPP_DISPLAY, whatsAppHref, whatsappMessages } from './contact';
 
 const services = [
   {
@@ -97,6 +99,8 @@ function MetatronCore() {
 }
 
 export default function Home() {
+  const homeWhatsApp = whatsAppHref(whatsappMessages.home);
+
   return (
     <main className="site-shell">
       <div className="background-grid" />
@@ -110,9 +114,9 @@ export default function Home() {
           <a href="#portfolio">Portfólio</a>
           <a href="#metodo">Método</a>
           <a href="#os">Tehkné OS</a>
-          <a href="#contato">Contato</a>
+          <a href={homeWhatsApp} target="_blank" rel="noreferrer">Contato</a>
         </nav>
-        <a className="btn btn-primary coin" href="#contato">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+        <a className="btn btn-primary coin" href={homeWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
       </header>
 
       <section id="top" className="hero section-frame">
@@ -121,7 +125,7 @@ export default function Home() {
           <h1>Transformamos ideias, processos e operações em <span>sistemas digitais reais.</span></h1>
           <p>Arquitetura, design, desenvolvimento, automações e IA para criar produtos digitais com clareza, performance, segurança e evolução contínua.</p>
           <div className="hero-actions">
-            <a className="btn btn-primary coin" href="#contato">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+            <a className="btn btn-primary coin" href={homeWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
             <a className="btn btn-secondary" href="#portfolio">Ver portfólio <ArrowUpRight size={16} /></a>
           </div>
           <div className="trust-strip">
@@ -153,12 +157,13 @@ export default function Home() {
         <div className="service-grid">
           {services.map((service, index) => {
             const Icon = service.icon;
+            const serviceWhatsApp = whatsAppHref(`Olá, Tehkné! Vim pela Home e quero planejar uma solução de ${service.title}. Quero entender escopo, arquitetura e próximos passos.`);
             return (
               <motion.article className="glass-card service-card" key={service.title} initial={{ opacity: 0, y: 34, rotateX: -8 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08, duration: 0.55 }}>
                 <Icon className="card-icon" size={34} />
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
-                <a href="#contato">Planejar solução <ArrowUpRight size={15} /></a>
+                <a href={serviceWhatsApp} target="_blank" rel="noreferrer">Planejar solução <ArrowUpRight size={15} /></a>
               </motion.article>
             );
           })}
@@ -171,7 +176,7 @@ export default function Home() {
             <span className="eyebrow">Portfólio e experiências</span>
             <h2>Projetos reais, produtos próprios e participação técnica em ecossistemas digitais.</h2>
           </div>
-          <a className="text-link" href="#contato">Solicitar análise de case <ArrowUpRight size={16} /></a>
+          <a className="text-link" href={whatsAppHref('Olá, Tehkné! Vim pela Home e quero solicitar uma análise de case para entender uma solução parecida com meu projeto.')} target="_blank" rel="noreferrer">Solicitar análise de case <ArrowUpRight size={16} /></a>
         </div>
         <div className="filters" aria-label="Filtros de portfólio">
           {['Todos', 'Projetos Tehkné', 'Participação Técnica', 'Parceiros', 'Sites', 'Sistemas', 'IA'].map((filter, index) => <button className={index === 0 ? 'active' : ''} key={filter}>{filter}</button>)}
@@ -183,7 +188,7 @@ export default function Home() {
               <small>{project.type}</small>
               <h3>{project.title}</h3>
               <p>{project.stack}</p>
-              <a href="#contato">Abrir case <ArrowUpRight size={14} /></a>
+              <a href={whatsAppHref(`Olá, Tehkné! Vim pela Home e quero conversar sobre um projeto parecido com ${project.title}.`)} target="_blank" rel="noreferrer">Abrir case <ArrowUpRight size={14} /></a>
             </motion.article>
           ))}
         </div>
@@ -240,10 +245,30 @@ export default function Home() {
           <p>Vamos mapear seu desafio e criar juntos a melhor solução digital para escalar com clareza.</p>
         </div>
         <div className="hero-actions">
-          <a className="btn btn-primary coin" href="mailto:contato@tehkne.com.br">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-          <a className="btn btn-secondary" href="https://wa.me/5511999999999">Falar no WhatsApp <ArrowUpRight size={16} /></a>
+          <a className="btn btn-primary coin" href={homeWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+          <a className="btn btn-secondary" href={homeWhatsApp} target="_blank" rel="noreferrer">Falar no WhatsApp <ArrowUpRight size={16} /></a>
         </div>
       </motion.section>
+
+      <section className="contact-form-section section-frame" id="contato-form">
+        <div className="contact-form-copy">
+          <span className="eyebrow">Contato direto</span>
+          <h2>Vamos transformar sua demanda em plano de execução?</h2>
+          <p>Use este bloco para organizar sua mensagem antes de chamar a Tehkné no WhatsApp. O botão abre uma conversa contextualizada para a Home.</p>
+          <div className="contact-phone-card">
+            <span>WhatsApp principal</span>
+            <strong>{WHATSAPP_DISPLAY}</strong>
+          </div>
+        </div>
+        <form className="contact-form-card" action={homeWhatsApp}>
+          <label>Nome<input name="nome" placeholder="Seu nome" /></label>
+          <label>Empresa ou projeto<input name="empresa" placeholder="Nome da empresa/projeto" /></label>
+          <label>Serviço de interesse<select name="servico" defaultValue=""><option value="" disabled>Selecione uma opção</option><option>Arquitetura de Soluções</option><option>Desenvolvimento Web & Mobile</option><option>WordPress Avançado</option><option>Design & UX de Produto</option><option>IA & Automações</option><option>Sustentação & Evolução</option></select></label>
+          <label>Mensagem<textarea name="mensagem" placeholder="Conte rapidamente o que você precisa criar, melhorar ou automatizar." rows={5} /></label>
+          <a className="btn btn-primary coin" href={homeWhatsApp} target="_blank" rel="noreferrer">Enviar pelo WhatsApp <Send size={16} /></a>
+          <a className="contact-direct-link" href={homeWhatsApp} target="_blank" rel="noreferrer">Chamar direto no WhatsApp <ArrowUpRight size={14} /></a>
+        </form>
+      </section>
 
       <footer className="footer section-frame">
         <div className="footer-brand">
@@ -253,7 +278,7 @@ export default function Home() {
         <div><h4>Soluções</h4><a>Arquitetura</a><a>Web & Mobile</a><a>UX & Produto</a><a>IA & Automações</a></div>
         <div><h4>Portfólio</h4><a>Todos os projetos</a><a>Projetos Tehkné</a><a>Participação Técnica</a><a>Ecossistemas</a></div>
         <div><h4>Tehkné OS</h4><a>Método GIP</a><a>Automação</a><a>Agentes de IA</a><a>Governança</a></div>
-        <div><h4>Contato</h4><a href="mailto:contato@tehkne.com.br">contato@tehkne.com.br</a><a>Campinas, SP • Brasil</a></div>
+        <div><h4>Contato</h4><a href={homeWhatsApp} target="_blank" rel="noreferrer">{WHATSAPP_DISPLAY}</a><a href="mailto:contato@tehkne.com.br">contato@tehkne.com.br</a><a>Campinas, SP • Brasil</a></div>
       </footer>
     </main>
   );
