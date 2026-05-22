@@ -12,12 +12,11 @@ import {
   MousePointer2,
   Orbit,
   Rocket,
-  Send,
   ShieldCheck,
-  Sparkles,
   Workflow
 } from 'lucide-react';
-import { WHATSAPP_DISPLAY, whatsAppHref, whatsappMessages } from './contact';
+import ContactForm from './components/ContactForm';
+import { whatsAppHref, whatsappMessages } from './contact';
 
 const services = [
   {
@@ -43,12 +42,12 @@ const services = [
 ];
 
 const projects = [
-  { title: 'Tehkné Flow', type: 'Sistema', stack: 'Produto interno • gestão • analytics', tone: 'violet' },
-  { title: 'Beggin', type: 'Site', stack: 'Marca • produto • performance', tone: 'amber' },
-  { title: 'UNTI Digital', type: 'Plataforma', stack: 'Parceria técnica • Next.js', tone: 'blue' },
-  { title: 'HNK Agent', type: 'IA', stack: 'Agentes • GIP • automação', tone: 'cyan' },
-  { title: 'Savol Seminovos', type: 'Catálogo', stack: 'WordPress avançado • filtros', tone: 'orange' },
-  { title: 'Meme Digital', type: 'Ecossistema', stack: 'Martech • sites • suporte técnico', tone: 'pink' }
+  { title: 'Tehkné Flow', type: 'Sistema', stack: 'Produto interno • gestão • analytics', tone: 'violet', href: '/portfolio/tehkne-flow' },
+  { title: 'Beggin', type: 'Site', stack: 'Marca • produto • performance', tone: 'amber', href: '/portfolio/beggin' },
+  { title: 'UNTI Digital', type: 'Plataforma', stack: 'Parceria técnica • Next.js', tone: 'blue', href: '/portfolio/unti-digital' },
+  { title: 'HNK Agent', type: 'IA', stack: 'Agentes • GIP • automação', tone: 'cyan', href: '/portfolio' },
+  { title: 'Savol Seminovos', type: 'Catálogo', stack: 'WordPress avançado • filtros', tone: 'orange', href: '/portfolio/savol-seminovos' },
+  { title: 'Meme Digital', type: 'Ecossistema', stack: 'Martech • sites • suporte técnico', tone: 'pink', href: '/portfolio' }
 ];
 
 const method = [
@@ -102,23 +101,7 @@ export default function Home() {
   const homeWhatsApp = whatsAppHref(whatsappMessages.home);
 
   return (
-    <main className="site-shell">
-      <div className="background-grid" />
-      <header className="nav-shell">
-        <a className="brand" href="#top" aria-label="Tehkné Solutions">
-          <span className="brand-symbol"><Sparkles size={18} /></span>
-          <span><strong>TEHKNÉ</strong><small>SOLUTIONS</small></span>
-        </a>
-        <nav>
-          <a href="#solucoes">Soluções</a>
-          <a href="#portfolio">Portfólio</a>
-          <a href="#metodo">Método</a>
-          <a href="#os">Tehkné OS</a>
-          <a href={homeWhatsApp} target="_blank" rel="noreferrer">Contato</a>
-        </nav>
-        <a className="btn btn-primary coin" href={homeWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-      </header>
-
+    <main>
       <section id="top" className="hero section-frame">
         <motion.div className="hero-copy" initial={{ opacity: 0, x: -34 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.75 }}>
           <span className="eyebrow">Arquitetura • Tecnologia • Performance • Evolução</span>
@@ -126,7 +109,7 @@ export default function Home() {
           <p>Arquitetura, design, desenvolvimento, automações e IA para criar produtos digitais com clareza, performance, segurança e evolução contínua.</p>
           <div className="hero-actions">
             <a className="btn btn-primary coin" href={homeWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-            <a className="btn btn-secondary" href="#portfolio">Ver portfólio <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href="/portfolio">Ver portfólio <ArrowUpRight size={16} /></a>
           </div>
           <div className="trust-strip">
             <span><ShieldCheck size={15} /> Arquitetura sólida</span>
@@ -176,7 +159,7 @@ export default function Home() {
             <span className="eyebrow">Portfólio e experiências</span>
             <h2>Projetos reais, produtos próprios e participação técnica em ecossistemas digitais.</h2>
           </div>
-          <a className="text-link" href={whatsAppHref('Olá, Tehkné! Vim pela Home e quero solicitar uma análise de case para entender uma solução parecida com meu projeto.')} target="_blank" rel="noreferrer">Solicitar análise de case <ArrowUpRight size={16} /></a>
+          <a className="text-link" href="/portfolio">Ver portfólio completo <ArrowUpRight size={16} /></a>
         </div>
         <div className="filters" aria-label="Filtros de portfólio">
           {['Todos', 'Projetos Tehkné', 'Participação Técnica', 'Parceiros', 'Sites', 'Sistemas', 'IA'].map((filter, index) => <button className={index === 0 ? 'active' : ''} key={filter}>{filter}</button>)}
@@ -188,7 +171,7 @@ export default function Home() {
               <small>{project.type}</small>
               <h3>{project.title}</h3>
               <p>{project.stack}</p>
-              <a href={whatsAppHref(`Olá, Tehkné! Vim pela Home e quero conversar sobre um projeto parecido com ${project.title}.`)} target="_blank" rel="noreferrer">Abrir case <ArrowUpRight size={14} /></a>
+              <a href={project.href}>Abrir case <ArrowUpRight size={14} /></a>
             </motion.article>
           ))}
         </div>
@@ -246,40 +229,14 @@ export default function Home() {
         </div>
         <div className="hero-actions">
           <a className="btn btn-primary coin" href={homeWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-          <a className="btn btn-secondary" href={homeWhatsApp} target="_blank" rel="noreferrer">Falar no WhatsApp <ArrowUpRight size={16} /></a>
+          <a className="btn btn-secondary" href="/contato">Página de contato <ArrowUpRight size={16} /></a>
         </div>
       </motion.section>
 
-      <section className="contact-form-section section-frame" id="contato-form">
-        <div className="contact-form-copy">
-          <span className="eyebrow">Contato direto</span>
-          <h2>Vamos transformar sua demanda em plano de execução?</h2>
-          <p>Use este bloco para organizar sua mensagem antes de chamar a Tehkné no WhatsApp. O botão abre uma conversa contextualizada para a Home.</p>
-          <div className="contact-phone-card">
-            <span>WhatsApp principal</span>
-            <strong>{WHATSAPP_DISPLAY}</strong>
-          </div>
-        </div>
-        <form className="contact-form-card" action={homeWhatsApp}>
-          <label>Nome<input name="nome" placeholder="Seu nome" /></label>
-          <label>Empresa ou projeto<input name="empresa" placeholder="Nome da empresa/projeto" /></label>
-          <label>Serviço de interesse<select name="servico" defaultValue=""><option value="" disabled>Selecione uma opção</option><option>Arquitetura de Soluções</option><option>Desenvolvimento Web & Mobile</option><option>WordPress Avançado</option><option>Design & UX de Produto</option><option>IA & Automações</option><option>Sustentação & Evolução</option></select></label>
-          <label>Mensagem<textarea name="mensagem" placeholder="Conte rapidamente o que você precisa criar, melhorar ou automatizar." rows={5} /></label>
-          <a className="btn btn-primary coin" href={homeWhatsApp} target="_blank" rel="noreferrer">Enviar pelo WhatsApp <Send size={16} /></a>
-          <a className="contact-direct-link" href={homeWhatsApp} target="_blank" rel="noreferrer">Chamar direto no WhatsApp <ArrowUpRight size={14} /></a>
-        </form>
-      </section>
-
-      <footer className="footer section-frame">
-        <div className="footer-brand">
-          <a className="brand" href="#top"><span className="brand-symbol"><Sparkles size={18} /></span><span><strong>TEHKNÉ</strong><small>SOLUTIONS</small></span></a>
-          <p>Arquitetura, tecnologia e design para criar soluções digitais com clareza, performance e evolução contínua.</p>
-        </div>
-        <div><h4>Soluções</h4><a>Arquitetura</a><a>Web & Mobile</a><a>UX & Produto</a><a>IA & Automações</a></div>
-        <div><h4>Portfólio</h4><a>Todos os projetos</a><a>Projetos Tehkné</a><a>Participação Técnica</a><a>Ecossistemas</a></div>
-        <div><h4>Tehkné OS</h4><a>Método GIP</a><a>Automação</a><a>Agentes de IA</a><a>Governança</a></div>
-        <div><h4>Contato</h4><a href={homeWhatsApp} target="_blank" rel="noreferrer">{WHATSAPP_DISPLAY}</a><a href="mailto:contato@tehkne.com.br">contato@tehkne.com.br</a><a>Campinas, SP • Brasil</a></div>
-      </footer>
+      <ContactForm
+        page="Home"
+        context="diagnóstico estratégico para transformar uma ideia, processo ou operação em sistema digital real"
+      />
     </main>
   );
 }
