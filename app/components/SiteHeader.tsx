@@ -20,7 +20,7 @@ export default function SiteHeader() {
         {navItems.map(([label, url]) => <a href={url} key={label}>{label}</a>)}
       </nav>
       <a className="btn btn-primary coin nav-cta" href="/contato">
-        Solicitar diagn\u00f3stico <ArrowUpRight size={16} />
+        {'Solicitar diagn\u00f3stico'} <ArrowUpRight size={16} />
       </a>
     </header>
   );
