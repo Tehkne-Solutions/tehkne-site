@@ -15,30 +15,30 @@ export default function SiteFooter() {
       </div>
       <div>
         <h4>Soluções</h4>
-        <a href="/solucoes">Arquitetura</a>
-        <a href="/solucoes">Web & Mobile</a>
-        <a href="/solucoes">UX & Produto</a>
-        <a href="/solucoes">IA & Automações</a>
+        <a href="/solucoes#diagnostico-arquitetura">Arquitetura</a>
+        <a href="/solucoes#sites-plataformas">Web & Mobile</a>
+        <a href="/solucoes#wordpress-avancado">WordPress</a>
+        <a href="/solucoes#ia-automacoes">IA & Automações</a>
       </div>
       <div>
         <h4>Portfólio</h4>
-        <a href="/portfolio">Todos os projetos</a>
-        <a href="/portfolio">Projetos Tehkné</a>
-        <a href="/portfolio">Participação Técnica</a>
-        <a href="/portfolio">Ecossistemas</a>
+        <a href="/portfolio#cases">Todos os projetos</a>
+        <a href="/portfolio?filtro=tehkne">Projetos Tehkné</a>
+        <a href="/portfolio?filtro=participacao">Participação Técnica</a>
+        <a href="/portfolio?filtro=ecossistemas">Ecossistemas</a>
       </div>
       <div>
         <h4>Tehkné OS</h4>
-        <a href="/metodo">Método GIP</a>
-        <a href="/tehkne-os">Automação</a>
-        <a href="/tehkne-os">Agentes de IA</a>
-        <a href="/tehkne-os">Governança</a>
+        <a href="/metodo#fluxo-gip">Método GIP</a>
+        <a href="/tehkne-os#modulos">Módulos</a>
+        <a href="/tehkne-os#camadas">Camadas</a>
+        <a href="/tehkne-os#inteligencia">Governança</a>
       </div>
       <div>
         <h4>Contato</h4>
         <a href={href} target="_blank" rel="noreferrer">{WHATSAPP_DISPLAY}</a>
         <a href="mailto:contato@tehkne.com.br">contato@tehkne.com.br</a>
-        <a href="/contato">Campinas, SP • Brasil</a>
+        <a href="/contato#localizacao">Campinas, SP • Brasil</a>
         <a href="/sobre">Sobre a Tehkné <ArrowUpRight size={12} /></a>
       </div>
     </footer>
