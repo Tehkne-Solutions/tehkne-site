@@ -1,4 +1,4 @@
-import { ArrowUpRight, Bot, Code2, Layers3, MousePointer2, ShieldCheck, Sparkles, Workflow, Wrench } from 'lucide-react';
+import { ArrowUpRight, Bot, Code2, Layers3, MousePointer2, ShieldCheck, Workflow, Wrench } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import { whatsAppHref, whatsappMessages } from '../contact';
 
@@ -58,23 +58,7 @@ export default function SolucoesPage() {
   const pageWhatsApp = whatsAppHref(whatsappMessages.solucoes);
 
   return (
-    <main className="site-shell">
-      <div className="background-grid" />
-      <header className="nav-shell">
-        <a className="brand" href="/" aria-label="Tehkné Solutions">
-          <span className="brand-symbol"><Sparkles size={18} /></span>
-          <span><strong>TEHKNÉ</strong><small>SOLUTIONS</small></span>
-        </a>
-        <nav>
-          <a href="/solucoes">Soluções</a>
-          <a href="/#portfolio">Portfólio</a>
-          <a href="/#metodo">Método</a>
-          <a href="/#os">Tehkné OS</a>
-          <a href={pageWhatsApp} target="_blank" rel="noreferrer">Contato</a>
-        </nav>
-        <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-      </header>
-
+    <main>
       <section className="section-frame solutions-hero">
         <div className="section-heading">
           <span className="eyebrow">Soluções digitais sob medida</span>
@@ -144,7 +128,7 @@ export default function SolucoesPage() {
         </div>
         <div className="hero-actions">
           <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-          <a className="btn btn-secondary" href="/">Voltar para Home <ArrowUpRight size={16} /></a>
+          <a className="btn btn-secondary" href="/portfolio">Ver portfólio <ArrowUpRight size={16} /></a>
         </div>
       </section>
     </main>
