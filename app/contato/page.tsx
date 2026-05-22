@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin, MessageCircle, Send } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import { WHATSAPP_DISPLAY, whatsAppHref, whatsappMessages } from '../contact';
 
@@ -7,19 +7,22 @@ const contactCards = [
     icon: MessageCircle,
     title: 'WhatsApp principal',
     text: WHATSAPP_DISPLAY,
-    detail: 'Canal direto para diagnóstico, dúvidas e início de projeto.'
+    detail: 'Canal direto para diagnóstico, dúvidas e início de projeto.',
+    href: '#contato-form'
   },
   {
     icon: Mail,
-    title: 'E-mail institucional',
-    text: 'contato@tehkne.com.br',
-    detail: 'Ideal para propostas, briefings, documentos e encaminhamentos formais.'
+    title: 'Formulário de diagnóstico',
+    text: 'Contato contextualizado',
+    detail: 'Organize nome, empresa, serviço de interesse e mensagem antes de chamar a Tehkné.',
+    href: '#contato-form'
   },
   {
     icon: MapPin,
     title: 'Base de atuação',
     text: 'Campinas, SP • Brasil',
-    detail: 'Atuação remota, híbrida e em parceria com empresas e agências.'
+    detail: 'Atuação remota, híbrida e em parceria com empresas e agências.',
+    href: '#localizacao'
   }
 ];
 
@@ -48,8 +51,8 @@ export default function ContatoPage() {
           <h1>Vamos entender sua demanda e transformar em plano técnico.</h1>
           <p>Conte o que você precisa criar, melhorar, automatizar ou sustentar. A Tehkné organiza o caminho entre intenção, arquitetura, execução e evolução.</p>
           <div className="hero-actions">
-            <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Chamar no WhatsApp <ArrowUpRight size={16} /></a>
-            <a className="btn btn-secondary" href="mailto:contato@tehkne.com.br">Enviar e-mail <Mail size={16} /></a>
+            <a className="btn btn-primary coin" href="#contato-form">Ir para o formulário <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href={pageWhatsApp} target="_blank" rel="noreferrer">Chamar no WhatsApp <Send size={16} /></a>
           </div>
         </div>
       </section>
@@ -65,26 +68,25 @@ export default function ContatoPage() {
         <div className="section-heading">
           <span className="eyebrow">Canais</span>
           <h2>Escolha o melhor ponto de entrada.</h2>
-          <p>O WhatsApp é o caminho mais rápido para iniciar uma conversa contextualizada. O e-mail funciona melhor para materiais, briefings e arquivos.</p>
+          <p>O formulário organiza o contexto antes do contato. O WhatsApp continua disponível para conversa direta.</p>
         </div>
         <div className="service-grid solutions-grid">
           {contactCards.map((card) => {
             const Icon = card.icon;
-            const href = card.title.includes('WhatsApp') ? pageWhatsApp : card.title.includes('E-mail') ? 'mailto:contato@tehkne.com.br' : '/sobre';
             return (
               <article className="glass-card service-card solution-card" key={card.title}>
                 <Icon className="card-icon" size={34} />
                 <h3>{card.title}</h3>
                 <p><strong>{card.text}</strong></p>
                 <p>{card.detail}</p>
-                <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}>Abrir canal <ArrowUpRight size={15} /></a>
+                <a href={card.href}>Abrir canal <ArrowUpRight size={15} /></a>
               </article>
             );
           })}
         </div>
       </section>
 
-      <section className="section-frame os-section">
+      <section className="section-frame os-section" id="localizacao">
         <div className="os-panel">
           <span className="eyebrow">Como chegar com clareza</span>
           <h2>Quanto melhor o contexto, mais preciso fica o diagnóstico.</h2>
@@ -102,7 +104,7 @@ export default function ContatoPage() {
         page="Contato"
         context="início de conversa para diagnóstico técnico, arquitetura, desenvolvimento, WordPress, IA, automações ou sustentação"
         title="Organize sua mensagem e fale com a Tehkné."
-        description="O botão abre uma conversa no WhatsApp com contexto da página de Contato. Depois podemos evoluir este bloco para um formulário dinâmico client-side."
+        description="Preencha o bloco e inicie uma conversa com contexto. Isso evita mensagem solta e acelera o diagnóstico."
       />
 
       <section className="final-cta">
@@ -112,8 +114,8 @@ export default function ContatoPage() {
           <p>Se existe uma demanda digital travada, uma operação manual demais ou uma ideia pronta para virar produto, este é o ponto de partida.</p>
         </div>
         <div className="hero-actions">
-          <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Iniciar conversa <Send size={16} /></a>
-          <a className="btn btn-secondary" href="/solucoes">Ver soluções <Phone size={16} /></a>
+          <a className="btn btn-primary coin" href="#contato-form">Ir para o formulário <ArrowUpRight size={16} /></a>
+          <a className="btn btn-secondary" href="/servicos">Ver serviços <ArrowUpRight size={16} /></a>
         </div>
       </section>
     </main>
