@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Menu } from 'lucide-react';
 
 const navItems = [
   ['Serviços', '/servicos'],
@@ -17,8 +17,8 @@ export default function SiteHeader() {
         <span className="brand-symbol">
           <img
             src="/images/tehkne-simbolo-isolado-logo.png"
-            alt="Tehkné"
-            style={{ height: 48 }}
+            alt="Tehkn\u00e9"
+            className="brand-symbol-img"
           />
         </span>
         <span className="brand-wordmark">
@@ -26,12 +26,25 @@ export default function SiteHeader() {
           <small>SOLUTIONS</small>
         </span>
       </a>
+
       <nav className="main-nav" aria-label="Navega\u00e7\u00e3o principal">
         {navItems.map(([label, url]) => <a href={url} key={label}>{label}</a>)}
       </nav>
+
       <a className="btn btn-primary coin nav-cta" href="/contato#contato-form">
-        {'Solicitar diagn\u00f3stico'} <ArrowUpRight size={16} />
+        <span>Solicitar diagn\u00f3stico</span> <ArrowUpRight size={16} />
       </a>
+
+      <details className="mobile-nav-panel">
+        <summary aria-label="Abrir menu">
+          <Menu size={20} />
+          <span>Menu</span>
+        </summary>
+        <div className="mobile-nav-links">
+          {navItems.map(([label, url]) => <a href={url} key={label}>{label}</a>)}
+          <a className="mobile-nav-diagnosis" href="/contato#contato-form">Solicitar diagn\u00f3stico <ArrowUpRight size={14} /></a>
+        </div>
+      </details>
     </header>
   );
 }
