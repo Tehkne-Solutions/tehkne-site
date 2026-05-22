@@ -1,4 +1,4 @@
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const navItems = [
   ['Serviços', '/servicos'],
@@ -14,11 +14,17 @@ export default function SiteHeader() {
   return (
     <header className="nav-shell nav-shell-premium">
       <a className="brand brand-official" href="/" aria-label="Tehkn\u00e9 Solutions">
-        <img
-          src="/images/logo-tehkne-solutions-header.png"
-          alt="Tehkné Solutions"
-          style={{ height: 48, display: 'block' }}
-        />
+        <span className="brand-symbol">
+          <img
+            src="/images/tehkne-simbolo-isolado-logo.png"
+            alt="Tehkné"
+            style={{ height: 48 }}
+          />
+        </span>
+        <span className="brand-wordmark">
+          <strong>{'TEHKN\u00c9'}</strong>
+          <small>SOLUTIONS</small>
+        </span>
       </a>
       <nav className="main-nav" aria-label="Navega\u00e7\u00e3o principal">
         {navItems.map(([label, url]) => <a href={url} key={label}>{label}</a>)}

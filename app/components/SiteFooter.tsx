@@ -1,4 +1,4 @@
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { WHATSAPP_DISPLAY, whatsAppHref, whatsappMessages } from '../contact';
 
 export default function SiteFooter() {
@@ -8,11 +8,15 @@ export default function SiteFooter() {
     <footer className="footer section-frame">
       <div className="footer-brand">
         <a className="brand" href="/" aria-label="Tehkné Solutions">
-            <img
-              src="/images/logo-tehkne-solutions-header.png"
-              alt="Tehkné Solutions"
-              style={{ height: 56, display: 'block' }}
-            />
+          <img
+            src="/images/tehkne-simbolo-isolado-logo.png"
+            alt="Tehkné"
+            style={{ height: 56, display: 'block', marginBottom: 8 }}
+          />
+          <div className="brand-wordmark">
+            <strong>{'TEHKN\u00c9'}</strong>
+            <small>SOLUTIONS</small>
+          </div>
         </a>
         <p>Arquitetura, tecnologia e design para criar soluções digitais com clareza, performance e evolução contínua.</p>
       </div>
