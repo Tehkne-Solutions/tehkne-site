@@ -30,6 +30,37 @@ export const metadata: Metadata = {
   }
 };
 
+// Base URL used for canonical links and sitemap references. Update if you have a custom domain.
+export const metadataBase = new URL('https://tehkne.com');
+
+// Add robots and twitter defaults
+metadata.robots = {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    'max-video-preview': -1,
+    'max-image-preview': 'large',
+    'max-snippet': -1
+  }
+};
+
+metadata.twitter = {
+  card: 'summary_large_image',
+  title: metadata.title as string,
+  description: metadata.description as string,
+  images: ['/images/logo-tehkne-solutions-header.png']
+};
+
+// Add a default openGraph image
+if (!metadata.openGraph?.images) {
+  metadata.openGraph = {
+    ...(metadata.openGraph || {}),
+    images: ['/images/logo-tehkne-solutions-header.png']
+  };
+}
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
