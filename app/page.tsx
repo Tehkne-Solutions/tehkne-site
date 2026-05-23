@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import ContactForm from './components/ContactForm';
 import { portfolioCases } from './portfolio/portfolio-data';
+import { StackCard, stacksData } from './components/StackCard';
 
 const services = [
   {
@@ -207,7 +208,9 @@ export default function Home() {
           </div>
         </div>
         <div className="stack-cloud">
-          {stacks.map((stack) => <span key={stack}>{stack}</span>)}
+          {stacksData.map((stack) => (
+            <StackCard key={stack.name} name={stack.name} icon={stack.icon} />
+          ))}
         </div>
       </motion.section>
 
