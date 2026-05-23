@@ -208,7 +208,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               const id = slugify(heading.text);
               return <a href={`#${id}`} key={heading.text}>{heading.text}</a>;
             })}
-            <a href="#visual">Resumo visual</a>
+            <a href="#visual">Mapa prático</a>
             <a href="#diagnostico">Diagnóstico</a>
           </aside>
 
@@ -223,12 +223,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <section className="section-frame blog-visual-section" id="visual">
           <div className="section-heading inline">
             <div>
-              <span className="eyebrow">Resumo visual</span>
+              <span className="eyebrow">Mapa prático</span>
               <h2>Como este conceito se conecta à operação.</h2>
             </div>
             <p>
-              Este bloco substitui os antigos placeholders de imagem por um resumo editorial próprio do artigo,
-              mantendo a identidade dark premium da Tehkné e reforçando a leitura prática do conteúdo.
+              A leitura se organiza em três movimentos: entender o contexto, estruturar as decisões técnicas
+              e transformar o conceito em aplicação prática dentro da operação digital.
             </p>
           </div>
           <div className="blog-visual-grid">
