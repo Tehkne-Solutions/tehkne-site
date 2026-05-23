@@ -1,5 +1,6 @@
 import { ArrowUpRight, CalendarDays, FileText, Globe2, HeartPulse, ShieldCheck, Users } from 'lucide-react';
 import ContactForm from '../../components/ContactForm';
+import { getPortfolioMetadata } from '../portfolio-data';
 
 const project = {
   title: 'Vacina One',
@@ -27,7 +28,7 @@ const modules = [
   { icon: ShieldCheck, title: 'Performance e base técnica', text: 'Projeto com stack moderna e foco em carregamento, manutenção e evolução.' }
 ];
 
-export const metadata = {
+export const metadata = getPortfolioMetadata('vacina-one') ?? {
   title: 'Case: Vacina One | Tehkné Solutions',
   description: 'Case Vacina One: site institucional em Next.js para saúde, vacinação, conteúdo educativo, unidades e expansão comercial.'
 };

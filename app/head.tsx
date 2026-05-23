@@ -26,7 +26,6 @@ export default function Head() {
   return (
     <>
       <meta name="robots" content="index, follow" />
-      <link rel="canonical" href={siteUrl} />
 
       {/* Open Graph */}
       <meta property="og:site_name" content="Tehkné Solutions" />
@@ -34,7 +33,6 @@ export default function Head() {
       <meta property="og:description" content={description} />
       <meta property="og:image" content={logo} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={siteUrl} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

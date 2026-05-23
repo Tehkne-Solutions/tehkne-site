@@ -125,8 +125,76 @@ export function PortfolioCasePage({ slug }: Props) {
 
   const icons = [LayoutDashboard, Layers3, Workflow, BarChart3, ShieldCheck, Network];
 
+  const siteUrl = 'https://tehkne.com';
+  const pageUrl = `${siteUrl}/portfolio/${project.slug}`;
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          {
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'Home',
+            'item': siteUrl
+          },
+          {
+            '@type': 'ListItem',
+            'position': 2,
+            'name': 'Portfólio',
+            'item': `${siteUrl}/portfolio`
+          },
+          {
+            '@type': 'ListItem',
+            'position': 3,
+            'name': project.title,
+            'item': pageUrl
+          }
+        ]
+      },
+      {
+        '@type': 'WebPage',
+        'url': pageUrl,
+        'name': project.title,
+        'description': project.summary,
+        'inLanguage': 'pt-BR',
+        'isPartOf': {
+          '@type': 'WebSite',
+          'name': 'Tehkné Solutions',
+          'url': siteUrl
+        },
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': 'Home',
+              'item': siteUrl
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': 'Portfólio',
+              'item': `${siteUrl}/portfolio`
+            },
+            {
+              '@type': 'ListItem',
+              'position': 3,
+              'name': project.title,
+              'item': pageUrl
+            }
+          ]
+        }
+      }
+    ]
+  };
+
   return (
     <main className="case-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <section className="section-frame case-hero portfolio-case-hero">
         <div className="case-hero-copy">
           <span className="eyebrow">{project.level} • {project.sector}</span>
@@ -223,8 +291,4 @@ export function PortfolioCasePage({ slug }: Props) {
       </section>
     </main>
   );
-}
-
-export function getAllPortfolioSlugs() {
-  return portfolioCases.map((item) => ({ slug: item.slug }));
 }

@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 export type PortfolioTone = 'violet' | 'cyan' | 'blue' | 'orange' | 'amber' | 'pink';
 export type PortfolioLevel = 'Projeto Tehkné' | 'Produto interno' | 'Participação técnica' | 'Participação técnica autorizada' | 'Ecossistema parceiro' | 'Laboratório Tehkné' | 'Histórico profissional';
 
@@ -437,4 +439,44 @@ export const portfolioStats = [
 
 export function getPortfolioCase(slug: string) {
   return portfolioCases.find((item) => item.slug === slug);
+}
+
+export function getPortfolioMetadata(slug: string): Metadata | null {
+  const project = getPortfolioCase(slug);
+  if (!project) return null;
+
+  const siteUrl = 'https://tehkne.com';
+  const pageUrl = `${siteUrl}/portfolio/${project.slug}`;
+  const description = `${project.summary} Stack: ${project.stack.join(', ')}.`;
+
+  return {
+    title: `Case: ${project.title} | Tehkné Solutions`,
+    description,
+    openGraph: {
+      title: `Case: ${project.title} | Tehkné Solutions`,
+      description,
+      type: 'website',
+      locale: 'pt_BR',
+      url: pageUrl,
+      images: [
+        {
+          url: `${siteUrl}/images/logo-tehkne-solutions-header.png`,
+          alt: project.title
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Case: ${project.title} | Tehkné Solutions`,
+      description,
+      images: [`${siteUrl}/images/logo-tehkne-solutions-header.png`]
+    },
+    alternates: {
+      canonical: pageUrl
+    }
+  };
+}
+
+export function getAllPortfolioSlugs() {
+  return portfolioCases.map((item) => ({ slug: item.slug }));
 }
