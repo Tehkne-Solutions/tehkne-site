@@ -3,17 +3,27 @@ import { notFound } from 'next/navigation';
 import { blogPosts, getBlogPost, type BlogBlock } from '../blog-data';
 
 type BlogPostPageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
 }
 
-export function generateMetadata({ params }: BlogPostPageProps) {
-  const post = getBlogPost(params.slug);
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const post = getBlogPost(slug);
 
   if (!post) {
     return {
@@ -44,14 +54,7 @@ function BlogBlockRenderer({ block }: { block: BlogBlock }) {
   }
 
   if (block.type === 'heading') {
-    const id = block.text
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
-
-    return <h2 id={id}>{block.text}</h2>;
+    return <h2 id={slugify(block.text)}>{block.text}</h2>;
   }
 
   if (block.type === 'subheading') {
@@ -111,8 +114,9 @@ function BlogBlockRenderer({ block }: { block: BlogBlock }) {
   return null;
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = getBlogPost(params.slug);
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const post = getBlogPost(slug);
 
   if (!post) {
     notFound();
@@ -163,12 +167,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             <span className="eyebrow">Neste artigo</span>
             <a href="#artigo">Leitura principal</a>
             {headings.slice(0, 6).map((heading) => {
-              const id = heading.text
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, '');
+              const id = slugify(heading.text);
               return <a href={`#${id}`} key={heading.text}>{heading.text}</a>;
             })}
             <a href="#imagens">Imagens sugeridas</a>
