@@ -8,7 +8,6 @@ const navItems = [
   ['Soluções', '/solucoes'],
   ['Portfólio', '/portfolio'],
   ['Método', '/metodo'],
-  ['Tehkné OS', '/tehkne-os'],
   ['Blog', '/blog'],
   ['Sobre', '/sobre'],
   ['Contato', '/contato']
