@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, CalendarDays, Clock, Image as ImageIcon, UserRound } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CalendarDays, Clock, Layers3, Network, Orbit, UserRound } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { blogPosts, getBlogPost, type BlogBlock } from '../blog-data';
 
@@ -132,6 +132,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     .filter((item, index, array) => array.findIndex((candidate) => candidate.slug === item.slug) === index)
     .slice(0, 3);
 
+  const visualCards = [
+    {
+      icon: Layers3,
+      label: 'Camada 01',
+      title: 'Contexto',
+      text: `O artigo parte de ${post.category.toLowerCase()} e traduz o tema para uma dor real de empresa.`
+    },
+    {
+      icon: Network,
+      label: 'Camada 02',
+      title: 'Arquitetura',
+      text: 'A leitura conecta termos técnicos, fluxos, decisões, riscos e impacto operacional.'
+    },
+    {
+      icon: Orbit,
+      label: 'Camada 03',
+      title: 'Aplicação',
+      text: 'O fechamento mostra quando aplicar, como evitar retrabalho e qual próximo passo tomar.'
+    }
+  ];
+
   return (
     <main>
       <article>
@@ -155,11 +176,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 ))}
               </div>
             </div>
-            <aside className="blog-cover-card">
-              <span>Visual sugerido</span>
-              <strong>{post.imageSuggestions[0]?.label}</strong>
-              <p>{post.imageSuggestions[0]?.alt}</p>
-              <small>{post.imageSuggestions[0]?.path}</small>
+            <aside className="blog-cover-card blog-editorial-cover" aria-label={`Visual editorial do artigo ${post.title}`}>
+              <div className="blog-cover-window">
+                <span />
+                <span />
+                <span />
+              </div>
+              <div className="blog-cover-art" aria-hidden="true">
+                <div className="blog-cover-orbit orbit-a" />
+                <div className="blog-cover-orbit orbit-b" />
+                <div className="blog-cover-core"><Orbit size={42} /></div>
+                <div className="blog-cover-node node-a" />
+                <div className="blog-cover-node node-b" />
+                <div className="blog-cover-node node-c" />
+              </div>
+              <span>Visual editorial</span>
+              <strong>{post.category}</strong>
+              <p>{post.description}</p>
+              <div className="blog-cover-tags">
+                {post.tags.slice(0, 3).map((tag) => <em key={tag}>{tag}</em>)}
+              </div>
             </aside>
           </div>
         </section>
@@ -172,7 +208,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               const id = slugify(heading.text);
               return <a href={`#${id}`} key={heading.text}>{heading.text}</a>;
             })}
-            <a href="#imagens">Imagens sugeridas</a>
+            <a href="#visual">Resumo visual</a>
             <a href="#diagnostico">Diagnóstico</a>
           </aside>
 
@@ -184,28 +220,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </section>
 
-        <section className="section-frame blog-images-section" id="imagens">
+        <section className="section-frame blog-visual-section" id="visual">
           <div className="section-heading inline">
             <div>
-              <span className="eyebrow">Assets visuais</span>
-              <h2>Imagens gratuitas recomendadas</h2>
+              <span className="eyebrow">Resumo visual</span>
+              <h2>Como este conceito se conecta à operação.</h2>
             </div>
             <p>
-              Use estas indicações para buscar imagens em bancos gratuitos e salvar no caminho indicado dentro de
-              <code> public/images/blog/</code>. Até os arquivos serem adicionados, a página usa placeholders visuais.
+              Este bloco substitui os antigos placeholders de imagem por um resumo editorial próprio do artigo,
+              mantendo a identidade dark premium da Tehkné e reforçando a leitura prática do conteúdo.
             </p>
           </div>
-          <div className="blog-image-grid">
-            {post.imageSuggestions.map((image) => (
-              <article key={image.path}>
-                <ImageIcon size={20} />
-                <span>{image.label}</span>
-                <h3>{image.source}</h3>
-                <p><strong>Busca:</strong> {image.query}</p>
-                <p><strong>Alt:</strong> {image.alt}</p>
-                <code>{image.path}</code>
-              </article>
-            ))}
+          <div className="blog-visual-grid">
+            {visualCards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <article key={card.title}>
+                  <div className="blog-visual-icon"><Icon size={22} /></div>
+                  <span>{card.label}</span>
+                  <h3>{card.title}</h3>
+                  <p>{card.text}</p>
+                </article>
+              );
+            })}
           </div>
         </section>
 
