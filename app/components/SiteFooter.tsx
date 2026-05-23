@@ -35,18 +35,18 @@ export default function SiteFooter() {
         <a href="/solucoes#sustentacao-evolucao">Sustentação</a>
       </div>
       <div>
+        <h4>GIP Tehkné OS</h4>
+        <a href="/metodo#visao">Visão do sistema</a>
+        <a href="/metodo#fluxo-gip">Fluxo GIP</a>
+        <a href="/metodo#modulos">Módulos do OS</a>
+        <a href="/metodo#camadas">Camadas operacionais</a>
+      </div>
+      <div>
         <h4>Conteúdo</h4>
         <a href="/blog">Blog Tehkné</a>
         <a href="/blog/o-que-e-arquitetura-de-solucoes">Arquitetura de Soluções</a>
-        <a href="/metodo#fluxo-gip">Método GIP</a>
-        <a href="/tehkne-os#inteligencia">Governança</a>
-      </div>
-      <div>
-        <h4>Portfólio</h4>
-        <a href="/portfolio#cases">Todos os projetos</a>
-        <a href="/portfolio?filtro=tehkne">Projetos Tehkné</a>
-        <a href="/portfolio?filtro=participacao">Participação Técnica</a>
-        <a href="/portfolio?filtro=ecossistemas">Ecossistemas</a>
+        <a href="/metodo#governanca">Governança</a>
+        <a href="/portfolio#cases">Portfólio</a>
       </div>
       <div>
         <h4>Contato</h4>
