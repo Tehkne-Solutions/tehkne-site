@@ -112,6 +112,27 @@ export const blogPosts: BlogPost[] = [
             "text": "Na Tehkné, arquitetura é o fundamento do projeto: clareza de escopo, stack, fluxo, integração, documentação e evolução antes do desenvolvimento pesado começar."
         },
         {
+            "type": "heading",
+            "text": "Arquitetura como ativo de negócio"
+        },
+        {
+            "type": "paragraph",
+            "text": "Quando a arquitetura é tratada como ativo, o projeto ganha transparência para stakeholders, a equipe técnica entende o motivo por trás das escolhas e os ajustes futuros ficam mais fáceis de dimensionar."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Decisões documentadas: por que escolhemos uma base de dados, um CMS, uma estratégia de cache e um fluxo de integração.",
+                "Riscos mapeados: o que depende de terceiros, o que precisa de fallback e onde a operação será mais sensível.",
+                "Evolução prevista: como novos recursos podem ser adicionados sem quebrar a base existente.",
+                "Responsabilidades claras: quem opera, quem atualiza e quem mantém cada parte do sistema."
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Esse tipo de arquitetura permite que um site ou plataforma seja entregue com menos surpresa e mais confiança, porque cada decisão técnica tem uma razão alinhada ao negócio."
+        },
+        {
             "type": "compare",
             "leftTitle": "Sem método",
             "left": [
@@ -241,6 +262,27 @@ export const blogPosts: BlogPost[] = [
         {
             "type": "paragraph",
             "text": "A Tehkné desenha sites como arquitetura de operação: conteúdo, UX, SEO técnico, performance, CMS, CTAs, automações e sustentação são planejados desde o início."
+        },
+        {
+            "type": "heading",
+            "text": "O site como motor da operação"
+        },
+        {
+            "type": "paragraph",
+            "text": "Um site importante não existe isoladamente. Ele é o ponto de chegada de campanhas, canal de atendimento e fonte de dados para vendas e operações. Pensar o site nesse nível faz toda a diferença para a evolução."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Mensuração alinhada: definir eventos e metas que façam sentido para marketing e comercial.",
+                "Integração imediata: conectar formulários, chat, CRM e automações desde a fase de planejamento.",
+                "Conteúdo orientado: usar hero, cases e provas sociais para guiar a jornada do visitante.",
+                "Manutenção operacional: organizar CMS e governance para que o cliente atualize sem quebrar o fluxo."
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Quando o site é construído como parte de uma operação, ele deixa de ser apenas uma vitrine e passa a ser uma plataforma de geração de oportunidade."
         },
         {
             "type": "compare",

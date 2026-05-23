@@ -155,7 +155,7 @@ export default function SobrePage() {
           <p>O GIP Framework estrutura o caminho da descoberta ao deploy. O Tehkné OS amplia essa lógica para documentação viva, agentes, automações, versionamento, curadoria de portfólio e governança de entrega.</p>
           <div className="hero-actions">
             <a className="btn btn-primary coin" href="/metodo">Ver Método GIP <ArrowUpRight size={16} /></a>
-            <a className="btn btn-secondary" href="/tehkne-os">Explorar Tehkné OS <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href="/metodo">Explorar Tehkné OS <ArrowUpRight size={16} /></a>
           </div>
         </div>
         <div className="about-principles">

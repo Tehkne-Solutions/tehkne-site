@@ -19,8 +19,8 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(16px, 2vw, 28px);
-  flex-wrap: nowrap;
+  gap: clamp(12px, 2vw, 24px);
+  flex-wrap: wrap;
   font-size: clamp(12px, .95vw, 14px);
 }
 
@@ -60,7 +60,7 @@ html {
 }
 
 .mobile-nav.open {
-  display: none;
+  display: grid;
 }
 
 .mobile-nav a {
