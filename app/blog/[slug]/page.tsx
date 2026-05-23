@@ -1,0 +1,211 @@
+import { ArrowLeft, ArrowUpRight, CalendarDays, Clock, Image as ImageIcon, UserRound } from 'lucide-react';
+import { notFound } from 'next/navigation';
+import { blogPosts, getBlogPost, type BlogBlock } from '../blog-data';
+
+type BlogPostPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export function generateStaticParams() {
+  return blogPosts.map((post) => ({ slug: post.slug }));
+}
+
+export function generateMetadata({ params }: BlogPostPageProps) {
+  const post = getBlogPost(params.slug);
+
+  if (!post) {
+    return {
+      title: 'Artigo não encontrado | Tehkné Solutions'
+    };
+  }
+
+  return {
+    title: `${post.title} | Blog Tehkné`,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: 'article',
+      locale: 'pt_BR',
+      images: [post.cover]
+    }
+  };
+}
+
+function BlogBlockRenderer({ block }: { block: BlogBlock }) {
+  if (block.type === 'paragraph') {
+    return <p>{block.text}</p>;
+  }
+
+  if (block.type === 'heading') {
+    return <h2>{block.text}</h2>;
+  }
+
+  if (block.type === 'subheading') {
+    return <h3>{block.text}</h3>;
+  }
+
+  if (block.type === 'quote') {
+    return (
+      <aside className="blog-callout">
+        <p>{block.text}</p>
+        {block.cta && block.href ? (
+          <a className="btn btn-primary coin" href={block.href}>
+            {block.cta} <ArrowUpRight size={15} />
+          </a>
+        ) : null}
+      </aside>
+    );
+  }
+
+  if (block.type === 'list') {
+    return (
+      <ul className="blog-list">
+        {block.items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  if (block.type === 'code') {
+    return <pre className="blog-diagram"><code>{block.text}</code></pre>;
+  }
+
+  if (block.type === 'compare') {
+    return (
+      <div className="blog-compare">
+        <article>
+          <h3>{block.leftTitle}</h3>
+          <ul>
+            {block.left.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </article>
+        <article>
+          <h3>{block.rightTitle}</h3>
+          <ul>
+            {block.right.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </article>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+export default function BlogPostPage({ params }: BlogPostPageProps) {
+  const post = getBlogPost(params.slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  const relatedPosts = blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
+
+  return (
+    <main>
+      <article>
+        <section className="section-frame blog-post-hero">
+          <a className="blog-back" href="/blog">
+            <ArrowLeft size={15} /> Voltar para o blog
+          </a>
+          <div className="blog-post-hero-grid">
+            <div>
+              <span className="eyebrow">{post.category}</span>
+              <h1>{post.title}</h1>
+              <p>{post.intro}</p>
+              <div className="blog-post-meta">
+                <span><UserRound size={15} /> {post.author}</span>
+                <span><CalendarDays size={15} /> {post.date}</span>
+                <span><Clock size={15} /> {post.readingTime}</span>
+              </div>
+              <div className="blog-tags">
+                {post.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+            </div>
+            <aside className="blog-cover-card">
+              <span>Visual sugerido</span>
+              <strong>{post.imageSuggestions[0]?.label}</strong>
+              <p>{post.imageSuggestions[0]?.alt}</p>
+              <small>{post.imageSuggestions[0]?.path}</small>
+            </aside>
+          </div>
+        </section>
+
+        <section className="section-frame blog-reading-shell">
+          <aside className="blog-toc">
+            <span className="eyebrow">Neste artigo</span>
+            <a href="#artigo">Leitura principal</a>
+            <a href="#imagens">Imagens sugeridas</a>
+            <a href="#diagnostico">Diagnóstico</a>
+          </aside>
+
+          <div className="blog-content" id="artigo">
+            {post.blocks.map((block, index) => (
+              <BlogBlockRenderer block={block} key={`${block.type}-${index}`} />
+            ))}
+          </div>
+        </section>
+
+        <section className="section-frame blog-images-section" id="imagens">
+          <div className="section-heading inline">
+            <div>
+              <span className="eyebrow">Assets visuais</span>
+              <h2>Imagens gratuitas recomendadas</h2>
+            </div>
+            <p>
+              Use estas indicações para buscar imagens em bancos gratuitos e salvar no caminho indicado dentro de
+              <code> public/images/blog/</code>. Até os arquivos serem adicionados, a página usa placeholders visuais.
+            </p>
+          </div>
+          <div className="blog-image-grid">
+            {post.imageSuggestions.map((image) => (
+              <article key={image.path}>
+                <ImageIcon size={20} />
+                <span>{image.label}</span>
+                <h3>{image.source}</h3>
+                <p><strong>Busca:</strong> {image.query}</p>
+                <p><strong>Alt:</strong> {image.alt}</p>
+                <code>{image.path}</code>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-frame blog-final-cta" id="diagnostico">
+          <div>
+            <span className="eyebrow">Próximo passo</span>
+            <h2>Quer transformar sua ideia em arquitetura clara?</h2>
+            <p>
+              A Tehkné atua como software house, estúdio de produto digital e braço técnico para empresas,
+              agências e operações que precisam construir com clareza, método e evolução contínua.
+            </p>
+          </div>
+          <a className="btn btn-primary coin" href="/contato#contato-form">
+            Solicitar diagnóstico <ArrowUpRight size={16} />
+          </a>
+        </section>
+      </article>
+
+      {relatedPosts.length > 0 ? (
+        <section className="section-frame blog-section">
+          <div className="section-heading inline">
+            <div>
+              <span className="eyebrow">Continue lendo</span>
+              <h2>Outros artigos</h2>
+            </div>
+          </div>
+        </section>
+      ) : null}
+    </main>
+  );
+}
