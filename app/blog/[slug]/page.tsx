@@ -24,11 +24,15 @@ export function generateMetadata({ params }: BlogPostPageProps) {
   return {
     title: `${post.title} | Blog Tehkné`,
     description: post.description,
+    alternates: {
+      canonical: `/blog/${post.slug}`
+    },
     openGraph: {
       title: post.title,
       description: post.description,
       type: 'article',
       locale: 'pt_BR',
+      url: `/blog/${post.slug}`,
       images: [post.cover]
     }
   };
@@ -40,7 +44,14 @@ function BlogBlockRenderer({ block }: { block: BlogBlock }) {
   }
 
   if (block.type === 'heading') {
-    return <h2>{block.text}</h2>;
+    const id = block.text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+
+    return <h2 id={id}>{block.text}</h2>;
   }
 
   if (block.type === 'subheading') {
@@ -107,7 +118,13 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const relatedPosts = blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
+  const headings = post.blocks.filter((block): block is Extract<BlogBlock, { type: 'heading' }> => block.type === 'heading');
+  const relatedPosts = blogPosts
+    .filter((item) => item.slug !== post.slug)
+    .filter((item) => item.category === post.category || item.tags.some((tag) => post.tags.includes(tag)))
+    .concat(blogPosts.filter((item) => item.slug !== post.slug))
+    .filter((item, index, array) => array.findIndex((candidate) => candidate.slug === item.slug) === index)
+    .slice(0, 3);
 
   return (
     <main>
@@ -145,11 +162,21 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           <aside className="blog-toc">
             <span className="eyebrow">Neste artigo</span>
             <a href="#artigo">Leitura principal</a>
+            {headings.slice(0, 6).map((heading) => {
+              const id = heading.text
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '');
+              return <a href={`#${id}`} key={heading.text}>{heading.text}</a>;
+            })}
             <a href="#imagens">Imagens sugeridas</a>
             <a href="#diagnostico">Diagnóstico</a>
           </aside>
 
           <div className="blog-content" id="artigo">
+            <p className="blog-lead">{post.description}</p>
             {post.blocks.map((block, index) => (
               <BlogBlockRenderer block={block} key={`${block.type}-${index}`} />
             ))}
@@ -184,7 +211,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         <section className="section-frame blog-final-cta" id="diagnostico">
           <div>
             <span className="eyebrow">Próximo passo</span>
-            <h2>Quer transformar sua ideia em arquitetura clara?</h2>
+            <h2>Quer transformar este conceito em plano de execução?</h2>
             <p>
               A Tehkné atua como software house, estúdio de produto digital e braço técnico para empresas,
               agências e operações que precisam construir com clareza, método e evolução contínua.
@@ -201,8 +228,30 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="section-heading inline">
             <div>
               <span className="eyebrow">Continue lendo</span>
-              <h2>Outros artigos</h2>
+              <h2>Outros artigos da trilha Tehkné</h2>
             </div>
+            <a className="btn btn-secondary" href="/blog">Ver todos <ArrowUpRight size={15} /></a>
+          </div>
+          <div className="blog-grid compact-blog-grid">
+            {relatedPosts.map((item) => (
+              <article className="blog-card" key={item.slug}>
+                <div className="blog-card-cover" aria-hidden="true">
+                  <span>{item.category}</span>
+                  <div className="blog-card-orbit" />
+                </div>
+                <div className="blog-card-body">
+                  <div className="blog-card-meta">
+                    <span>{item.date}</span>
+                    <span>{item.readingTime}</span>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <a className="btn btn-secondary" href={`/blog/${item.slug}`}>
+                    Ler artigo <ArrowUpRight size={15} />
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
       ) : null}
