@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import {
   ArrowUpRight,
+  BookOpen,
   Bot,
   BrainCircuit,
   Code2,
@@ -17,6 +18,7 @@ import {
 } from 'lucide-react';
 import ContactForm from './components/ContactForm';
 import { portfolioCases } from './portfolio/portfolio-data';
+import { blogPosts } from './blog/blog-data';
 import { StackCard, stacksData } from './components/StackCard';
 
 const services = [
@@ -44,6 +46,9 @@ const services = [
 
 const homeCases = portfolioCases.filter((item) => item.featured).slice(0, 8);
 const carouselCases = [...homeCases, ...homeCases];
+const latestBlogPosts = [...blogPosts]
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .slice(0, 3);
 
 const method = [
   ['01', 'Descoberta estratégica', 'Entendemos contexto, público, objetivos, riscos, gargalos, operação atual e critérios de sucesso antes de pensar em tela ou código.'],
@@ -62,8 +67,6 @@ const painPoints = [
   'Produtos digitais sem UX',
   'Projetos sem suporte depois do deploy'
 ];
-
-const stacks = ['Next.js', 'React', 'WordPress', 'PHP', 'Python', 'Flutter', 'APIs', 'n8n', 'GitHub', 'Vercel', 'CRM', 'ERP'];
 
 const fadeUp = {
   initial: { opacity: 0, y: 28 },
@@ -223,6 +226,28 @@ export default function Home() {
         </div>
         <div className="logo-row">
           {['UNTI Digital', 'Savana Publicidade', 'Meme Digital', 'Savol', 'Beggin', 'Vacina One'].map((logo) => <span key={logo}>{logo}</span>)}
+        </div>
+      </motion.section>
+
+      <motion.section id="blog" className="section-frame home-blog-section" {...fadeUp}>
+        <div className="section-heading inline">
+          <div>
+            <span className="eyebrow">Blog Tehkné</span>
+            <h2>Conteúdo para transformar tecnologia em decisão prática.</h2>
+            <p>Artigos consultivos sobre arquitetura, produto, WordPress, Next.js, IA, automações, UX e operação digital — sempre conectando conceito técnico com aplicação real.</p>
+          </div>
+          <a className="btn btn-secondary" href="/blog">Ver todos os posts <ArrowUpRight size={16} /></a>
+        </div>
+        <div className="home-blog-grid">
+          {latestBlogPosts.map((post) => (
+            <a className="home-blog-card" href={`/blog/${post.slug}`} key={post.slug}>
+              <div className="home-blog-icon"><BookOpen size={22} /></div>
+              <small>{post.category} • {post.readingTime}</small>
+              <h3>{post.title}</h3>
+              <p>{post.description}</p>
+              <span>Ler post <ArrowUpRight size={14} /></span>
+            </a>
+          ))}
         </div>
       </motion.section>
 
