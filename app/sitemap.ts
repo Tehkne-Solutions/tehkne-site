@@ -3,7 +3,7 @@ import { blogPosts } from './blog/blog-data';
 import { portfolioCases } from './portfolio/portfolio-data';
 
 const siteUrl = 'https://tehkne.com';
-const staticPages = ['/', '/sobre', '/solucoes', '/servicos', '/portfolio', '/metodo', '/tehkne-os', '/blog', '/contato'];
+const staticPages = ['/', '/sobre', '/solucoes', '/servicos', '/portfolio', '/metodo', '/blog', '/contato'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
