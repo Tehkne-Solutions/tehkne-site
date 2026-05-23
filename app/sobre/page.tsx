@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { ArrowUpRight, Bot, BrainCircuit, Code2, Compass, GitBranch, Layers3, ShieldCheck, Sparkles, Workflow } from 'lucide-react';
+import { ArrowUpRight, Bot, BrainCircuit, Code2, Compass, DraftingCompass, GitBranch, Layers3, Lightbulb, Orbit, PenTool, ShieldCheck, Sparkles, Telescope, Workflow } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import { whatsAppHref, whatsappMessages } from '../contact';
 
 export const metadata: Metadata = {
-  title: 'Sobre a Tehkné Solutions | Software House, Produto Digital e IA',
-  description: 'Conheça a Tehkné Solutions: software house, estúdio de produto digital e braço técnico para empresas, agências e operações que precisam transformar ideias em sistemas reais.'
+  title: 'Sobre a Tehkné Solutions | Cultura, Técnica, Produto Digital e IA',
+  description: 'Conheça a Tehkné Solutions: uma software house com cultura baseada em téchnē, arte aplicada, arquitetura, produto digital, IA e operação contínua.'
 };
 
 const pillars = [
@@ -32,19 +32,44 @@ const pillars = [
 ];
 
 const timeline = [
-  ['Origem técnica', 'A base nasce da experiência prática em desenvolvimento, design, WordPress, Next.js, Flutter, PHP, Python, automações, manutenção e produtos digitais.'],
-  ['Ecossistemas parceiros', 'A atuação em ambientes como UNTI Digital, Savana Publicidade e Meme Digital consolidou repertório real em sites, plataformas, marketing, sustentação e operação técnica.'],
-  ['Método GIP', 'O processo foi organizado em descoberta, arquitetura, desenvolvimento, validação, deploy e evolução para reduzir retrabalho e aumentar previsibilidade.'],
-  ['Tehkné OS', 'A experiência acumulada virou uma camada operacional própria: conhecimento, prompts, agentes, governança, portfólio, automações e documentação viva.']
+  ['Raiz técnica', 'A base nasce da experiência prática em desenvolvimento, design, WordPress, Next.js, Flutter, PHP, Python, automações, manutenção e produtos digitais.'],
+  ['Repertório em campo', 'A atuação em ecossistemas como UNTI Digital, Savana Publicidade e Meme Digital consolidou vivência real em sites, plataformas, marketing, sustentação e operação técnica.'],
+  ['Método GIP', 'A prática foi organizada em descoberta, arquitetura, desenvolvimento, validação, deploy e evolução para reduzir retrabalho e aumentar previsibilidade.'],
+  ['Tehkné OS', 'O repertório acumulado se tornou uma camada operacional própria: conhecimento, prompts, agentes, governança, portfólio, automações e documentação viva.']
 ];
 
 const capabilities = ['Next.js', 'React', 'WordPress', 'Elementor', 'JetEngine', 'PHP', 'Python', 'Flutter', 'APIs', 'n8n', 'GitHub', 'Vercel', 'UX/UI', 'IA', 'Automação', 'Sustentação'];
 
 const principles = [
-  'Transformar experiência acumulada em processo empresarial rastreável.',
+  'Transformar intenção em arquitetura antes de iniciar execução pesada.',
+  'Tratar cada solução como uma obra funcional: bonita, útil, rastreável e evolutiva.',
   'Separar projetos próprios, participação técnica e ecossistemas parceiros com narrativa segura.',
   'Unir engenharia, produto, design, marketing e IA em uma operação só.',
-  'Construir soluções digitais com clareza, performance e evolução contínua.'
+  'Construir tecnologia para ampliar pessoas, equipes e negócios — não para substituir propósito.',
+  'Manter curiosidade, aprendizado e refinamento contínuo como prática diária.'
+];
+
+const culturePrinciples = [
+  {
+    icon: Lightbulb,
+    title: 'Criatividade aplicada',
+    text: 'Ideias só viram valor quando são estruturadas, prototipadas, testadas e transformadas em operação real.'
+  },
+  {
+    icon: DraftingCompass,
+    title: 'Excelência técnica',
+    text: 'Código, interface, automação e documentação são tratados como peças de uma mesma arquitetura.'
+  },
+  {
+    icon: PenTool,
+    title: 'Humanismo tecnológico',
+    text: 'A tecnologia deve servir pessoas, negócios e equipes. O sistema existe para ampliar clareza, autonomia e resultado.'
+  },
+  {
+    icon: Telescope,
+    title: 'Curiosidade renascentista',
+    text: 'A Tehkné cruza design, engenharia, arte, ciência, marketing, IA e operação para enxergar soluções por vários ângulos.'
+  }
 ];
 
 export default function SobrePage() {
@@ -54,10 +79,10 @@ export default function SobrePage() {
     <main>
       <section className="section-frame about-hero">
         <div className="about-hero-copy">
-          <span className="eyebrow">Sobre a Tehkné Solutions</span>
-          <h1>Uma software house com mentalidade de produto, arquitetura e operação contínua.</h1>
+          <span className="eyebrow">Cultura Tehkné</span>
+          <h1>A técnica como arte. A arte como sistema. O sistema como solução real.</h1>
           <p>
-            A Tehkné Solutions nasceu para transformar ideias, processos e operações em sistemas digitais reais. Unimos desenvolvimento, UX, automações, IA, WordPress avançado, Next.js e sustentação para atuar como braço técnico de empresas, agências e produtos digitais.
+            A Tehkné Solutions nasce da ideia de téchnē: arte, habilidade e saber aplicado. Para nós, tecnologia não é apenas execução. É a capacidade de transformar conhecimento, intenção e criatividade em produtos digitais que funcionam, evoluem e geram impacto para pessoas, equipes e negócios.
           </p>
           <div className="hero-actions">
             <a className="btn btn-primary coin" href={href} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
@@ -66,27 +91,73 @@ export default function SobrePage() {
         </div>
         <div className="about-orbit-panel">
           <div className="about-orbit-core"><Sparkles size={34} /></div>
-          <span className="orbit-label label-a">Produto</span>
-          <span className="orbit-label label-b">Código</span>
-          <span className="orbit-label label-c">IA</span>
+          <span className="orbit-label label-a">Arte</span>
+          <span className="orbit-label label-b">Técnica</span>
+          <span className="orbit-label label-c">Produto</span>
           <span className="orbit-label label-d">Operação</span>
         </div>
       </section>
 
       <section className="metrics section-frame compact about-metrics">
+        <div><strong>téchnē</strong><span>arte, habilidade e saber aplicado como base cultural</span></div>
         <div><strong>70+</strong><span>experiências web e WordPress acumuladas</span></div>
         <div><strong>67+</strong><span>repositórios mapeados no inventário técnico</span></div>
-        <div><strong>30+</strong><span>cases e experiências catalogadas</span></div>
         <div><strong>GIP</strong><span>método de precisão iterativa da ideia ao deploy</span></div>
       </section>
 
       <section className="section-frame about-block">
         <div className="section-heading inline">
           <div>
-            <span className="eyebrow">Identidade institucional</span>
-            <h2>A Tehkné não se posiciona como agência genérica. Ela opera como engenharia criativa.</h2>
+            <span className="eyebrow">Origem do nome</span>
+            <h2>Tehkné vem de téchnē: a técnica que cria com propósito.</h2>
           </div>
           <a className="text-link" href="/solucoes">Conhecer soluções <ArrowUpRight size={16} /></a>
+        </div>
+        <div className="about-editorial-grid">
+          <article className="glass-card about-editorial-card large">
+            <Compass size={34} className="card-icon" />
+            <h3>Saber aplicado</h3>
+            <p>Na tradição grega, téchnē não era um fazer automático. Era habilidade orientada por intenção, domínio, método e finalidade. Essa é a base da Tehkné: transformar conhecimento em soluções digitais bem desenhadas, úteis e sustentáveis.</p>
+          </article>
+          <article className="glass-card about-editorial-card">
+            <Workflow size={30} className="card-icon" />
+            <h3>Forma e resultado</h3>
+            <p>Uma boa solução precisa sair da ideia e ganhar forma: arquitetura, interface, código, automação, deploy e evolução.</p>
+          </article>
+          <article className="glass-card about-editorial-card">
+            <Orbit size={30} className="card-icon" />
+            <h3>Engenharia criativa</h3>
+            <p>Unimos precisão técnica com imaginação aplicada para criar sistemas que carregam identidade, função e estratégia.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="section-frame about-block">
+        <div className="section-heading">
+          <span className="eyebrow">Inspiração renascentista</span>
+          <h2>Da Vinci como símbolo de integração entre arte, ciência e técnica.</h2>
+          <p>Leonardo da Vinci representa a mentalidade que inspira a cultura da Tehkné: observar o mundo com curiosidade, cruzar disciplinas, experimentar, desenhar sistemas e transformar ideias em obras funcionais. Não copiamos a estética renascentista como ornamento; usamos seu espírito como método de criação.</p>
+        </div>
+        <div className="service-grid about-pillar-grid">
+          {culturePrinciples.map((principle) => {
+            const Icon = principle.icon;
+            return (
+              <article className="glass-card service-card" key={principle.title}>
+                <Icon className="card-icon" size={34} />
+                <h3>{principle.title}</h3>
+                <p>{principle.text}</p>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="section-frame about-block">
+        <div className="section-heading inline">
+          <div>
+            <span className="eyebrow">Identidade institucional</span>
+            <h2>A Tehkné não se posiciona como agência genérica. Ela opera como estúdio de engenharia criativa.</h2>
+          </div>
         </div>
         <div className="about-editorial-grid">
           <article className="glass-card about-editorial-card large">
@@ -131,8 +202,8 @@ export default function SobrePage() {
         <div className="section-heading inline">
           <div>
             <span className="eyebrow">Nossa trajetória</span>
-            <h2>Experiência pessoal transformada em capital técnico institucional.</h2>
-            <p>A narrativa oficial da Tehkné converte vivência prática em processo de empresa, sempre separando projetos próprios, participação técnica e ecossistemas parceiros.</p>
+            <h2>Experiência prática transformada em capital técnico institucional.</h2>
+            <p>A narrativa oficial da Tehkné converte vivência de campo em processo de empresa, sempre separando projetos próprios, participação técnica e ecossistemas parceiros.</p>
           </div>
         </div>
         <div className="about-timeline">
@@ -155,11 +226,33 @@ export default function SobrePage() {
           <p>O GIP Framework estrutura o caminho da descoberta ao deploy. O Tehkné OS amplia essa lógica para documentação viva, agentes, automações, versionamento, curadoria de portfólio e governança de entrega.</p>
           <div className="hero-actions">
             <a className="btn btn-primary coin" href="/metodo">Ver Método GIP <ArrowUpRight size={16} /></a>
-            <a className="btn btn-secondary" href="/metodo">Explorar Tehkné OS <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href="/blog">Ler insights <ArrowUpRight size={16} /></a>
           </div>
         </div>
         <div className="about-principles">
           {principles.map((item) => <span key={item}><GitBranch size={15} />{item}</span>)}
+        </div>
+      </section>
+
+      <section className="section-frame about-block">
+        <div className="section-heading">
+          <span className="eyebrow">Manifesto cultural</span>
+          <h2>Software como arte funcional. Automação como engenho criativo. IA como extensão da mente humana.</h2>
+          <p>Na Tehkné Solutions, cada solução nasce da união entre arte e técnica. Somos guiados pelo espírito renascentista: curiosos, criativos, precisos e comprometidos em transformar ideias em realidade. Nossa cultura é o reflexo de Da Vinci no século XXI — onde tecnologia, humanidade e execução caminham juntas.</p>
+        </div>
+        <div className="about-editorial-grid">
+          <article className="glass-card about-editorial-card">
+            <h3>Software como arte funcional</h3>
+            <p>Uma interface precisa ser clara, bonita e útil. Um sistema precisa resolver uma dor real e continuar evoluindo depois da primeira entrega.</p>
+          </article>
+          <article className="glass-card about-editorial-card">
+            <h3>Automação como engenho criativo</h3>
+            <p>Automar não é apenas economizar cliques. É redesenhar fluxos para que pessoas tenham mais tempo para decidir, criar e crescer.</p>
+          </article>
+          <article className="glass-card about-editorial-card">
+            <h3>IA como extensão da inteligência</h3>
+            <p>Agentes e modelos de IA entram como apoio estratégico: organizam conhecimento, aceleram operações e ampliam a capacidade de execução.</p>
+          </article>
         </div>
       </section>
 
@@ -185,7 +278,7 @@ export default function SobrePage() {
         </div>
       </section>
 
-      <ContactForm page="Sobre" context="conversa institucional sobre como a Tehkné pode atuar como software house, braço técnico ou estúdio de produto digital" />
+      <ContactForm page="Sobre" context="conversa institucional sobre cultura Tehkné, técnica como arte, software house, braço técnico ou estúdio de produto digital" />
     </main>
   );
 }
