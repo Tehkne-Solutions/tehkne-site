@@ -31,18 +31,17 @@ export default function Footer() {
         <a href="/portfolio#contato-form">Quero um case parecido</a>
       </div>
       <div>
-        <h4>Tehkné OS</h4>
-        <a href="/metodo#fluxo-gip">Método GIP</a>
-        <a href="/tehkne-os#modulos">Módulos do OS</a>
-        <a href="/tehkne-os#camadas">Camadas operacionais</a>
-        <a href="/tehkne-os#aplicacoes">Para quem serve</a>
-        <a href="/tehkne-os#inteligencia">Inteligência operacional</a>
+        <h4>GIP Tehkné OS</h4>
+        <a href="/metodo#visao">Visão do sistema</a>
+        <a href="/metodo#fluxo-gip">Fluxo GIP</a>
+        <a href="/metodo#modulos">Módulos do OS</a>
+        <a href="/metodo#camadas">Camadas operacionais</a>
+        <a href="/metodo#governanca">Governança</a>
       </div>
       <div>
         <h4>Contato</h4>
         <a href="/contato#contato-form">Página de contato</a>
         <a href={diagnosticHref} target="_blank" rel="noreferrer">{WHATSAPP_DISPLAY}</a>
-        <a href="mailto:contato@tehkne.com.br">contato@tehkne.com.br</a>
         <a href="/contato#localizacao">Campinas, SP • Brasil</a>
       </div>
     </footer>
