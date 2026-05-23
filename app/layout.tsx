@@ -21,6 +21,21 @@ export const metadata: Metadata = {
     'sistemas sob medida',
     'Campinas'
   ],
+  icons: {
+    icon: [
+      {
+        url: '/images/logo-tehkne-solutions-header.png',
+        type: 'image/png'
+      }
+    ],
+    shortcut: ['/images/logo-tehkne-solutions-header.png'],
+    apple: [
+      {
+        url: '/images/logo-tehkne-solutions-header.png',
+        type: 'image/png'
+      }
+    ]
+  },
   openGraph: {
     title: 'Tehkné Solutions | Sistemas digitais reais e escaláveis',
     description:
