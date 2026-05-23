@@ -18,8 +18,10 @@ html {
 .nav-shell-premium nav {
   display: flex;
   align-items: center;
-  gap: 32px;
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(16px, 2vw, 28px);
+  flex-wrap: nowrap;
+  font-size: clamp(12px, .95vw, 14px);
 }
 
 .mobile-menu-toggle {
@@ -30,7 +32,6 @@ html {
   width: 44px;
   height: 44px;
   border-radius: 14px;
-  display: grid;
   place-items: center;
   cursor: pointer;
   transition: transform .22s ease, background .2s ease, border-color .22s ease;
@@ -59,7 +60,7 @@ html {
 }
 
 .mobile-nav.open {
-  display: grid;
+  display: none;
 }
 
 .mobile-nav a {
@@ -94,6 +95,10 @@ html {
   }
 
   .mobile-menu-toggle {
+    display: grid;
+  }
+
+  .mobile-nav.open {
     display: grid;
   }
 }
@@ -237,7 +242,7 @@ html {
 /* Revert the broad vertical scroll override that affected Método and Tehkné OS. */
 .method-section .method-line {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   align-items: stretch;
 }
@@ -344,8 +349,9 @@ html {
 
 /* Tehkné OS layer cards must stay like a clean section, not the scroll story treatment. */
 body .os-section + .method-section .method-line,
-body .method-section:not(.method-wheel-section) .method-line {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+body .method-section:not(.method-wheel-section) .method-line,
+body .method-expanded .method-line {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 body .method-section:not(.method-wheel-section) .method-step {
@@ -370,10 +376,11 @@ body .method-section:not(.method-wheel-section) .method-step h3 {
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 920px) {
   .method-section .method-line,
   .method-wheel-section .method-wheel-grid,
   body .method-section:not(.method-wheel-section) .method-line,
+  body .method-expanded .method-line,
   .solutions-method-clean .method-line,
   .solutions-method-clean .solutions-process-clean {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -388,6 +395,7 @@ body .method-section:not(.method-wheel-section) .method-step h3 {
   .method-section .method-line,
   .method-wheel-section .method-wheel-grid,
   body .method-section:not(.method-wheel-section) .method-line,
+  body .method-expanded .method-line,
   .solutions-method-clean .method-line,
   .solutions-method-clean .solutions-process-clean {
     grid-template-columns: 1fr;
