@@ -178,11 +178,11 @@ export default function Home() {
       <motion.section id="metodo" className="section-frame method-section method-expanded" {...fadeUp}>
         <div className="section-heading inline">
           <div>
-            <span className="eyebrow">Tehkné OS / Método GIP</span>
-            <h2>Um método para tirar projetos do improviso e colocar a operação em trilhos.</h2>
-            <p>O Guided Iterative Precision é a forma como a Tehkné transforma intenção em execução: primeiro limpamos o problema, depois estruturamos arquitetura, prototipamos a experiência, desenvolvemos com rastreabilidade, validamos e mantemos evolução contínua.</p>
+            <span className="eyebrow">GIP Tehkné OS</span>
+            <h2>Um sistema para tirar projetos do improviso e colocar a operação em trilhos.</h2>
+            <p>O GIP Tehkné OS une método, arquitetura viva, design de produto, engenharia, IA aplicada, automações, documentação, governança e evolução contínua em uma única operação.</p>
           </div>
-          <a className="btn btn-secondary" href="/metodo">Conhecer o método <ArrowUpRight size={16} /></a>
+          <a className="btn btn-secondary" href="/metodo">Conhecer o sistema <ArrowUpRight size={16} /></a>
         </div>
         <div className="method-line">
           {method.map(([number, title, text]) => (
@@ -198,16 +198,16 @@ export default function Home() {
 
       <motion.section id="os" className="section-frame os-section os-expanded" {...fadeUp}>
         <div className="os-panel">
-          <span className="eyebrow">Operação técnica para escalar</span>
-          <h2>Tehkné OS conecta estratégia, produto, código, IA, documentação e sustentação.</h2>
-          <p>Mais do que um conjunto de ferramentas, o Tehkné OS é a camada operacional que transforma experiência técnica em processo empresarial: arquitetura viva, base de conhecimento, prompts, agentes, automações, versionamento, curadoria de portfólio e governança de entrega.</p>
+          <span className="eyebrow">Design • Arquitetura • Engenharia</span>
+          <h2>GIP Tehkné OS conecta estratégia, produto, código, IA, documentação e sustentação.</h2>
+          <p>Mais do que um conjunto de ferramentas, o GIP Tehkné OS é o sistema operacional que transforma experiência técnica em processo empresarial: arquitetura viva, base de conhecimento, prompts, agentes, automações, versionamento, curadoria de portfólio e governança de entrega.</p>
           <p>Na prática, ele organiza como a Tehkné pensa, constrói, documenta, valida e evolui soluções digitais — reduzindo dependência de improviso e aumentando previsibilidade para clientes, parceiros e produtos internos.</p>
           <div className="os-features">
             {['Diagnóstico técnico', 'Roadmap de produto', 'Documentação viva', 'Agentes de IA', 'Governança Git', 'Suporte evolutivo'].map((item) => <span key={item}>{item}</span>)}
           </div>
           <div className="hero-actions os-actions">
-            <a className="btn btn-primary coin" href="/tehkne-os">Explorar Tehkné OS <ArrowUpRight size={16} /></a>
-            <a className="btn btn-secondary" href="/metodo">Ver Método GIP <ArrowUpRight size={16} /></a>
+            <a className="btn btn-primary coin" href="/metodo#visao">Explorar GIP Tehkné OS <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href="/metodo#fluxo-gip">Ver fluxo GIP <ArrowUpRight size={16} /></a>
           </div>
         </div>
         <div className="stack-cloud">
