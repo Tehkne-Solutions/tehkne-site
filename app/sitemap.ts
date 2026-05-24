@@ -3,7 +3,8 @@ import { blogPosts } from './blog/blog-data';
 import { portfolioCases } from './portfolio/portfolio-data';
 
 const siteUrl = 'https://tehknesolutions.com.br';
-const staticPages = ['/', '/sobre', '/solucoes', '/portfolio', '/metodo', '/blog', '/contato'];
+const staticPages = ['/', '/sobre', '/solucoes', '/portfolio', '/metodo', '/blog', '/contato', '/privacidade', '/legal'];
+const localizedPages = ['/en', '/es'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
@@ -13,6 +14,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: path === '/' ? 'weekly' : 'monthly',
     priority: path === '/' ? 1 : path === '/solucoes' || path === '/contato' ? 0.9 : 0.75
+  })) satisfies MetadataRoute.Sitemap;
+
+  const localizedUrls = localizedPages.map((path) => ({
+    url: `${siteUrl}${path}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.65
   })) satisfies MetadataRoute.Sitemap;
 
   const blogUrls = blogPosts.map((post) => ({
@@ -29,5 +37,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: project.featured ? 0.8 : 0.65
   })) satisfies MetadataRoute.Sitemap;
 
-  return [...staticUrls, ...blogUrls, ...portfolioUrls];
+  return [...staticUrls, ...localizedUrls, ...blogUrls, ...portfolioUrls];
 }
