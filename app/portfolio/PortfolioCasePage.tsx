@@ -3,6 +3,7 @@ import { ArrowUpRight, BarChart3, CheckCircle2, Layers3, LayoutDashboard, Networ
 import ContactForm from '../components/ContactForm';
 import { whatsAppHref } from '../contact';
 import { getPortfolioCase } from './portfolio-data';
+import { getMemeProjectCase } from './meme-project-cases';
 import { getUntiCaseAsset } from './unti-case-assets';
 import { getCaseStackOverride } from './case-stack-overrides';
 
@@ -48,14 +49,20 @@ const drEduardoProcess: Array<[string, string, string]> = [
   ['04', 'Auditoria de stack', 'Correção editorial da stack no portfólio para refletir a base real do projeto.']
 ];
 
+function screenshotUrl(url?: string) {
+  if (!url) return undefined;
+  return `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=1400`;
+}
+
 export function PortfolioCasePage({ slug }: Props) {
-  const project = getPortfolioCase(slug);
+  const project = getPortfolioCase(slug) ?? getMemeProjectCase(slug);
 
   if (!project) {
     notFound();
   }
 
   const asset = getUntiCaseAsset(project.slug);
+  const memeScreenshot = screenshotUrl('externalOfficialUrl' in project ? project.externalOfficialUrl : undefined);
   const stackOverride = getCaseStackOverride(project.slug);
   const effectiveStack = stackOverride?.stack ?? project.stack;
   const isDrEduardo = project.slug === 'dr-eduardo-ursolino';
@@ -80,6 +87,7 @@ export function PortfolioCasePage({ slug }: Props) {
   const icons = [LayoutDashboard, Layers3, Workflow, BarChart3, ShieldCheck, Network];
   const siteUrl = 'https://tehkne.com';
   const pageUrl = `${siteUrl}/portfolio/${project.slug}`;
+  const structuredImage = asset?.image ?? memeScreenshot ?? `${siteUrl}/images/logo-tehkne-solutions-header.png`;
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -97,7 +105,7 @@ export function PortfolioCasePage({ slug }: Props) {
         url: pageUrl,
         name: project.title,
         description: project.summary,
-        image: asset?.image ?? `${siteUrl}/images/logo-tehkne-solutions-header.png`,
+        image: structuredImage,
         inLanguage: 'pt-BR',
         isPartOf: {
           '@type': 'WebSite',
@@ -137,6 +145,15 @@ export function PortfolioCasePage({ slug }: Props) {
               <img src={asset.image} alt={`Imagem do case ${project.title}`} loading="eager" />
               <div className="portfolio-real-hero-caption">
                 <span>Imagem oficial do case</span>
+                <strong>{project.imageLabel}</strong>
+              </div>
+            </div>
+          ) : memeScreenshot ? (
+            <div className={`portfolio-case-preview portfolio-real-hero-preview ${project.tone}`}>
+              <div className="case-window-bar"><span /><span /><span /></div>
+              <img src={memeScreenshot} alt={`Imagem do case ${project.title}`} loading="eager" />
+              <div className="portfolio-real-hero-caption">
+                <span>Print público do projeto</span>
                 <strong>{project.imageLabel}</strong>
               </div>
             </div>
