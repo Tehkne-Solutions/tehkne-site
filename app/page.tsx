@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import ContactForm from './components/ContactForm';
 import { portfolioCases } from './portfolio/portfolio-data';
+import { getPortfolioCaseCardImage } from './portfolio/case-card-images';
 import { blogPosts } from './blog/blog-data';
 import { StackCard, stacksData } from './components/StackCard';
 
@@ -161,16 +162,26 @@ export default function Home() {
         </div>
         <div className="case-marquee" aria-label="Carrossel de cases Tehkné">
           <div className="case-marquee-track">
-            {carouselCases.map((project, index) => (
-              <a className={`project-card home-case-card ${project.tone}`} href={`/portfolio/${project.slug}`} key={`${project.slug}-${index}`}>
-                <div className={`project-thumb ${project.tone}`}><Orbit size={46} /><span /></div>
-                <small>{project.level} • {project.category}</small>
-                <h3>{project.title}</h3>
-                <p>{project.summary}</p>
-                <div className="home-case-stack">{project.stack.slice(0, 3).map((tech) => <span key={tech}>{tech}</span>)}</div>
-                <strong>Abrir case <ArrowUpRight size={14} /></strong>
-              </a>
-            ))}
+            {carouselCases.map((project, index) => {
+              const cardImage = getPortfolioCaseCardImage(project);
+
+              return (
+                <a className={`project-card home-case-card ${project.tone}`} href={`/portfolio/${project.slug}`} key={`${project.slug}-${index}`}>
+                  {cardImage ? (
+                    <div className={`project-thumb portfolio-thumb portfolio-image-thumb portfolio-case-card-shot ${project.tone}`}>
+                      <img src={cardImage} alt={`Imagem do case ${project.title}`} loading="lazy" />
+                    </div>
+                  ) : (
+                    <div className={`project-thumb ${project.tone}`}><Orbit size={46} /><span /></div>
+                  )}
+                  <small>{project.level} • {project.category}</small>
+                  <h3>{project.title}</h3>
+                  <p>{project.summary}</p>
+                  <div className="home-case-stack">{project.stack.slice(0, 3).map((tech) => <span key={tech}>{tech}</span>)}</div>
+                  <strong>Abrir case <ArrowUpRight size={14} /></strong>
+                </a>
+              );
+            })}
           </div>
         </div>
       </motion.section>
