@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import BackToTop from './components/BackToTop';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
@@ -6,6 +7,7 @@ import './globals.css';
 import './contact.css';
 
 const logoPath = '/images/logo-tehkne-solutions-header.png';
+const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID ?? 'G-MB46DPYC6K';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://tehkne.com'),
@@ -71,6 +73,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="pt-BR">
       <body>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${googleAnalyticsId}');
+          `}
+        </Script>
         <div id="top" className="site-shell">
           <div className="background-grid" />
           <SiteHeader />
