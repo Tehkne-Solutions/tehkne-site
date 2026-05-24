@@ -4,50 +4,51 @@ import type { PortfolioCase } from './portfolio-data';
 export type SavanaProjectCase = PortfolioCase & {
   origin: 'Savana Publicidade';
   caseType: 'Campanha offline' | 'Cliente atendido' | 'Site e presença digital';
-  officialUrl?: string;
+  externalOfficialUrl?: string;
 };
 
 const baseStack = ['WordPress', 'Elementor', 'Campanhas', 'Comunicação visual', 'Branding'];
 
 export const savanaProjectCases: SavanaProjectCase[] = [
   {
-    slug: 'savana-sinfonia-residencial',
+    slug: 'sinfonia-residencial',
     title: 'Sinfonia Residencial',
     level: 'Projeto Tehkné',
     category: 'Campanha / Imobiliário',
     sector: 'Imobiliário',
     stack: baseStack,
-    summary: 'Case de campanha e comunicação imobiliária dentro do ecossistema Savana, com repertório de branding, material comercial e presença digital.',
+    summary: 'Case de campanha e comunicação imobiliária com repertório de branding, material comercial e presença digital.',
     challenge: 'Traduzir uma oferta imobiliária em comunicação clara, visual forte e peças capazes de apoiar venda e percepção de valor.',
     delivery: 'Apoio em presença digital, comunicação visual, materiais, organização de narrativa e sustentação técnica em ambiente de agência.',
     outcome: 'Reforça experiência em mercado imobiliário, campanha, design aplicado e jornada comercial.',
     imageLabel: 'Campanha imobiliária',
-    status: 'Case Savana / Tehkné',
+    status: 'Case Tehkné',
     tone: 'violet',
-    source: 'Savana Publicidade',
+    source: 'Cliente de agência',
     origin: 'Savana Publicidade',
     caseType: 'Campanha offline'
   },
   {
-    slug: 'savana-dafra-motos',
+    slug: 'dafra-motos',
     title: 'Dafra Motos',
     level: 'Projeto Tehkné',
     category: 'Campanha / Automotivo',
     sector: 'Automotivo',
     stack: ['WordPress', 'Elementor', 'Landing pages', 'Campanhas', 'Performance'],
-    summary: 'Experiência em comunicação automotiva, campanhas, páginas e materiais comerciais para marca de motos em ambiente de agência.',
+    summary: 'Experiência em comunicação automotiva, campanhas, páginas e materiais comerciais para marca de motos.',
     challenge: 'Apoiar ações digitais e comerciais com clareza de produto, impacto visual e consistência de marca.',
     delivery: 'Ajustes web, landing pages, comunicação visual, suporte técnico e materiais para campanha.',
     outcome: 'Mostra repertório em automotivo, produto, campanhas e execução rápida para operação comercial.',
     imageLabel: 'Automotivo e campanha',
-    status: 'Case Savana / Tehkné',
+    status: 'Case Tehkné',
     tone: 'orange',
-    source: 'Savana Publicidade',
+    source: 'Cliente de agência',
     origin: 'Savana Publicidade',
-    caseType: 'Campanha offline'
+    caseType: 'Campanha offline',
+    externalOfficialUrl: 'https://www.daframotos.com.br/'
   },
   {
-    slug: 'savana-eurofarma',
+    slug: 'eurofarma',
     title: 'Eurofarma',
     level: 'Projeto Tehkné',
     category: 'Campanha / Farmacêutico',
@@ -58,14 +59,15 @@ export const savanaProjectCases: SavanaProjectCase[] = [
     delivery: 'Materiais de campanha, suporte digital, organização visual e adaptação de comunicação para canais comerciais.',
     outcome: 'Amplia o portfólio para saúde/farmacêutico, comunicação institucional e campanhas de marca.',
     imageLabel: 'Farmacêutico',
-    status: 'Case Savana / Tehkné',
+    status: 'Case Tehkné',
     tone: 'cyan',
-    source: 'Savana Publicidade',
+    source: 'Cliente de agência',
     origin: 'Savana Publicidade',
-    caseType: 'Campanha offline'
+    caseType: 'Campanha offline',
+    externalOfficialUrl: 'https://www.eurofarma.com.br/'
   },
   {
-    slug: 'savana-stine-sementes',
+    slug: 'stine-sementes',
     title: 'Stine Sementes',
     level: 'Projeto Tehkné',
     category: 'Campanha / Agro',
@@ -76,14 +78,14 @@ export const savanaProjectCases: SavanaProjectCase[] = [
     delivery: 'Apoio visual, conteúdo, peças, páginas e sustentação digital em rotina de agência.',
     outcome: 'Demonstra capacidade de comunicar produtos técnicos e setores B2B/B2C de nicho.',
     imageLabel: 'Agro e produto',
-    status: 'Case Savana / Tehkné',
+    status: 'Case Tehkné',
     tone: 'amber',
-    source: 'Savana Publicidade',
+    source: 'Cliente de agência',
     origin: 'Savana Publicidade',
     caseType: 'Campanha offline'
   },
   {
-    slug: 'savana-massas-de',
+    slug: 'massas-de',
     title: 'Massas De',
     level: 'Projeto Tehkné',
     category: 'Campanha / Alimentos',
@@ -94,14 +96,14 @@ export const savanaProjectCases: SavanaProjectCase[] = [
     delivery: 'Design aplicado, organização de campanha, ajustes web e materiais comerciais.',
     outcome: 'Adiciona repertório em alimentos, varejo, produto e comunicação de marca.',
     imageLabel: 'Alimentos e marca',
-    status: 'Case Savana / Tehkné',
+    status: 'Case Tehkné',
     tone: 'pink',
-    source: 'Savana Publicidade',
+    source: 'Cliente de agência',
     origin: 'Savana Publicidade',
     caseType: 'Campanha offline'
   },
   {
-    slug: 'savana-nutralle',
+    slug: 'nutralle',
     title: 'Nutralle',
     level: 'Projeto Tehkné',
     category: 'Campanha / Saúde e nutrição',
@@ -112,14 +114,14 @@ export const savanaProjectCases: SavanaProjectCase[] = [
     delivery: 'Peças, materiais, ajustes digitais e suporte de comunicação em ambiente de agência.',
     outcome: 'Reforça atuação em saúde, bem-estar, produto e comunicação de confiança.',
     imageLabel: 'Nutrição e produto',
-    status: 'Case Savana / Tehkné',
+    status: 'Case Tehkné',
     tone: 'cyan',
-    source: 'Savana Publicidade',
+    source: 'Cliente de agência',
     origin: 'Savana Publicidade',
     caseType: 'Campanha offline'
   },
   {
-    slug: 'savana-ecobrisa-energia',
+    slug: 'ecobrisa-energia',
     title: 'Ecobrisa Energia',
     level: 'Projeto Tehkné',
     category: 'Campanha / Energia',
@@ -130,14 +132,14 @@ export const savanaProjectCases: SavanaProjectCase[] = [
     delivery: 'Materiais, presença digital, organização de campanha e suporte técnico visual.',
     outcome: 'Mostra repertório em energia, sustentabilidade e comunicação comercial de impacto.',
     imageLabel: 'Energia sustentável',
-    status: 'Case Savana / Tehkné',
+    status: 'Case Tehkné',
     tone: 'blue',
-    source: 'Savana Publicidade',
+    source: 'Cliente de agência',
     origin: 'Savana Publicidade',
     caseType: 'Campanha offline'
   },
   {
-    slug: 'savana-oficina-do-estudante',
+    slug: 'oficina-do-estudante',
     title: 'Oficina do Estudante',
     level: 'Projeto Tehkné',
     category: 'Campanha / Educação',
@@ -148,14 +150,15 @@ export const savanaProjectCases: SavanaProjectCase[] = [
     delivery: 'Apoio em peças, comunicação digital, ajustes web e materiais de campanha.',
     outcome: 'Demonstra experiência em educação, campanha, conteúdo e comunicação para decisão familiar/estudantil.',
     imageLabel: 'Educação e campanha',
-    status: 'Case Savana / Tehkné',
+    status: 'Case Tehkné',
     tone: 'violet',
-    source: 'Savana Publicidade',
+    source: 'Cliente de agência',
     origin: 'Savana Publicidade',
-    caseType: 'Campanha offline'
+    caseType: 'Campanha offline',
+    externalOfficialUrl: 'https://www.oficinadoestudante.com.br/'
   },
   {
-    slug: 'savana-bob-imoveis',
+    slug: 'bob-imoveis',
     title: 'BOB Imóveis',
     level: 'Projeto Tehkné',
     category: 'Campanha / Imobiliário',
@@ -166,9 +169,9 @@ export const savanaProjectCases: SavanaProjectCase[] = [
     delivery: 'Peças, páginas de apoio, materiais digitais e suporte visual para campanha.',
     outcome: 'Reforça experiência em imóveis, campanhas e comunicação orientada a lead.',
     imageLabel: 'Imobiliário e leads',
-    status: 'Case Savana / Tehkné',
+    status: 'Case Tehkné',
     tone: 'orange',
-    source: 'Savana Publicidade',
+    source: 'Cliente de agência',
     origin: 'Savana Publicidade',
     caseType: 'Campanha offline'
   }
