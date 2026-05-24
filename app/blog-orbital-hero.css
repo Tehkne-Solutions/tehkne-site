@@ -1,0 +1,139 @@
+/* Blog single hero: elemento abstrato lateral inspirado na hero da Home */
+.blog-post-hero .blog-photo-hero-card{
+  isolation:isolate;
+  min-height:430px!important;
+  display:block!important;
+  border:1px solid rgba(148,163,184,.16)!important;
+  border-radius:28px!important;
+  background:
+    radial-gradient(circle at 28% 22%,rgba(56,189,248,.18),transparent 28%),
+    radial-gradient(circle at 78% 22%,rgba(217,70,239,.2),transparent 28%),
+    radial-gradient(circle at 55% 74%,rgba(139,92,246,.24),transparent 34%),
+    linear-gradient(145deg,rgba(2,6,23,.98),rgba(8,13,28,.94))!important;
+  box-shadow:0 34px 90px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.05)!important;
+}
+
+.blog-post-hero .blog-photo-hero-card>img,
+.blog-post-hero .blog-photo-hero-card .blog-featured-image-overlay{
+  display:none!important;
+}
+
+.blog-post-hero .blog-photo-hero-card:before{
+  content:''!important;
+  position:absolute!important;
+  z-index:1;
+  left:50%;
+  top:50%;
+  width:310px!important;
+  height:310px!important;
+  border-radius:50%!important;
+  transform:translate(-50%,-50%) rotate(-10deg)!important;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(248,250,252,.96) 0 3%,rgba(56,189,248,.62) 4% 5%,transparent 8%),
+    radial-gradient(circle at 50% 50%,transparent 0 28%,rgba(56,189,248,.28) 29% 30%,transparent 31% 42%,rgba(139,92,246,.28) 43% 44%,transparent 45% 60%,rgba(217,70,239,.2) 61% 62%,transparent 63%),
+    conic-gradient(from 90deg,rgba(56,189,248,.26),rgba(139,92,246,.12),rgba(217,70,239,.24),rgba(56,189,248,.26));
+  filter:drop-shadow(0 0 34px rgba(56,189,248,.24)) drop-shadow(0 0 54px rgba(139,92,246,.22));
+  opacity:.92;
+}
+
+.blog-post-hero .blog-photo-hero-card:after{
+  content:'';
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:50%;
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:#7dd3fc;
+  box-shadow:
+    -132px -118px 0 0 rgba(56,189,248,.78),
+    118px -92px 0 2px rgba(139,92,246,.8),
+    -112px 96px 0 1px rgba(217,70,239,.72),
+    130px 104px 0 0 rgba(34,211,238,.7),
+    -42px -146px 0 0 rgba(191,219,254,.58),
+    36px 150px 0 1px rgba(167,139,250,.62),
+    152px 8px 0 0 rgba(14,165,233,.52),
+    -154px -8px 0 1px rgba(168,85,247,.52),
+    76px -154px 0 0 rgba(217,70,239,.54),
+    -72px 154px 0 0 rgba(125,211,252,.52);
+  opacity:.9;
+}
+
+.blog-post-hero .blog-photo-hero-glow{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  top:50%;
+  width:132px;
+  height:132px;
+  border:1px solid rgba(125,211,252,.22);
+  border-radius:34px;
+  transform:translate(-50%,-50%) rotate(45deg);
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,255,255,.95) 0 6%,rgba(125,211,252,.6) 7% 10%,transparent 14%),
+    linear-gradient(135deg,rgba(15,23,42,.82),rgba(2,6,23,.44));
+  box-shadow:0 0 70px rgba(56,189,248,.22),0 0 110px rgba(139,92,246,.22),inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.blog-post-hero .blog-photo-hero-glow:before,
+.blog-post-hero .blog-photo-hero-glow:after{
+  content:'';
+  position:absolute;
+  inset:-58px;
+  border:1px solid rgba(125,211,252,.18);
+  border-radius:50%;
+  transform:rotate(-45deg) scaleX(1.55);
+}
+
+.blog-post-hero .blog-photo-hero-glow:after{
+  inset:-86px;
+  border-color:rgba(167,139,250,.16);
+  transform:rotate(18deg) scaleX(1.28);
+}
+
+.blog-post-hero .blog-photo-hero-card .blog-photo-hero-glow+*{
+  display:none!important;
+}
+
+@media (max-width:1100px){
+  .blog-post-hero .blog-photo-hero-card{
+    max-width:520px;
+    min-height:340px!important;
+  }
+}
+
+@media (max-width:720px){
+  .blog-post-hero .blog-photo-hero-card{
+    min-height:260px!important;
+  }
+
+  .blog-post-hero .blog-photo-hero-card:before{
+    width:230px!important;
+    height:230px!important;
+  }
+
+  .blog-post-hero .blog-photo-hero-glow{
+    width:96px;
+    height:96px;
+    border-radius:26px;
+  }
+
+  .blog-post-hero .blog-photo-hero-card:after{
+    transform:translate(-50%,-50%) scale(.72);
+  }
+}
+
+@media (prefers-reduced-motion:no-preference){
+  .blog-post-hero .blog-photo-hero-card:before{animation:blog-orbital-drift 18s linear infinite;}
+  .blog-post-hero .blog-photo-hero-glow{animation:blog-core-pulse 5.5s ease-in-out infinite;}
+}
+
+@keyframes blog-orbital-drift{
+  to{transform:translate(-50%,-50%) rotate(350deg)}
+}
+
+@keyframes blog-core-pulse{
+  0%,100%{filter:brightness(1);opacity:.92}
+  50%{filter:brightness(1.18);opacity:1}
+}
