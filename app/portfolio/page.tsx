@@ -6,7 +6,13 @@ import { portfolioCases, portfolioStats } from './portfolio-data';
 import { savanaProjectCases } from './savana-project-cases';
 import { memeProjectCases } from './meme-project-cases';
 
-const allPortfolioCases = [...portfolioCases, ...savanaProjectCases, ...memeProjectCases];
+function uniqueCasesBySlug<T extends { slug: string }>(cases: T[]) {
+  const map = new Map<string, T>();
+  cases.forEach((item) => map.set(item.slug, item));
+  return Array.from(map.values());
+}
+
+const allPortfolioCases = uniqueCasesBySlug([...portfolioCases, ...savanaProjectCases, ...memeProjectCases]);
 const allPortfolioStats = [
   portfolioStats[0],
   portfolioStats[1],
