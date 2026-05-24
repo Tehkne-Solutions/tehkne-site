@@ -65,6 +65,23 @@ const pricingAnchors = [
   ['Sprint técnica', 'sob diagnóstico', 'Integrações, sustentação, automações, WordPress avançado ou evolução de projeto.']
 ];
 
+const proofTiles = [
+  { icon: ShieldCheck, value: '7+ anos', label: 'repertório validado', text: 'Sites, sistemas, WordPress, produto, design, marketing, ensino e IA aplicada.' },
+  { icon: Rocket, value: '120+', label: 'entregas e melhorias', text: 'Páginas, automações, ajustes, interfaces, fluxos comerciais e experiências digitais.' },
+  { icon: Layers3, value: '70+', label: 'operações WordPress', text: 'Criação, manutenção, performance, Elementor, JetEngine, temas, plugins e catálogos.' },
+  { icon: Code2, value: '67+', label: 'repositórios mapeados', text: 'Produtos, estudos, automações, sites, apps, laboratórios e bases técnicas próprias.' },
+  { icon: Orbit, value: '30+', label: 'cases catalogados', text: 'Tehkné, UNTI, Savana, Meme Digital, projetos próprios e participação técnica segura.' },
+  { icon: BrainCircuit, value: '15+', label: 'stacks e ferramentas', text: 'Next.js, React, WordPress, PHP, Python, APIs, Vercel, IA, automações e design systems.' }
+];
+
+const operationSignals = [
+  ['Diagnóstico', 'problema real, urgência, público e gargalo'],
+  ['Arquitetura', 'escopo, stack, dados, integrações e prioridade'],
+  ['Interface', 'UX, copy, visual, conversão e leitura rápida'],
+  ['Código', 'componentes, versionamento, performance e deploy'],
+  ['Evolução', 'suporte, automações, analytics e melhorias contínuas']
+];
+
 const homeCases = portfolioCases.filter((item) => item.featured).slice(0, 8);
 const carouselCases = [...homeCases, ...homeCases];
 const latestBlogPosts = [...blogPosts]
@@ -140,34 +157,107 @@ export default function Home() {
         <MetatronCore />
       </section>
 
-      <motion.section className="section-frame authority-section" {...fadeUp}>
-        <div className="section-heading inline">
-          <div>
-            <span className="eyebrow">Autoridade técnica acumulada</span>
-            <h2>Números que mostram repertório sem inflar promessa.</h2>
-            <p>Experiência somada em desenvolvimento, WordPress, Next.js, design, marketing, ensino, IA, automações, sustentação e participação técnica em ecossistemas digitais.</p>
+      <motion.section className="section-frame home-proof-lab" {...fadeUp}>
+        <div className="home-proof-copy">
+          <span className="eyebrow">Autoridade visualizada</span>
+          <h2>Números, stack e repertório convertidos em painel de decisão.</h2>
+          <p>Em vez de vender uma promessa solta, a Tehkné apresenta provas de execução: volume técnico, repertório de projetos, ecossistemas, WordPress avançado, produtos internos e IA aplicada em fluxo real.</p>
+          <div className="home-proof-actions">
+            <a className="btn btn-secondary" href="/portfolio">Explorar provas <ArrowUpRight size={16} /></a>
+            <a className="text-link" href="#solucoes">Ver como isso vira solução <ArrowUpRight size={16} /></a>
           </div>
-          <a className="btn btn-secondary" href="#contato-form">Pedir diagnóstico <ArrowUpRight size={16} /></a>
         </div>
-        <div className="authority-grid">
-          {authorityMetrics.map(([value, label]) => <article key={value}><strong>{value}</strong><span>{label}</span></article>)}
+
+        <div className="home-proof-stage" aria-label="Painel visual de autoridade Tehkné">
+          <div className="proof-orbit proof-orbit-one" />
+          <div className="proof-orbit proof-orbit-two" />
+          <div className="proof-core-card">
+            <span>Tehkné Stack</span>
+            <strong>Design + Código + IA + Operação</strong>
+            <small>processo vivo para transformar demanda em produto digital</small>
+          </div>
+          <div className="proof-signal signal-a">Next.js</div>
+          <div className="proof-signal signal-b">WordPress</div>
+          <div className="proof-signal signal-c">IA</div>
+          <div className="proof-signal signal-d">UX</div>
+        </div>
+
+        <div className="proof-tile-grid">
+          {proofTiles.map((tile, index) => {
+            const Icon = tile.icon;
+            return (
+              <motion.article
+                className="proof-tile premium-hover"
+                key={tile.label}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05, duration: 0.45 }}
+              >
+                <Icon size={24} />
+                <strong>{tile.value}</strong>
+                <span>{tile.label}</span>
+                <p>{tile.text}</p>
+              </motion.article>
+            );
+          })}
         </div>
       </motion.section>
 
-      <motion.section className="section-frame pricing-anchor-section compact" {...fadeUp}>
-        <div className="section-heading inline">
+      <motion.section className="section-frame home-offer-map compact" {...fadeUp}>
+        <div className="offer-map-header">
           <div>
-            <span className="eyebrow">Faixa mínima de projeto</span>
-            <h2>Projetos com escopo, copy, técnica e responsabilidade.</h2>
-            <p>Os valores abaixo servem como filtro comercial inicial. O orçamento final depende de páginas, integrações, urgência, stack, conteúdo, animações e sustentação.</p>
+            <span className="eyebrow">Do investimento ao sistema</span>
+            <h2>Cada entrada vira um caminho de entrega, não um pacote genérico.</h2>
           </div>
+          <p>As faixas ajudam o cliente a entender ponto de partida. A entrega real nasce do diagnóstico, escopo, urgência, integrações, conteúdo e sustentação necessária.</p>
         </div>
-        <div className="pricing-anchor-grid">
-          {pricingAnchors.map(([title, price, text]) => <article key={title}><span>{title}</span><strong>{price}</strong><p>{text}</p></article>)}
+
+        <div className="offer-map-grid">
+          <div className="investment-rail">
+            {pricingAnchors.map(([title, price, text], index) => (
+              <motion.article
+                className="investment-card premium-hover"
+                key={title}
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08, duration: 0.48 }}
+              >
+                <span>0{index + 1}</span>
+                <div>
+                  <strong>{title}</strong>
+                  <b>{price}</b>
+                  <p>{text}</p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          <div className="operation-flow-card premium-hover">
+            <div className="flow-card-top">
+              <DatabaseZap size={28} />
+              <div>
+                <span>Mapa operacional</span>
+                <strong>Como a Tehkné lê a demanda</strong>
+              </div>
+            </div>
+            <div className="operation-flow-list">
+              {operationSignals.map(([title, text], index) => (
+                <div className="operation-flow-item" key={title}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <strong>{title}</strong>
+                    <p>{text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </motion.section>
 
-      <motion.section id="solucoes" className="section-frame" {...fadeUp}>
+      <motion.section id="solucoes" className="section-frame visual-section" {...fadeUp}>
         <div className="section-heading inline">
           <div>
             <span className="eyebrow">Soluções enterprise</span>
@@ -176,14 +266,14 @@ export default function Home() {
           </div>
           <a className="btn btn-secondary" href="/servicos">Ver serviços <ArrowUpRight size={16} /></a>
         </div>
-        <div className="pain-grid">
-          {painPoints.map((item) => <div className="pain-card" key={item}><DatabaseZap size={17} />{item}</div>)}
+        <div className="pain-grid visual-chip-grid">
+          {painPoints.map((item) => <div className="pain-card premium-hover" key={item}><DatabaseZap size={17} />{item}</div>)}
         </div>
-        <div className="service-grid">
+        <div className="service-grid visual-card-grid">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <motion.article className="glass-card service-card" key={service.title} initial={{ opacity: 0, y: 34, rotateX: -8 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08, duration: 0.55 }}>
+              <motion.article className="glass-card service-card premium-hover" key={service.title} initial={{ opacity: 0, y: 34, rotateX: -8 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08, duration: 0.55 }}>
                 <Icon className="card-icon" size={34} />
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
@@ -194,7 +284,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section id="portfolio" className="section-frame portfolio-carousel-section" {...fadeUp}>
+      <motion.section id="portfolio" className="section-frame portfolio-carousel-section visual-section" {...fadeUp}>
         <div className="section-heading inline">
           <div>
             <span className="eyebrow">Prova antes da promessa</span>
@@ -209,7 +299,7 @@ export default function Home() {
               const cardImage = getPortfolioCaseCardImage(project);
 
               return (
-                <a className={`project-card home-case-card ${project.tone}`} href={`/portfolio/${project.slug}`} key={`${project.slug}-${index}`}>
+                <a className={`project-card home-case-card premium-hover ${project.tone}`} href={`/portfolio/${project.slug}`} key={`${project.slug}-${index}`}>
                   {cardImage ? (
                     <div className={`project-thumb portfolio-thumb portfolio-image-thumb portfolio-case-card-shot ${project.tone}`}>
                       <img src={cardImage} alt={`Imagem do case ${project.title}`} loading="lazy" />
@@ -231,7 +321,7 @@ export default function Home() {
 
       <ClientProofSection />
 
-      <motion.section id="metodo" className="section-frame method-section method-expanded" {...fadeUp}>
+      <motion.section id="metodo" className="section-frame method-section method-expanded visual-section" {...fadeUp}>
         <div className="section-heading inline">
           <div>
             <span className="eyebrow">Método GIP Tehkné</span>
@@ -242,7 +332,7 @@ export default function Home() {
         </div>
         <div className="method-line">
           {method.map(([number, title, text]) => (
-            <motion.div className="method-step" key={title} whileHover={{ y: -8, scale: 1.03 }}>
+            <motion.div className="method-step premium-hover" key={title} whileHover={{ y: -8, scale: 1.03 }}>
               <span>{number}</span>
               <GitBranch size={24} />
               <h3>{title}</h3>
@@ -252,8 +342,8 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section id="os" className="section-frame os-section os-expanded" {...fadeUp}>
-        <div className="os-panel">
+      <motion.section id="os" className="section-frame os-section os-expanded visual-section" {...fadeUp}>
+        <div className="os-panel premium-hover">
           <span className="eyebrow">Design • Arquitetura • Engenharia</span>
           <h2>A Tehkné conecta estratégia, produto, código, IA, documentação e sustentação.</h2>
           <p>Mais do que um fornecedor de execução, atuamos como braço técnico para transformar experiência, processos e decisões em um sistema digital com continuidade: arquitetura viva, base de conhecimento, automações, versionamento, curadoria de portfólio e governança de entrega.</p>
@@ -266,14 +356,14 @@ export default function Home() {
             <a className="btn btn-secondary" href="/metodo#fluxo-gip">Ver fluxo GIP <ArrowUpRight size={16} /></a>
           </div>
         </div>
-        <div className="stack-cloud">
+        <div className="stack-cloud visual-stack-cloud">
           {stacksData.map((stack) => (
             <StackCard key={stack.name} name={stack.name} icon={stack.icon} />
           ))}
         </div>
       </motion.section>
 
-      <motion.section id="blog" className="section-frame home-blog-section" {...fadeUp}>
+      <motion.section id="blog" className="section-frame home-blog-section visual-section" {...fadeUp}>
         <div className="section-heading inline">
           <div>
             <span className="eyebrow">Blog Tehkné</span>
@@ -284,7 +374,7 @@ export default function Home() {
         </div>
         <div className="home-blog-grid">
           {latestBlogPosts.map((post) => (
-            <a className="home-blog-card" href={`/blog/${post.slug}`} key={post.slug}>
+            <a className="home-blog-card premium-hover" href={`/blog/${post.slug}`} key={post.slug}>
               <div className="home-blog-icon"><BookOpen size={22} /></div>
               <small>{post.category} • {post.readingTime}</small>
               <h3>{post.title}</h3>
