@@ -26,23 +26,27 @@ import { StackCard, stacksData } from './components/StackCard';
 const services = [
   {
     icon: Layers3,
-    title: 'Arquitetura de Soluções',
-    text: 'Do escopo solto ao mapa técnico: stack, dados, integrações, governança e evolução planejada.'
+    slug: 'site-institucional-alta-performance',
+    title: 'Site institucional de alta performance',
+    text: 'Presença digital premium, rápida, persuasiva, com SEO técnico, copy, UX e conversão.'
   },
   {
     icon: Code2,
-    title: 'Desenvolvimento Web & Mobile',
-    text: 'Sites, plataformas, apps e sistemas com performance, manutenção e base pronta para escalar.'
+    slug: 'plataforma-web-sob-medida',
+    title: 'Plataforma web sob medida',
+    text: 'Sistemas, áreas logadas, dashboards e módulos próprios para transformar processo em produto digital.'
   },
   {
     icon: MousePointer2,
-    title: 'Design & UX de Produto',
-    text: 'Interfaces premium, jornadas claras e experiências centradas no usuário e no resultado do negócio.'
+    slug: 'integracoes-crm-erp-apis',
+    title: 'Integrações CRM, ERP e APIs',
+    text: 'Conecte site, formulários, WhatsApp, CRM, ERP, webhooks e automações para reduzir retrabalho.'
   },
   {
     icon: Bot,
-    title: 'IA & Automações',
-    text: 'Agentes, fluxos, integrações e automações para reduzir trabalho manual e acelerar operação.'
+    slug: 'white-label-tecnico-agencias',
+    title: 'White label técnico para agências',
+    text: 'Braço técnico confiável para agências venderem mais sem travar em desenvolvimento e sustentação.'
   }
 ];
 
@@ -129,10 +133,13 @@ export default function Home() {
       </motion.section>
 
       <motion.section id="solucoes" className="section-frame" {...fadeUp}>
-        <div className="section-heading">
-          <span className="eyebrow">Soluções enterprise</span>
-          <h2>Você não precisa só de um site. Precisa de uma operação digital estruturada.</h2>
-          <p>A Tehkné entra onde existe ideia, demanda, gargalo ou oportunidade — e transforma isso em arquitetura, interface, código, integração e evolução.</p>
+        <div className="section-heading inline">
+          <div>
+            <span className="eyebrow">Soluções enterprise</span>
+            <h2>Você não precisa só de um site. Precisa de uma operação digital estruturada.</h2>
+            <p>A Tehkné entra onde existe ideia, demanda, gargalo ou oportunidade — e transforma isso em arquitetura, interface, código, integração e evolução.</p>
+          </div>
+          <a className="btn btn-secondary" href="/servicos">Ver serviços <ArrowUpRight size={16} /></a>
         </div>
         <div className="pain-grid">
           {painPoints.map((item) => <div className="pain-card" key={item}><DatabaseZap size={17} />{item}</div>)}
@@ -145,7 +152,7 @@ export default function Home() {
                 <Icon className="card-icon" size={34} />
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
-                <a href={contactHref}>Planejar solução <ArrowUpRight size={15} /></a>
+                <a href={`/servicos/${service.slug}`}>Ver serviço <ArrowUpRight size={15} /></a>
               </motion.article>
             );
           })}
@@ -265,10 +272,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <ContactForm
-        page="Home"
-        context="diagnóstico estratégico para transformar uma ideia, processo ou operação em sistema digital real"
-      />
+      <ContactForm page="Home" context="diagnóstico estratégico para transformar uma ideia, processo ou operação em sistema digital real" />
     </main>
   );
 }
