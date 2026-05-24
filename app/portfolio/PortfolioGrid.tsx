@@ -12,7 +12,9 @@ const caseHeroScreens: Record<string, string> = {
   'vacina-one': 'https://vacina-one-site.vercel.app/',
   'meme-digital': 'https://meme-servicos-delta.vercel.app/',
   'unti-digital': 'https://www.untidigital.com.br/',
-  'savol-seminovos': 'https://savol-seminovos.vercel.app/'
+  'savol-seminovos': 'https://savol-seminovos.vercel.app/',
+  'savana-publicidade': 'https://savanapublicidade.com.br/',
+  'liugong-br': 'https://liugongla.com/'
 };
 
 type Props = {
