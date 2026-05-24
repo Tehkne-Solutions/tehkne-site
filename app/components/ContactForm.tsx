@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useMemo, useState } from 'react';
-import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react';
+import { ArrowUpRight, Send } from 'lucide-react';
 import { WHATSAPP_DISPLAY, whatsAppHref } from '../contact';
 
 type ContactFormProps = {
@@ -98,10 +98,6 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
           <span>WhatsApp principal</span>
           <strong>{WHATSAPP_DISPLAY}</strong>
         </div>
-        <div className="lead-routing-card">
-          <CheckCircle2 size={18} />
-          <p>Fluxo preparado para registrar lead em planilha/CRM via webhook e abrir WhatsApp com briefing completo.</p>
-        </div>
       </div>
 
       <form className="contact-form-card" onSubmit={handleSubmit}>
@@ -164,13 +160,13 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
           <textarea name="mensagem" value={form.mensagem} onChange={(event) => updateField('mensagem', event.target.value)} placeholder="Conte o que você precisa criar, melhorar ou automatizar. Quanto mais contexto, melhor o diagnóstico." rows={5} required />
         </label>
         <button className="btn btn-primary coin" type="submit" disabled={status === 'sending'}>
-          {status === 'sending' ? 'Registrando lead...' : 'Enviar briefing e abrir WhatsApp'} <Send size={16} />
+          {status === 'sending' ? 'Enviando briefing...' : 'Enviar briefing e abrir WhatsApp'} <Send size={16} />
         </button>
         <a className="contact-direct-link" href={href} target="_blank" rel="noreferrer">
-          Chamar direto no WhatsApp sem registrar <ArrowUpRight size={14} />
+          Chamar direto no WhatsApp <ArrowUpRight size={14} />
         </a>
-        {status === 'saved' ? <p className="form-status success">Lead registrado. O WhatsApp foi aberto com a mensagem completa.</p> : null}
-        {status === 'error' ? <p className="form-status error">Não consegui confirmar o registro agora, mas abri o WhatsApp com o briefing completo.</p> : null}
+        {status === 'saved' ? <p className="form-status success">Briefing enviado. O WhatsApp foi aberto com a mensagem completa.</p> : null}
+        {status === 'error' ? <p className="form-status error">Não consegui confirmar o envio agora, mas abri o WhatsApp com o briefing completo.</p> : null}
       </form>
     </section>
   );
