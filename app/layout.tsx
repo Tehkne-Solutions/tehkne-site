@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
 import BackToTop from './components/BackToTop';
+import CTAAnalytics from './components/CTAAnalytics';
+import FloatingContactButton from './components/FloatingContactButton';
+import RuntimeTextUpgrades from './components/RuntimeTextUpgrades';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 import './globals.css';
@@ -145,11 +148,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        <CTAAnalytics />
+        <RuntimeTextUpgrades />
         <div id="top" className="site-shell">
           <div className="background-grid" />
           <SiteHeader />
           {children}
           <SiteFooter />
+          <FloatingContactButton />
           <BackToTop />
         </div>
         <Analytics />
