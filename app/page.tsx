@@ -50,6 +50,21 @@ const services = [
   }
 ];
 
+const authorityMetrics = [
+  ['7+ anos', 'atuando em sites, sistemas, design, marketing, ensino e IA aplicada'],
+  ['120+', 'entregas, melhorias, páginas, automações e experiências digitais acumuladas'],
+  ['70+', 'sites WordPress, páginas e operações web criadas, ajustadas ou sustentadas'],
+  ['67+', 'repositórios mapeados entre produtos, estudos, automações, sites e laboratórios'],
+  ['30+', 'cases e experiências catalogadas entre Tehkné, UNTI, Savana, Meme e ecossistemas'],
+  ['15+', 'stacks e ferramentas usadas em projetos reais: Next.js, WordPress, PHP, Python, APIs, IA e automações']
+];
+
+const pricingAnchors = [
+  ['LP estratégica', 'a partir de R$ 1.600', 'Landing page com copy, layout, responsividade, CTA e publicação.'],
+  ['Site institucional', 'a partir de R$ 3.000', 'Site premium com arquitetura, páginas estratégicas, SEO técnico e formulário qualificado.'],
+  ['Sprint técnica', 'sob diagnóstico', 'Integrações, sustentação, automações, WordPress avançado ou evolução de projeto.']
+];
+
 const homeCases = portfolioCases.filter((item) => item.featured).slice(0, 8);
 const carouselCases = [...homeCases, ...homeCases];
 const latestBlogPosts = [...blogPosts]
@@ -102,22 +117,22 @@ function MetatronCore() {
 }
 
 export default function Home() {
-  const contactHref = '/contato#contato-form';
+  const contactHref = '#contato-form';
 
   return (
     <main>
       <section id="top" className="hero section-frame">
         <motion.div className="hero-copy" initial={{ opacity: 0, x: -34 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.75 }}>
-          <span className="eyebrow">Arquitetura • Tecnologia • Performance • Evolução</span>
-          <h1>Transformamos ideias, processos e operações em <span>sistemas digitais reais.</span></h1>
-          <p>Arquitetura, design, desenvolvimento, automações e IA para criar produtos digitais com clareza, performance, segurança e evolução contínua.</p>
+          <span className="eyebrow">Software house • Produto digital • IA • Operação</span>
+          <h1>Arquitetura, design e engenharia para empresas que querem <span>parecer grandes porque operam com método.</span></h1>
+          <p>Mais de 7 anos construindo, melhorando e sustentando sites, sistemas, experiências digitais, automações, design e operações para empresas, agências e ecossistemas parceiros.</p>
           <div className="hero-actions">
-            <a className="btn btn-primary coin" href={contactHref}>Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-            <a className="btn btn-secondary" href={contactHref}>Agendar diagnóstico <ArrowUpRight size={16} /></a>
+            <a className="btn btn-primary coin" href={contactHref}>Solicitar diagnóstico pelo formulário <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href="/portfolio">Ver autoridade e cases <ArrowUpRight size={16} /></a>
           </div>
           <div className="trust-strip">
-            <span><ShieldCheck size={15} /> Arquitetura sólida</span>
-            <span><Rocket size={15} /> Desenvolvimento ágil</span>
+            <span><ShieldCheck size={15} /> Técnica com prova</span>
+            <span><Rocket size={15} /> Execução premium</span>
             <span><BrainCircuit size={15} /> IA aplicada</span>
             <span><Workflow size={15} /> Sustentação contínua</span>
           </div>
@@ -125,11 +140,31 @@ export default function Home() {
         <MetatronCore />
       </section>
 
-      <motion.section className="metrics section-frame compact" {...fadeUp}>
-        <div><strong>70+</strong><span>sites WordPress, páginas e experiências web acumuladas</span></div>
-        <div><strong>67+</strong><span>repositórios mapeados entre produtos, automações, sites e laboratórios</span></div>
-        <div><strong>30+</strong><span>experiências organizadas entre projetos Tehkné, participação técnica e ecossistemas</span></div>
-        <div><strong>7+</strong><span>anos reunindo desenvolvimento, produto, design, WordPress, IA e operação digital</span></div>
+      <motion.section className="section-frame authority-section" {...fadeUp}>
+        <div className="section-heading inline">
+          <div>
+            <span className="eyebrow">Autoridade técnica acumulada</span>
+            <h2>Números que mostram repertório sem inflar promessa.</h2>
+            <p>Experiência somada em desenvolvimento, WordPress, Next.js, design, marketing, ensino, IA, automações, sustentação e participação técnica em ecossistemas digitais.</p>
+          </div>
+          <a className="btn btn-secondary" href="#contato-form">Pedir diagnóstico <ArrowUpRight size={16} /></a>
+        </div>
+        <div className="authority-grid">
+          {authorityMetrics.map(([value, label]) => <article key={value}><strong>{value}</strong><span>{label}</span></article>)}
+        </div>
+      </motion.section>
+
+      <motion.section className="section-frame pricing-anchor-section compact" {...fadeUp}>
+        <div className="section-heading inline">
+          <div>
+            <span className="eyebrow">Faixa mínima de projeto</span>
+            <h2>Projetos com escopo, copy, técnica e responsabilidade.</h2>
+            <p>Os valores abaixo servem como filtro comercial inicial. O orçamento final depende de páginas, integrações, urgência, stack, conteúdo, animações e sustentação.</p>
+          </div>
+        </div>
+        <div className="pricing-anchor-grid">
+          {pricingAnchors.map(([title, price, text]) => <article key={title}><span>{title}</span><strong>{price}</strong><p>{text}</p></article>)}
+        </div>
       </motion.section>
 
       <motion.section id="solucoes" className="section-frame" {...fadeUp}>
@@ -262,13 +297,13 @@ export default function Home() {
 
       <motion.section id="contato" className="final-cta" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
         <div>
-          <span className="eyebrow">Diagnóstico estratégico</span>
-          <h2>Pronto para transformar sua ideia em realidade?</h2>
-          <p>Vamos mapear seu desafio e criar juntos a melhor solução digital para escalar com clareza.</p>
+          <span className="eyebrow">Diagnóstico qualificado</span>
+          <h2>Conte o que você quer construir para receber um caminho mais preciso.</h2>
+          <p>O formulário organiza dados do lead, tipo de projeto, orçamento, urgência e mensagem antes do contato. Isso prepara a base para CRM, planilha e proposta automatizada.</p>
         </div>
         <div className="hero-actions">
-          <a className="btn btn-primary coin" href={contactHref}>Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-          <a className="btn btn-secondary" href={contactHref}>Página de contato <ArrowUpRight size={16} /></a>
+          <a className="btn btn-primary coin" href="#contato-form">Preencher formulário <ArrowUpRight size={16} /></a>
+          <a className="btn btn-secondary" href="/contato#contato-form">Página de contato <ArrowUpRight size={16} /></a>
         </div>
       </motion.section>
 
