@@ -1,11 +1,11 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { ArrowUpRight, Orbit } from 'lucide-react';
+import { ArrowUpRight, Orbit, Search, X } from 'lucide-react';
 import type { PortfolioCase } from './portfolio-data';
 import { getPortfolioCaseCardImage } from './case-card-images';
 
-const filters = ['Todos', 'Projetos Tehkné', 'UNTI', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
+const filters = ['Todos', 'Projetos Tehkné', 'UNTI', 'Meme Digital', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
 
 type Props = {
   cases: PortfolioCase[];
@@ -16,6 +16,23 @@ function normalize(value: string) {
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
+}
+
+function searchableText(item: PortfolioCase) {
+  return normalize([
+    item.title,
+    item.level,
+    item.category,
+    item.sector,
+    item.status,
+    item.source ?? '',
+    item.summary,
+    item.challenge,
+    item.delivery,
+    item.outcome,
+    item.imageLabel,
+    item.stack.join(' ')
+  ].join(' '));
 }
 
 function isAgencyClientCase(item: PortfolioCase) {
@@ -42,16 +59,7 @@ function getCaseCardImage(item: PortfolioCase) {
 function matchesFilter(item: PortfolioCase, filter: string) {
   if (filter === 'Todos') return true;
 
-  const text = normalize([
-    item.title,
-    item.level,
-    item.category,
-    item.sector,
-    item.status,
-    item.source ?? '',
-    item.stack.join(' ')
-  ].join(' '));
-
+  const text = searchableText(item);
   const key = normalize(filter);
 
   if (key === 'projetos tehkne') {
@@ -60,6 +68,10 @@ function matchesFilter(item: PortfolioCase, filter: string) {
 
   if (key === 'unti') {
     return text.includes('unti');
+  }
+
+  if (key === 'meme digital') {
+    return text.includes('meme');
   }
 
   if (key === 'apps') {
@@ -73,16 +85,36 @@ function matchesFilter(item: PortfolioCase, filter: string) {
   return text.includes(key);
 }
 
+function matchesSearch(item: PortfolioCase, query: string) {
+  const value = normalize(query.trim());
+  if (!value) return true;
+  const text = searchableText(item);
+  return value.split(/\s+/).every((term) => text.includes(term));
+}
+
 export default function PortfolioGrid({ cases }: Props) {
   const [activeFilter, setActiveFilter] = useState('Todos');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const visibleCases = useMemo(
-    () => cases.filter((item) => matchesFilter(item, activeFilter)),
-    [cases, activeFilter]
+    () => cases.filter((item) => matchesFilter(item, activeFilter) && matchesSearch(item, searchTerm)),
+    [cases, activeFilter, searchTerm]
   );
 
   return (
     <>
+      <div className="portfolio-search-shell" role="search">
+        <Search size={18} />
+        <input
+          type="search"
+          value={searchTerm}
+          placeholder="Buscar por nome, stack, cliente, segmento ou palavra-chave..."
+          aria-label="Buscar projetos no portfólio"
+          onChange={(event) => setSearchTerm(event.target.value)}
+        />
+        {searchTerm ? <button type="button" onClick={() => setSearchTerm('')} aria-label="Limpar busca"><X size={16} /></button> : null}
+      </div>
+
       <div className="filters portfolio-filters" aria-label="Filtros de portfólio">
         {filters.map((filter) => (
           <button
@@ -98,7 +130,7 @@ export default function PortfolioGrid({ cases }: Props) {
 
       <div className="portfolio-filter-result">
         <span>{visibleCases.length} case{visibleCases.length === 1 ? '' : 's'} em exibição</span>
-        <strong>{activeFilter}</strong>
+        <strong>{searchTerm ? `Busca: ${searchTerm}` : activeFilter}</strong>
       </div>
 
       <div className="project-grid portfolio-grid-expanded">
