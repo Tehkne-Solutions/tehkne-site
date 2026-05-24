@@ -7,6 +7,12 @@ import { getUntiCaseAsset } from './unti-case-assets';
 
 const filters = ['Todos', 'Projetos Tehkné', 'Participação Técnica', 'Ecossistemas', 'UNTI', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
 
+const caseHeroScreens: Record<string, string> = {
+  beggin: 'https://beggin.vercel.app/',
+  'vacina-one': 'https://vacina-one-site.vercel.app/',
+  'meme-digital': 'https://meme-servicos-delta.vercel.app/'
+};
+
 type Props = {
   cases: PortfolioCase[];
 };
@@ -16,6 +22,14 @@ function normalize(value: string) {
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
+}
+
+function getCaseCardImage(item: PortfolioCase, asset?: { image: string }) {
+  const url = caseHeroScreens[item.slug];
+  if (url) {
+    return `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=1100`;
+  }
+  return asset?.image;
 }
 
 function matchesFilter(item: PortfolioCase, filter: string) {
@@ -91,14 +105,15 @@ export default function PortfolioGrid({ cases }: Props) {
       <div className="project-grid portfolio-grid-expanded">
         {visibleCases.map((item) => {
           const asset = getUntiCaseAsset(item.slug);
+          const cardImage = getCaseCardImage(item, asset);
 
           return (
             <article className="project-card portfolio-card-rich" key={item.slug}>
-              {asset ? (
-                <div className={`project-thumb portfolio-thumb portfolio-image-thumb ${item.tone}`}>
-                  <img src={asset.image} alt={`Imagem do case ${item.title}`} loading="lazy" />
+              {cardImage ? (
+                <a className={`project-thumb portfolio-thumb portfolio-image-thumb portfolio-case-card-shot ${item.tone}`} href={`/portfolio/${item.slug}`}>
+                  <img src={cardImage} alt={`Imagem do case ${item.title}`} loading="lazy" />
                   <span className="portfolio-image-overlay">{item.imageLabel}</span>
-                </div>
+                </a>
               ) : (
                 <div className={`project-thumb portfolio-thumb ${item.tone}`}>
                   <Orbit size={46} />
