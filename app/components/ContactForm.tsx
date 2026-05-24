@@ -33,7 +33,7 @@ const initialForm: LeadFormState = {
   mensagem: ''
 };
 
-export default function ContactForm({ page, context, title = 'Vamos transformar sua demanda em plano de execução?', description = 'Preencha o formulário para a Tehkné receber um briefing mais completo. Os dados podem alimentar planilha, CRM e uma proposta mais precisa.' }: ContactFormProps) {
+export default function ContactForm({ page, context, title = 'Vamos transformar sua demanda em plano de execução?', description = 'Preencha o formulário para a Tehkné receber um briefing mais completo. A proposta é definida depois do diagnóstico, considerando escopo, urgência, stack, conteúdo, integrações e sustentação.' }: ContactFormProps) {
   const [form, setForm] = useState<LeadFormState>(initialForm);
   const [status, setStatus] = useState<'idle' | 'sending' | 'saved' | 'error'>('idle');
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -48,7 +48,7 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
       `E-mail: ${form.email || 'não informado'}`,
       `Telefone: ${form.telefone || 'não informado'}`,
       `Serviço: ${form.servico || 'não selecionado'}`,
-      `Orçamento estimado: ${form.orcamento || 'não informado'}`,
+      `Perfil de investimento: ${form.orcamento || 'não informado'}`,
       `Prazo/urgência: ${form.prazo || 'não informado'}`,
       `Mensagem: ${form.mensagem || 'não informada'}`
     ].join('\n');
@@ -131,8 +131,8 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
           Serviço de interesse
           <select name="servico" value={form.servico} onChange={(event) => updateField('servico', event.target.value)} required>
             <option value="" disabled>Selecione uma opção</option>
-            <option>Landing page estratégica — a partir de R$ 1.600</option>
-            <option>Site institucional premium — a partir de R$ 3.000</option>
+            <option>Landing page estratégica</option>
+            <option>Site institucional premium</option>
             <option>Plataforma web sob medida</option>
             <option>Integrações CRM, ERP e APIs</option>
             <option>Governança, segurança e sustentação</option>
@@ -142,14 +142,14 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
         </label>
         <div className="contact-form-row">
           <label>
-            Orçamento estimado
+            Perfil de investimento
             <select name="orcamento" value={form.orcamento} onChange={(event) => updateField('orcamento', event.target.value)}>
-              <option value="">Selecione uma faixa</option>
-              <option>R$ 1.600 a R$ 3.000</option>
-              <option>R$ 3.000 a R$ 6.000</option>
-              <option>R$ 6.000 a R$ 12.000</option>
-              <option>R$ 12.000+</option>
-              <option>Ainda não sei</option>
+              <option value="">Selecione o perfil</option>
+              <option>Projeto enxuto com escopo fechado</option>
+              <option>Projeto premium com maior profundidade</option>
+              <option>Sprint técnica sob diagnóstico</option>
+              <option>Sustentação recorrente</option>
+              <option>Ainda quero entender o melhor caminho</option>
             </select>
           </label>
           <label>
