@@ -23,6 +23,10 @@ function slugify(text: string) {
     .replace(/(^-|-$)/g, '');
 }
 
+function getGeneratedCover(slug: string) {
+  return `/blog/cover/${slug}`;
+}
+
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = getBlogPost(slug);
@@ -32,6 +36,8 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
       title: 'Artigo não encontrado | Tehkné Solutions'
     };
   }
+
+  const cover = getGeneratedCover(post.slug);
 
   return {
     title: `${post.title} | Blog Tehkné`,
@@ -45,7 +51,13 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
       type: 'article',
       locale: 'pt_BR',
       url: `/blog/${post.slug}`,
-      images: [post.cover]
+      images: [cover]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      images: [cover]
     }
   };
 }
@@ -124,6 +136,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const cover = getGeneratedCover(post.slug);
   const headings = post.blocks.filter((block): block is Extract<BlogBlock, { type: 'heading' }> => block.type === 'heading');
   const relatedPosts = blogPosts
     .filter((item) => item.slug !== post.slug)
@@ -176,25 +189,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 ))}
               </div>
             </div>
-            <aside className="blog-cover-card blog-editorial-cover" aria-label={`Visual editorial do artigo ${post.title}`}>
-              <div className="blog-cover-window">
-                <span />
-                <span />
-                <span />
-              </div>
-              <div className="blog-cover-art" aria-hidden="true">
-                <div className="blog-cover-orbit orbit-a" />
-                <div className="blog-cover-orbit orbit-b" />
-                <div className="blog-cover-core"><Orbit size={42} /></div>
-                <div className="blog-cover-node node-a" />
-                <div className="blog-cover-node node-b" />
-                <div className="blog-cover-node node-c" />
-              </div>
-              <span>Visual editorial</span>
-              <strong>{post.category}</strong>
-              <p>{post.description}</p>
-              <div className="blog-cover-tags">
-                {post.tags.slice(0, 3).map((tag) => <em key={tag}>{tag}</em>)}
+            <aside className="blog-cover-card blog-featured-image-card" aria-label={`Imagem de destaque do artigo ${post.title}`}>
+              <img src={cover} alt={`Imagem de destaque do artigo ${post.title}`} />
+              <div className="blog-featured-image-overlay">
+                <span>Tehkné Insights</span>
+                <strong>{post.category}</strong>
               </div>
             </aside>
           </div>
@@ -273,9 +272,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="blog-grid compact-blog-grid">
             {relatedPosts.map((item) => (
               <article className="blog-card" key={item.slug}>
-                <div className="blog-card-cover" aria-hidden="true">
+                <div className="blog-card-cover generated-cover" aria-hidden="true">
+                  <img src={getGeneratedCover(item.slug)} alt="" />
                   <span>{item.category}</span>
-                  <div className="blog-card-orbit" />
                 </div>
                 <div className="blog-card-body">
                   <div className="blog-card-meta">
