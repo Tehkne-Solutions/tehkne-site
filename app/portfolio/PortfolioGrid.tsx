@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { ArrowUpRight, Orbit } from 'lucide-react';
 import type { PortfolioCase } from './portfolio-data';
+import { getUntiCaseAsset } from './unti-case-assets';
 
 const filters = ['Todos', 'Projetos Tehkné', 'Participação Técnica', 'Ecossistemas', 'UNTI', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
 
@@ -88,21 +89,32 @@ export default function PortfolioGrid({ cases }: Props) {
       </div>
 
       <div className="project-grid portfolio-grid-expanded">
-        {visibleCases.map((item) => (
-          <article className="project-card portfolio-card-rich" key={item.slug}>
-            <div className={`project-thumb portfolio-thumb ${item.tone}`}>
-              <Orbit size={46} />
-              <strong>{item.imageLabel}</strong>
-              <span />
-            </div>
-            <small>{item.level}</small>
-            <h3>{item.title}</h3>
-            <p><strong>{item.category}</strong></p>
-            <p>{item.summary}</p>
-            <p className="portfolio-stack-line">{item.stack.slice(0, 4).join(' • ')}</p>
-            <a href={`/portfolio/${item.slug}`}>Ver case <ArrowUpRight size={14} /></a>
-          </article>
-        ))}
+        {visibleCases.map((item) => {
+          const asset = getUntiCaseAsset(item.slug);
+
+          return (
+            <article className="project-card portfolio-card-rich" key={item.slug}>
+              {asset ? (
+                <div className={`project-thumb portfolio-thumb portfolio-image-thumb ${item.tone}`}>
+                  <img src={asset.image} alt={`Imagem do case ${item.title}`} loading="lazy" />
+                  <span className="portfolio-image-overlay">{item.imageLabel}</span>
+                </div>
+              ) : (
+                <div className={`project-thumb portfolio-thumb ${item.tone}`}>
+                  <Orbit size={46} />
+                  <strong>{item.imageLabel}</strong>
+                  <span />
+                </div>
+              )}
+              <small>{item.level}</small>
+              <h3>{item.title}</h3>
+              <p><strong>{item.category}</strong></p>
+              <p>{item.summary}</p>
+              <p className="portfolio-stack-line">{item.stack.slice(0, 4).join(' • ')}</p>
+              <a href={`/portfolio/${item.slug}`}>Ver case <ArrowUpRight size={14} /></a>
+            </article>
+          );
+        })}
       </div>
     </>
   );
