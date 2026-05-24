@@ -1,5 +1,6 @@
 import { getPortfolioMetadata } from '../portfolio-data';
 import { PortfolioCasePage } from '../PortfolioCasePage';
+import CaseScreens from '../CaseScreens';
 
 export const metadata = getPortfolioMetadata('beggin') ?? {
   title: 'Case: Beggin | Tehkné Solutions',
@@ -7,5 +8,10 @@ export const metadata = getPortfolioMetadata('beggin') ?? {
 };
 
 export default function Page() {
-  return <PortfolioCasePage slug="beggin" />;
+  return (
+    <>
+      <PortfolioCasePage slug="beggin" />
+      <CaseScreens title="Beggin" url="https://beggin.vercel.app/" />
+    </>
+  );
 }
