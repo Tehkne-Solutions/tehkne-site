@@ -4,7 +4,9 @@ import { getUntiCaseAsset } from './unti-case-assets';
 const caseHeroScreens: Record<string, string> = {
   beggin: 'https://beggin.vercel.app/',
   'vacina-one': 'https://vacina-one-site.vercel.app/',
-  'meme-digital': 'https://meme-servicos-delta.vercel.app/',
+  'meme-digital': 'https://memedigital.com.br/',
+  'meme-servicos': 'https://meme-servicos-delta.vercel.app/',
+  'chilli-drinks-tabs': 'https://chilli-drinks-app.vercel.app/',
   'unti-digital': 'https://www.untidigital.com.br/',
   'savol-seminovos': 'https://savol-seminovos.vercel.app/',
   'savana-publicidade': 'https://savanapublicidade.com.br/',
@@ -17,6 +19,16 @@ const caseHeroScreens: Record<string, string> = {
   'savana-ecobrisa-energia': 'https://savanapublicidade.com.br/',
   'savana-oficina-do-estudante': 'https://savanapublicidade.com.br/',
   'savana-bob-imoveis': 'https://savanapublicidade.com.br/',
+  'meme-aloia-aerospace': 'https://memedigital.com.br/aloia-aerospace/',
+  'meme-voluta-medical-baralho': 'https://memedigital.com.br/baralho-voluta-medical/',
+  'meme-bronte-imoveis': 'https://memedigital.com.br/bronte-imoveis/',
+  'meme-cafe-cophi': 'https://memedigital.com.br/cafe-cophi/',
+  'meme-concept-lar': 'https://memedigital.com.br/concept-lar/',
+  'meme-icaro-rocks': 'https://memedigital.com.br/icaro-rocks/',
+  'meme-neto-ensina': 'https://memedigital.com.br/neto-ensina/',
+  'meme-nur-eventos': 'https://memedigital.com.br/nur-eventos/',
+  'meme-oticas-ipanema': 'https://memedigital.com.br/oticas-ipanema/',
+  'meme-voluta-medical-marketing': 'https://memedigital.com.br/voluta-medical/',
   'liugong-br': 'https://liugongla.com/',
   'tehkne-flow-wp-lite': 'https://tehkne-flow-wp.page.gd/'
 };
