@@ -7,6 +7,10 @@ export const metadata = {
     'Conteúdos instrucionais da Tehkné sobre arquitetura de soluções, desenvolvimento web, WordPress avançado, IA, automações, UX, produto digital e operação técnica.'
 };
 
+function getGeneratedCover(slug: string) {
+  return `/blog/cover/${slug}`;
+}
+
 export default function BlogPage() {
   const featuredPost = blogPosts[0];
 
@@ -26,13 +30,16 @@ export default function BlogPage() {
             <span><Clock size={15} /> Leitura objetiva</span>
           </div>
         </div>
-        <aside className="blog-hero-panel">
-          <span className="panel-kicker">Primeira trilha editorial</span>
-          <strong>Arquitetura de Soluções</strong>
-          <p>
-            Começamos pelo fundamento: entender como transformar ideias, processos e operações
-            em sistemas digitais reais sem cair em retrabalho.
-          </p>
+        <aside className="blog-hero-panel blog-featured-index-panel">
+          <img src={getGeneratedCover(featuredPost.slug)} alt={`Imagem de destaque do artigo ${featuredPost.title}`} />
+          <div>
+            <span className="panel-kicker">Primeira trilha editorial</span>
+            <strong>{featuredPost.category}</strong>
+            <p>
+              Começamos pelo fundamento: entender como transformar ideias, processos e operações
+              em sistemas digitais reais sem cair em retrabalho.
+            </p>
+          </div>
         </aside>
       </section>
 
@@ -51,9 +58,9 @@ export default function BlogPage() {
         <div className="blog-grid">
           {blogPosts.map((post) => (
             <article className="blog-card" key={post.slug}>
-              <div className="blog-card-cover" aria-hidden="true">
+              <div className="blog-card-cover generated-cover" aria-hidden="true">
+                <img src={getGeneratedCover(post.slug)} alt="" />
                 <span>{post.category}</span>
-                <div className="blog-card-orbit" />
               </div>
               <div className="blog-card-body">
                 <div className="blog-card-meta">
