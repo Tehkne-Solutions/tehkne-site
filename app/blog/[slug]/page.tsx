@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowUpRight, CalendarDays, Clock, Layers3, Network, Orbit, UserRound } from 'lucide-react';
 import { notFound } from 'next/navigation';
+import ShareButtons from '../../components/ShareButtons';
 import { getBlogImageAsset } from '../blog-image-assets';
 import { blogPosts, getBlogPost, type BlogBlock } from '../blog-data';
 
@@ -245,6 +246,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
+              <ShareButtons title={post.title} text={post.description} />
             </div>
             <aside className="blog-cover-card blog-photo-hero-card" style={featuredCoverCardStyle} aria-label={heroAlt}>
               <img src={heroImage} alt={heroAlt} style={coverImageStyle} />
@@ -275,6 +277,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {post.blocks.map((block, index) => (
               <BlogBlockRenderer block={block} key={`${block.type}-${index}`} />
             ))}
+            <ShareButtons title={post.title} text={post.description} />
           </div>
         </section>
 
