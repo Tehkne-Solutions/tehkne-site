@@ -5,7 +5,7 @@ import { ArrowUpRight, Orbit } from 'lucide-react';
 import type { PortfolioCase } from './portfolio-data';
 import { getUntiCaseAsset } from './unti-case-assets';
 
-const filters = ['Todos', 'Projetos Tehkné', 'Savana', 'UNTI', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
+const filters = ['Todos', 'Projetos Tehkné', 'UNTI', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
 
 const caseHeroScreens: Record<string, string> = {
   beggin: 'https://beggin.vercel.app/',
@@ -14,15 +14,6 @@ const caseHeroScreens: Record<string, string> = {
   'unti-digital': 'https://www.untidigital.com.br/',
   'savol-seminovos': 'https://savol-seminovos.vercel.app/',
   'savana-publicidade': 'https://savanapublicidade.com.br/',
-  'savana-sinfonia-residencial': 'https://savanapublicidade.com.br/',
-  'savana-dafra-motos': 'https://savanapublicidade.com.br/',
-  'savana-eurofarma': 'https://savanapublicidade.com.br/',
-  'savana-stine-sementes': 'https://savanapublicidade.com.br/',
-  'savana-massas-de': 'https://savanapublicidade.com.br/',
-  'savana-nutralle': 'https://savanapublicidade.com.br/',
-  'savana-ecobrisa-energia': 'https://savanapublicidade.com.br/',
-  'savana-oficina-do-estudante': 'https://savanapublicidade.com.br/',
-  'savana-bob-imoveis': 'https://savanapublicidade.com.br/',
   'liugong-br': 'https://liugongla.com/',
   'tehkne-flow-wp-lite': 'https://tehkne-flow-wp.page.gd/'
 };
@@ -38,9 +29,13 @@ function normalize(value: string) {
     .replace(/[\u0300-\u036f]/g, '');
 }
 
+function isAgencyClientCase(item: PortfolioCase) {
+  return normalize([item.status, item.source ?? '', item.level].join(' ')).includes('savana');
+}
+
 function displayLevel(item: PortfolioCase) {
   const text = normalize([item.level, item.status, item.source ?? ''].join(' '));
-  if (text.includes('savana')) return 'Case Tehkné • Savana';
+  if (isAgencyClientCase(item)) return 'Case Tehkné';
   if (text.includes('unti')) return 'Case Tehkné • UNTI';
   if (text.includes('historico')) return 'Case Tehkné';
   if (text.includes('participacao')) return 'Case Tehkné';
@@ -48,6 +43,9 @@ function displayLevel(item: PortfolioCase) {
 }
 
 function getCaseCardImage(item: PortfolioCase, asset?: { image: string }) {
+  if (isAgencyClientCase(item)) {
+    return undefined;
+  }
   const url = caseHeroScreens[item.slug];
   if (url) {
     return `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=1100`;
@@ -71,11 +69,7 @@ function matchesFilter(item: PortfolioCase, filter: string) {
   const key = normalize(filter);
 
   if (key === 'projetos tehkne') {
-    return text.includes('tehkne') || text.includes('produto interno') || text.includes('laboratorio') || text.includes('case tehkne');
-  }
-
-  if (key === 'savana') {
-    return text.includes('savana');
+    return text.includes('tehkne') || text.includes('produto interno') || text.includes('laboratorio') || text.includes('case tehkne') || isAgencyClientCase(item);
   }
 
   if (key === 'unti') {
