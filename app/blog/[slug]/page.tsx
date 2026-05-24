@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowUpRight, CalendarDays, Clock, Layers3, Network, Orbit, UserRound } from 'lucide-react';
 import { notFound } from 'next/navigation';
+import { getBlogImageAsset } from '../blog-image-assets';
 import { blogPosts, getBlogPost, type BlogBlock } from '../blog-data';
 
 type BlogPostPageProps = {
@@ -53,7 +54,7 @@ const featuredCoverOverlayStyle = {
   padding: 18,
   border: '1px solid rgba(148,163,184,.16)',
   borderRadius: 20,
-  background: 'linear-gradient(180deg, rgba(2,6,23,.48), rgba(2,6,23,.9))'
+  background: 'linear-gradient(180deg, rgba(2,6,23,.42), rgba(2,6,23,.9))'
 } as const;
 
 const relatedCoverStyle = {
@@ -90,7 +91,8 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     };
   }
 
-  const cover = getGeneratedCover(post.slug);
+  const asset = getBlogImageAsset(post.slug);
+  const cover = asset?.src ?? getGeneratedCover(post.slug);
 
   return {
     title: `${post.title} | Blog Tehkné`,
@@ -189,7 +191,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const cover = getGeneratedCover(post.slug);
+  const asset = getBlogImageAsset(post.slug);
+  const heroImage = asset?.src ?? getGeneratedCover(post.slug);
+  const heroAlt = asset?.alt ?? `Imagem de destaque do artigo ${post.title}`;
   const headings = post.blocks.filter((block): block is Extract<BlogBlock, { type: 'heading' }> => block.type === 'heading');
   const relatedPosts = blogPosts
     .filter((item) => item.slug !== post.slug)
@@ -242,11 +246,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 ))}
               </div>
             </div>
-            <aside className="blog-cover-card blog-featured-image-card" style={featuredCoverCardStyle} aria-label={`Imagem de destaque do artigo ${post.title}`}>
-              <img src={cover} alt={`Imagem de destaque do artigo ${post.title}`} style={coverImageStyle} />
+            <aside className="blog-cover-card blog-photo-hero-card" style={featuredCoverCardStyle} aria-label={heroAlt}>
+              <img src={heroImage} alt={heroAlt} style={coverImageStyle} />
+              <div className="blog-photo-hero-glow" aria-hidden="true" />
               <div className="blog-featured-image-overlay" style={featuredCoverOverlayStyle}>
                 <span>Tehkné Insights</span>
                 <strong>{post.category}</strong>
+                {asset?.credit ? <small>{asset.credit}</small> : null}
               </div>
             </aside>
           </div>
