@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, GitBranch, HelpCircle, Layers3, SearchCheck, ShieldCheck, Sparkles, Target, Workflow } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronRight, GitBranch, HelpCircle, Layers3, SearchCheck, ShieldCheck, Sparkles, Target, Workflow } from 'lucide-react';
 import ContactForm from '../../components/ContactForm';
 import ShareButtons from '../../components/ShareButtons';
 import { whatsAppHref } from '../../contact';
@@ -9,6 +9,8 @@ import { getServicePage, servicePages } from '../service-data';
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
+const siteUrl = 'https://tehknesolutions.com.br';
 
 export function generateStaticParams() {
   return servicePages.map((service) => ({ slug: service.slug }));
@@ -24,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const url = `https://tehkne.com/servicos/${service.slug}`;
+  const url = `${siteUrl}/servicos/${service.slug}`;
 
   return {
     title: service.seoTitle,
@@ -55,7 +57,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   const Icon = service.icon;
   const serviceWhatsApp = whatsAppHref(`Olá, Tehkné! Vim pela página ${service.title} e quero entender escopo, investimento, prazo e próximos passos.`);
-  const siteUrl = 'https://tehkne.com';
   const pageUrl = `${siteUrl}/servicos/${service.slug}`;
 
   const structuredData = {
@@ -112,8 +113,15 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
       <section className="section-frame service-detail-hero">
         <div className="service-detail-copy">
+          <nav className="service-breadcrumbs" aria-label="Breadcrumb">
+            <a href="/"><span>Home</span></a>
+            <ChevronRight size={14} />
+            <a href="/servicos"><span>Serviços</span></a>
+            <ChevronRight size={14} />
+            <span aria-current="page">{service.title}</span>
+          </nav>
           <a className="blog-back" href="/servicos"><ArrowLeft size={15} /> Voltar para serviços</a>
-          <span className="eyebrow">{service.eyebrow}</span>
+          <span className="eyebrow">Serviço Tehkné</span>
           <h1>{service.promise}</h1>
           <p>{service.description}</p>
           <div className="hero-actions">
@@ -165,7 +173,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <span className="eyebrow">Resultados esperados</span>
           <h2>O que muda quando o serviço é bem executado.</h2>
         </div>
-        <div className="service-detail-grid">
+        <div className="service-detail-grid mosaic-grid">
           {service.outcomes.map((item) => (
             <article key={item}><CheckCircle2 size={20} /><h3>{item}</h3></article>
           ))}
@@ -189,7 +197,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <span className="eyebrow">Processo</span>
           <h2>Como a Tehkné conduz este serviço.</h2>
         </div>
-        <div className="case-method-map service-detail-process">
+        <div className="case-method-map service-detail-process mosaic-grid">
           {service.process.map(([number, title, text]) => (
             <article className="method-step" key={title}>
               <span>{number}</span>
@@ -206,7 +214,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <span className="eyebrow">Indicado para</span>
           <h2>Quando contratar {service.title.toLowerCase()}.</h2>
         </div>
-        <div className="services-audience-grid">
+        <div className="services-audience-grid mosaic-grid">
           {service.bestFor.map((item) => <article key={item}><Workflow size={22} /><h3>{item}</h3><p>Este perfil tende a ganhar velocidade, clareza e previsibilidade com uma entrega bem arquitetada.</p></article>)}
         </div>
       </section>
