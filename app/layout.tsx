@@ -5,6 +5,7 @@ import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 import './globals.css';
 import './contact.css';
+import './blog-generated-covers.css';
 
 const logoPath = '/images/logo-tehkne-solutions-header.png';
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID ?? 'G-MB46DPYC6K';
