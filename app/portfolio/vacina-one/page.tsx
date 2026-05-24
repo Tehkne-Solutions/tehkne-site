@@ -1,51 +1,94 @@
-import { ArrowUpRight, CalendarDays, FileText, Globe2, HeartPulse, ShieldCheck, Users } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import ContactForm from '../../components/ContactForm';
 import { getPortfolioMetadata } from '../portfolio-data';
 import CaseScreens from '../CaseScreens';
 
-const project = {
-  title: 'Vacina One',
-  eyebrow: 'Case • Site institucional em saúde',
-  type: 'Projeto Tehkné',
-  category: 'Site institucional / Produto digital',
-  stack: ['Next.js', 'Saúde', 'Institucional', 'Conteúdo educativo', 'Franquias'],
-  description:
-    'Estrutura institucional moderna para clínica de vacinação, com comunicação clara, navegação objetiva, conteúdo educativo e base preparada para expansão comercial.'
-};
+const siteUrl = 'https://vacina-one-site.vercel.app/';
+const heroShot = `https://s0.wp.com/mshots/v1/${encodeURIComponent(siteUrl)}?w=1500`;
 
-const highlights = [
-  ['Saúde e confiança', 'Experiência visual limpa para transmitir proteção, cuidado e credibilidade.'],
-  ['Conteúdo educativo', 'Estrutura preparada para blog, calendário, vacinas e jornadas informativas.'],
-  ['Conversão local', 'Fluxo pensado para agendamento, contato e captação de interessados.'],
-  ['Expansão', 'Base institucional para unidades, empresas e modelo de franquia.']
+const stack = ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Lucide React', 'Sharp'];
+
+const cards = [
+  {
+    title: 'Contexto em saúde',
+    text: 'VacinaOne precisava transmitir cuidado, proteção e confiança para famílias, crianças, adultos e empresas, com linguagem clara e visual acolhedor.'
+  },
+  {
+    title: 'Arquitetura Next.js',
+    text: 'O site foi desenvolvido em Next.js com React, TypeScript, Tailwind, Framer Motion, Lucide e Sharp, criando uma base moderna, performática e fácil de evoluir.'
+  },
+  {
+    title: 'Jornada institucional',
+    text: 'A experiência organiza hero, laboratórios, diferenciais, sobre a marca, vacinas procuradas, família, empresas, depoimentos, blog e dúvidas frequentes.'
+  },
+  {
+    title: 'Resultado comercial',
+    text: 'Case forte para demonstrar presença digital em saúde, conteúdo educativo, comunicação confiável, captação para agendamento e base de expansão.'
+  }
 ];
 
-const modules = [
-  { icon: HeartPulse, title: 'Comunicação em saúde', text: 'Narrativa visual e textual voltada para cuidado, proteção, clareza e confiança.' },
-  { icon: CalendarDays, title: 'Jornada de agendamento', text: 'Estrutura orientada para facilitar contato, decisão e marcação de vacinação.' },
-  { icon: FileText, title: 'Conteúdo e blog', text: 'Base preparada para educação em saúde, campanhas, calendário vacinal e SEO.' },
-  { icon: Users, title: 'Unidades e franquias', text: 'Arquitetura pensada para crescimento, expansão regional e comunicação com empresas.' },
-  { icon: Globe2, title: 'Site institucional', text: 'Home, navegação, seções comerciais e estrutura escalável para novas páginas.' },
-  { icon: ShieldCheck, title: 'Performance e base técnica', text: 'Projeto com stack moderna e foco em carregamento, manutenção e evolução.' }
+const process = [
+  ['01', 'Leitura do público', 'Entendimento das dores de saúde, confiança, linguagem, atendimento familiar, vacinação empresarial e tomada de decisão.'],
+  ['02', 'Estrutura da experiência', 'Organização das seções da home para guiar o visitante de proteção e cuidado até agendamento e contato.'],
+  ['03', 'Desenvolvimento Next.js', 'Construção com componentes, responsividade, motion, Tailwind e otimização de imagem para uma entrega moderna.'],
+  ['04', 'Base de evolução', 'Preparação para blog, conteúdo educativo, campanhas, unidades, franquias, SEO e novas páginas comerciais.' ]
 ];
 
 export const metadata = getPortfolioMetadata('vacina-one') ?? {
-  title: 'Case: Vacina One | Tehkné Solutions',
-  description: 'Case Vacina One: site institucional em Next.js para saúde, vacinação, conteúdo educativo, unidades e expansão comercial.'
+  title: 'Case: VacinaOne | Tehkné Solutions',
+  description: 'Case VacinaOne: site institucional em Next.js para saúde, vacinação, conteúdo educativo, agendamento e expansão comercial.'
 };
 
 export default function VacinaOneCase() {
   return (
     <main className="case-page">
-      <section className="section-frame case-hero">
-        <div className="case-hero-copy"><span className="eyebrow">{project.eyebrow}</span><h1>{project.title}: presença digital clara para vacinação, cuidado e expansão.</h1><p>{project.description}</p><div className="hero-actions"><a className="btn btn-primary coin" href="#contato-form">Quero algo parecido <ArrowUpRight size={16} /></a><a className="btn btn-secondary" href="https://vacina-one-site.vercel.app/" target="_blank" rel="noreferrer">Abrir site <ArrowUpRight size={16} /></a><a className="btn btn-secondary" href="/portfolio">Voltar ao portfólio <ArrowUpRight size={16} /></a></div><div className="case-stack">{project.stack.map((tech) => <span key={tech}>{tech}</span>)}</div></div>
-        <div className="case-visual"><div className="case-window"><div className="case-window-bar"><span /><span /><span /></div><div className="case-dashboard-grid"><div className="case-panel large"><HeartPulse size={28} /><strong>Vacinação</strong><small>Campanhas • Unidades • Conteúdo • Agendamento</small></div><div className="case-panel"><ShieldCheck size={24} /><strong>Cuidado</strong></div><div className="case-panel"><CalendarDays size={24} /><strong>Agenda</strong></div><div className="case-panel wide"><Globe2 size={24} /><strong>Site institucional escalável</strong><small>Next.js • SEO • Blog • Franquias</small></div></div></div></div>
+      <section className="section-frame case-hero portfolio-case-hero portfolio-case-hero-rich">
+        <div className="case-hero-copy">
+          <span className="eyebrow">Projeto Tehkné • Saúde</span>
+          <h1>VacinaOne: site em Next.js para vacinação, cuidado e expansão.</h1>
+          <p>Presença digital moderna para clínica de vacinação, com comunicação clara, jornada de agendamento, conteúdo educativo, visual acolhedor e base preparada para crescimento.</p>
+          <div className="hero-actions">
+            <a className="btn btn-primary coin" href="#contato-form">Quero algo parecido <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href={siteUrl} target="_blank" rel="noreferrer">Abrir site <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href="/portfolio">Voltar ao portfólio <ArrowUpRight size={16} /></a>
+          </div>
+          <div className="case-stack">{stack.map((item) => <span key={item}>{item}</span>)}</div>
+        </div>
+        <div className="case-visual">
+          <div className="portfolio-case-preview portfolio-real-hero-preview cyan">
+            <div className="case-window-bar"><span /><span /><span /></div>
+            <img src={heroShot} alt="Print da hero do site VacinaOne" loading="eager" />
+            <div className="portfolio-real-hero-caption"><span>Print da hero</span><strong>VacinaOne</strong></div>
+          </div>
+        </div>
       </section>
-      <section className="metrics section-frame compact">{highlights.map(([value, label]) => <div key={value}><strong>{value}</strong><span>{label}</span></div>)}</section>
-      <section className="section-frame"><div className="section-heading"><span className="eyebrow">Entregáveis</span><h2>Uma base digital para informar, converter e crescer.</h2><p>O case demonstra como a Tehkné organiza marca, conteúdo, experiência e tecnologia em uma presença institucional pronta para evolução.</p></div><div className="service-grid solutions-grid">{modules.map((module) => { const Icon = module.icon; return <article className="glass-card service-card solution-card" key={module.title}><Icon className="card-icon" size={32} /><h3>{module.title}</h3><p>{module.text}</p></article>; })}</div></section>
-      <CaseScreens title="Vacina One" url="https://vacina-one-site.vercel.app/" />
-      <ContactForm page="Case Vacina One" context="site institucional para saúde, vacinação, conteúdo educativo, unidades, performance e expansão comercial" title="Vamos criar uma presença digital que transmita confiança e gere demanda?" description="Use este bloco para iniciar um diagnóstico contextualizado sobre site institucional, saúde, conteúdo e expansão." />
-      <section className="final-cta"><div><span className="eyebrow">Quer algo parecido?</span><h2>Vamos criar uma presença digital que transmita confiança e gere demanda.</h2><p>A Tehkné estrutura site, conteúdo, arquitetura, performance e evolução para marcas que precisam crescer com clareza.</p></div><div className="hero-actions"><a className="btn btn-primary coin" href="#contato-form">Solicitar diagnóstico <ArrowUpRight size={16} /></a><a className="btn btn-secondary" href="/portfolio">Voltar ao portfólio <ArrowUpRight size={16} /></a></div></section>
+
+      <section className="metrics section-frame compact">
+        <div><strong>Next.js</strong><span>stack auditada</span></div>
+        <div><strong>Saúde</strong><span>segmento</span></div>
+        <div><strong>Agendamento</strong><span>foco comercial</span></div>
+        <div><strong>Site publicado</strong><span>status</span></div>
+      </section>
+
+      <section className="section-frame case-reading-section-tight">
+        <div className="section-heading">
+          <span className="eyebrow">Leitura do case</span>
+          <h2>O que este projeto demonstra para um novo cliente.</h2>
+          <p>VacinaOne demonstra como transformar uma operação de saúde em uma experiência digital clara, confiável e preparada para conteúdo, campanhas, agendamento e expansão.</p>
+        </div>
+        <div className="case-reading-grid case-reading-grid-balanced">
+          {cards.map((card) => <article className="glass-card case-reading-card case-reading-card-balanced" key={card.title}><CheckCircle2 className="card-icon" size={30} /><h3>{card.title}</h3><p>{card.text}</p></article>)}
+        </div>
+      </section>
+
+      <CaseScreens title="VacinaOne" url={siteUrl} />
+
+      <section className="section-frame">
+        <div className="section-heading"><span className="eyebrow">Método aplicado</span><h2>Um mapa de execução conectado ao contexto do projeto.</h2></div>
+        <div className="case-method-map">{process.map(([number, title, text]) => <article className="method-step" key={title}><span>{number}</span><CheckCircle2 size={22} /><h3>{title}</h3><p>{text}</p></article>)}</div>
+      </section>
+
+      <ContactForm page="Case VacinaOne" context="site institucional em Next.js para saúde, vacinação, conteúdo educativo, agendamento, performance e expansão comercial" title="Quer criar uma presença digital confiável para saúde?" description="Use este bloco para iniciar um diagnóstico sobre site institucional, saúde, conteúdo, agendamento, performance e evolução digital." />
     </main>
   );
 }
