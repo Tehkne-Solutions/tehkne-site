@@ -11,7 +11,8 @@ const caseHeroScreens: Record<string, string> = {
   beggin: 'https://beggin.vercel.app/',
   'vacina-one': 'https://vacina-one-site.vercel.app/',
   'meme-digital': 'https://meme-servicos-delta.vercel.app/',
-  'unti-digital': 'https://www.untidigital.com.br/'
+  'unti-digital': 'https://www.untidigital.com.br/',
+  'savol-seminovos': 'https://savol-seminovos.vercel.app/'
 };
 
 type Props = {
@@ -113,7 +114,6 @@ export default function PortfolioGrid({ cases }: Props) {
               {cardImage ? (
                 <a className={`project-thumb portfolio-thumb portfolio-image-thumb portfolio-case-card-shot ${item.tone}`} href={`/portfolio/${item.slug}`}>
                   <img src={cardImage} alt={`Imagem do case ${item.title}`} loading="lazy" />
-                  <span className="portfolio-image-overlay">{item.imageLabel}</span>
                 </a>
               ) : (
                 <div className={`project-thumb portfolio-thumb ${item.tone}`}>
