@@ -170,7 +170,10 @@ export default function ServicosPage() {
                   <strong>{service.commercial}</strong>
                   <div className="case-stack service-stack">{service.stack.map((item) => <span key={item}>{item}</span>)}</div>
                   <div className="related-cases">{service.relatedCases.map((item) => <em key={item}>{item}</em>)}</div>
-                  <a className="btn btn-primary coin" href={serviceWhatsApp} target="_blank" rel="noreferrer">{service.cta} <ArrowUpRight size={15} /></a>
+                  <div className="service-card-actions">
+                    <a className="btn btn-secondary" href={`/servicos/${service.slug}`}>Página do serviço <ArrowUpRight size={15} /></a>
+                    <a className="btn btn-primary coin" href={serviceWhatsApp} target="_blank" rel="noreferrer">{service.cta} <ArrowUpRight size={15} /></a>
+                  </div>
                 </article>
               </div>
             </section>
@@ -189,7 +192,7 @@ export default function ServicosPage() {
             <article key={intent}>
               <span>{intent}</span>
               <strong>{service}</strong>
-              <a href={`/servicos#${serviceCatalog.find((item) => item.title === service)?.slug ?? 'servicos-lista'}`}>Ver serviço <ArrowUpRight size={14} /></a>
+              <a href={`/servicos/${serviceCatalog.find((item) => item.title === service)?.slug ?? ''}`}>Ver página do serviço <ArrowUpRight size={14} /></a>
             </article>
           ))}
         </div>
@@ -211,12 +214,7 @@ export default function ServicosPage() {
         </div>
       </section>
 
-      <ContactForm
-        page="Serviços"
-        context="catálogo de serviços da Tehkné: site premium, plataforma web, integrações, governança, sustentação ou white label técnico"
-        title="Qual serviço combina com sua demanda agora?"
-        description="Use este bloco para iniciar o diagnóstico com contexto. A Tehkné ajuda a transformar a demanda em escopo, arquitetura e próximos passos."
-      />
+      <ContactForm page="Serviços" context="catálogo de serviços da Tehkné: site premium, plataforma web, integrações, governança, sustentação ou white label técnico" title="Qual serviço combina com sua demanda agora?" description="Use este bloco para iniciar o diagnóstico com contexto. A Tehkné ajuda a transformar a demanda em escopo, arquitetura e próximos passos." />
 
       <section className="final-cta">
         <div>
