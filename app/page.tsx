@@ -17,6 +17,7 @@ import {
   Workflow
 } from 'lucide-react';
 import ContactForm from './components/ContactForm';
+import ClientProofSection from './components/ClientProofSection';
 import { portfolioCases } from './portfolio/portfolio-data';
 import { getPortfolioCaseCardImage } from './portfolio/case-card-images';
 import { blogPosts } from './blog/blog-data';
@@ -186,6 +187,8 @@ export default function Home() {
         </div>
       </motion.section>
 
+      <ClientProofSection />
+
       <motion.section id="metodo" className="section-frame method-section method-expanded" {...fadeUp}>
         <div className="section-heading inline">
           <div>
@@ -225,18 +228,6 @@ export default function Home() {
           {stacksData.map((stack) => (
             <StackCard key={stack.name} name={stack.name} icon={stack.icon} />
           ))}
-        </div>
-      </motion.section>
-
-      <motion.section className="section-frame ecosystems" {...fadeUp}>
-        <div className="section-heading inline">
-          <div>
-            <span className="eyebrow">Ecossistemas e projetos onde atuamos</span>
-            <h2>Experiência prática em produtos, marcas, agências e operações digitais.</h2>
-          </div>
-        </div>
-        <div className="logo-row">
-          {['UNTI Digital', 'Savana Publicidade', 'Meme Digital', 'Savol', 'Beggin', 'Vacina One'].map((logo) => <span key={logo}>{logo}</span>)}
         </div>
       </motion.section>
 
