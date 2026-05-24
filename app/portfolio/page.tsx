@@ -6,6 +6,8 @@ import { portfolioCases, portfolioStats } from './portfolio-data';
 import { savanaProjectCases } from './savana-project-cases';
 import { memeProjectCases } from './meme-project-cases';
 
+const siteUrl = 'https://tehknesolutions.com.br';
+
 function uniqueCasesBySlug<T extends { slug: string }>(cases: T[]) {
   const map = new Map<string, T>();
   cases.forEach((item) => map.set(item.slug, item));
@@ -21,8 +23,20 @@ const allPortfolioStats = [
 ];
 
 export const metadata = {
-  title: 'Portfólio | Tehkné Solutions',
-  description: 'Mais de 7 anos de experiência em desenvolvimento, design, WordPress, Next.js, apps, jogos, IA, automações, conteúdo e sustentação técnica.'
+  title: 'Portfólio de sites, sistemas, WordPress e IA | Tehkné Solutions',
+  description:
+    'Veja cases e experiências da Tehkné em sites WordPress, Next.js, sistemas sob medida, automações, IA, apps, jogos, conteúdo, UX e sustentação técnica.',
+  alternates: {
+    canonical: `${siteUrl}/portfolio`
+  },
+  openGraph: {
+    title: 'Portfólio Tehkné Solutions | Sites, sistemas, IA e produto digital',
+    description:
+      'Repertório técnico em WordPress, Next.js, automações, IA, produto digital, apps, jogos e sustentação para empresas e agências.',
+    url: `${siteUrl}/portfolio`,
+    type: 'website',
+    locale: 'pt_BR'
+  }
 };
 
 export default function PortfolioPage() {
@@ -32,13 +46,13 @@ export default function PortfolioPage() {
     <main>
       <section className="section-frame solutions-hero portfolio-hero-pro">
         <div className="section-heading">
-          <span className="eyebrow">Portfólio e experiências</span>
-          <h1>Mais de 7 anos transformando sites, sistemas, apps, conteúdos e operações digitais.</h1>
+          <span className="eyebrow">Portfólio e prova de execução</span>
+          <h1>Repertório real para quem precisa contratar tecnologia com menos risco.</h1>
           <p>
-            A Tehkné reúne experiência prática em mais de 70 sites WordPress criados ou melhorados, projetos próprios, cases de agência, plugins, temas, apps, jogos, automações, IA e conteúdos didáticos/comerciais.
+            A Tehkné reúne experiência prática em mais de 70 sites WordPress criados ou melhorados, projetos próprios, cases de agência, plugins, temas, apps, jogos, automações, IA e conteúdos didáticos/comerciais. Aqui o portfólio mostra contexto, stack, tipo de entrega e resultado esperado — não apenas telas bonitas.
           </p>
           <div className="hero-actions">
-            <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+            <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Quero algo parecido <ArrowUpRight size={16} /></a>
             <a className="btn btn-secondary" href="#cases">Ver cases <ArrowUpRight size={16} /></a>
           </div>
         </div>

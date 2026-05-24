@@ -72,21 +72,21 @@ const latestBlogPosts = [...blogPosts]
   .slice(0, 3);
 
 const method = [
-  ['01', 'Descoberta estratégica', 'Entendemos contexto, público, objetivos, riscos, gargalos, operação atual e critérios de sucesso antes de pensar em tela ou código.'],
-  ['02', 'Arquitetura da solução', 'Organizamos escopo, stack, dados, integrações, fluxos, prioridades e plano técnico para evitar retrabalho e decisões soltas.'],
-  ['03', 'Produto e experiência', 'Transformamos o mapa técnico em jornadas, interfaces, conteúdo, protótipos e decisões de UX orientadas a conversão e operação.'],
-  ['04', 'Desenvolvimento rastreável', 'Construímos com versionamento, componentes, documentação, boas práticas e entregas incrementais para manter clareza durante o projeto.'],
-  ['05', 'Validação e deploy', 'Testamos, revisamos, ajustamos, publicamos e preparamos a base para mensuração, manutenção e evolução contínua.'],
-  ['06', 'Evolução contínua', 'Acompanhamos melhorias, performance, novas demandas, automações e sustentação para o produto continuar vivo depois do lançamento.']
+  ['01', 'Diagnóstico do problema real', 'Entendemos operação, público, urgência, gargalos e objetivo comercial antes de definir tecnologia, layout ou orçamento.'],
+  ['02', 'Arquitetura vendável', 'Organizamos escopo, stack, dados, integrações, prioridades e plano técnico para o projeto nascer com direção clara.'],
+  ['03', 'Experiência e conversão', 'Transformamos o mapa em jornada, conteúdo, interface e CTAs que ajudam o usuário a entender valor e pedir contato.'],
+  ['04', 'Desenvolvimento rastreável', 'Construímos com versionamento, componentes, documentação, critérios de aceite e entregas incrementais.'],
+  ['05', 'Publicação com controle', 'Testamos, ajustamos, publicamos e deixamos a base pronta para mensuração, indexação e evolução.'],
+  ['06', 'Evolução contínua', 'Mantemos o projeto vivo com melhorias, suporte, automações, performance e novas demandas sem perder contexto.']
 ];
 
 const painPoints = [
-  'Ideias sem arquitetura clara',
-  'Sites que não sustentam crescimento',
-  'Operações manuais demais',
-  'Agências sem braço técnico confiável',
-  'Produtos digitais sem UX',
-  'Projetos sem suporte depois do deploy'
+  'O site existe, mas não convence',
+  'A operação depende de planilhas e WhatsApp',
+  'O WordPress virou remendo',
+  'A agência precisa de braço técnico',
+  'A ideia ainda não virou escopo',
+  'O projeto morreu depois do deploy'
 ];
 
 const fadeUp = {
@@ -123,18 +123,18 @@ export default function Home() {
     <main>
       <section id="top" className="hero section-frame">
         <motion.div className="hero-copy" initial={{ opacity: 0, x: -34 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.75 }}>
-          <span className="eyebrow">Software house • Produto digital • IA • Operação</span>
-          <h1>Arquitetura, design e engenharia para empresas que querem <span>parecer grandes porque operam com método.</span></h1>
-          <p>Mais de 7 anos construindo, melhorando e sustentando sites, sistemas, experiências digitais, automações, design e operações para empresas, agências e ecossistemas parceiros.</p>
+          <span className="eyebrow">Software sob medida • IA • WordPress avançado • Produto digital</span>
+          <h1>Saia do improviso digital e transforme sua operação em <span>sistema que vende, organiza e escala.</span></h1>
+          <p>A Tehkné projeta, desenvolve e evolui sites, sistemas, automações e produtos digitais para empresas e agências que precisam clareza, performance, conversão e sustentação depois do deploy.</p>
           <div className="hero-actions">
-            <a className="btn btn-primary coin" href={contactHref}>Solicitar diagnóstico pelo formulário <ArrowUpRight size={16} /></a>
-            <a className="btn btn-secondary" href="/portfolio">Ver autoridade e cases <ArrowUpRight size={16} /></a>
+            <a className="btn btn-primary coin" href={contactHref}>Quero um diagnóstico técnico <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href="/portfolio">Ver provas e cases <ArrowUpRight size={16} /></a>
           </div>
           <div className="trust-strip">
-            <span><ShieldCheck size={15} /> Técnica com prova</span>
-            <span><Rocket size={15} /> Execução premium</span>
-            <span><BrainCircuit size={15} /> IA aplicada</span>
-            <span><Workflow size={15} /> Sustentação contínua</span>
+            <span><ShieldCheck size={15} /> Menos retrabalho</span>
+            <span><Rocket size={15} /> Mais conversão</span>
+            <span><BrainCircuit size={15} /> IA com processo</span>
+            <span><Workflow size={15} /> Suporte evolutivo</span>
           </div>
         </motion.div>
         <MetatronCore />
@@ -197,9 +197,9 @@ export default function Home() {
       <motion.section id="portfolio" className="section-frame portfolio-carousel-section" {...fadeUp}>
         <div className="section-heading inline">
           <div>
-            <span className="eyebrow">Portfólio e experiências</span>
-            <h2>Cases rodando em vitrine contínua, com narrativa editorial segura.</h2>
-            <p>Projetos próprios, participação técnica autorizada, produtos internos e ecossistemas parceiros organizados sem inflar autoria nem misturar contextos comerciais.</p>
+            <span className="eyebrow">Prova antes da promessa</span>
+            <h2>Cases, produtos e experiências para reduzir o risco de contratar tecnologia.</h2>
+            <p>Organizamos projetos próprios, participação técnica autorizada, produtos internos e ecossistemas parceiros por contexto, stack, desafio e entrega — para você entender o tipo de problema que a Tehkné resolve.</p>
           </div>
           <a className="text-link" href="/portfolio">Ver portfólio completo <ArrowUpRight size={16} /></a>
         </div>
@@ -234,11 +234,11 @@ export default function Home() {
       <motion.section id="metodo" className="section-frame method-section method-expanded" {...fadeUp}>
         <div className="section-heading inline">
           <div>
-            <span className="eyebrow">GIP Tehkné OS</span>
-            <h2>Um sistema para tirar projetos do improviso e colocar a operação em trilhos.</h2>
-            <p>O GIP Tehkné OS une método, arquitetura viva, design de produto, engenharia, IA aplicada, automações, documentação, governança e evolução contínua em uma única operação.</p>
+            <span className="eyebrow">Método GIP Tehkné</span>
+            <h2>O método existe para o cliente não pagar por bagunça.</h2>
+            <p>O GIP Tehkné OS une diagnóstico, arquitetura, produto, engenharia, IA aplicada, automações, documentação, governança e evolução contínua para transformar demanda em execução rastreável.</p>
           </div>
-          <a className="btn btn-secondary" href="/metodo">Conhecer o sistema <ArrowUpRight size={16} /></a>
+          <a className="btn btn-secondary" href="/metodo">Conhecer o método <ArrowUpRight size={16} /></a>
         </div>
         <div className="method-line">
           {method.map(([number, title, text]) => (
@@ -255,14 +255,14 @@ export default function Home() {
       <motion.section id="os" className="section-frame os-section os-expanded" {...fadeUp}>
         <div className="os-panel">
           <span className="eyebrow">Design • Arquitetura • Engenharia</span>
-          <h2>GIP Tehkné OS conecta estratégia, produto, código, IA, documentação e sustentação.</h2>
-          <p>Mais do que um conjunto de ferramentas, o GIP Tehkné OS é o sistema operacional que transforma experiência técnica em processo empresarial: arquitetura viva, base de conhecimento, prompts, agentes, automações, versionamento, curadoria de portfólio e governança de entrega.</p>
-          <p>Na prática, ele organiza como a Tehkné pensa, constrói, documenta, valida e evolui soluções digitais — reduzindo dependência de improviso e aumentando previsibilidade para clientes, parceiros e produtos internos.</p>
+          <h2>A Tehkné conecta estratégia, produto, código, IA, documentação e sustentação.</h2>
+          <p>Mais do que um fornecedor de execução, atuamos como braço técnico para transformar experiência, processos e decisões em um sistema digital com continuidade: arquitetura viva, base de conhecimento, automações, versionamento, curadoria de portfólio e governança de entrega.</p>
+          <p>Na prática, isso reduz improviso, aumenta previsibilidade e ajuda o cliente a entender o que está sendo criado, por que está sendo criado e como aquilo vai evoluir.</p>
           <div className="os-features">
             {['Diagnóstico técnico', 'Roadmap de produto', 'Documentação viva', 'Agentes de IA', 'Governança Git', 'Suporte evolutivo'].map((item) => <span key={item}>{item}</span>)}
           </div>
           <div className="hero-actions os-actions">
-            <a className="btn btn-primary coin" href="/metodo#visao">Explorar GIP Tehkné OS <ArrowUpRight size={16} /></a>
+            <a className="btn btn-primary coin" href="/contato#contato-form">Mapear minha demanda <ArrowUpRight size={16} /></a>
             <a className="btn btn-secondary" href="/metodo#fluxo-gip">Ver fluxo GIP <ArrowUpRight size={16} /></a>
           </div>
         </div>
@@ -297,17 +297,22 @@ export default function Home() {
 
       <motion.section id="contato" className="final-cta" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
         <div>
-          <span className="eyebrow">Diagnóstico qualificado</span>
-          <h2>Conte o que você quer construir para receber um caminho mais preciso.</h2>
-          <p>O formulário organiza dados do lead, tipo de projeto, orçamento, urgência e mensagem antes do contato. Isso prepara a base para CRM, planilha e proposta automatizada.</p>
+          <span className="eyebrow">Diagnóstico estratégico</span>
+          <h2>Antes de começar outro projeto no escuro, vamos mapear o caminho certo.</h2>
+          <p>Conte o que precisa criar, melhorar ou automatizar. A primeira entrega é clareza técnica e comercial.</p>
         </div>
         <div className="hero-actions">
-          <a className="btn btn-primary coin" href="#contato-form">Preencher formulário <ArrowUpRight size={16} /></a>
-          <a className="btn btn-secondary" href="/contato#contato-form">Página de contato <ArrowUpRight size={16} /></a>
+          <a className="btn btn-primary coin" href={contactHref}>Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+          <a className="btn btn-secondary" href="/solucoes">Ver soluções <ArrowUpRight size={16} /></a>
         </div>
       </motion.section>
 
-      <ContactForm page="Home" context="diagnóstico estratégico para transformar uma ideia, processo ou operação em sistema digital real" />
+      <ContactForm
+        page="Home"
+        context="diagnóstico estratégico para transformar uma ideia, processo ou operação em sistema digital real, vendável e evolutivo"
+        title="Quer entender o melhor caminho para seu projeto?"
+        description="Envie o contexto da sua demanda. A Tehkné retorna com uma leitura inicial de arquitetura, prioridade e próximos passos."
+      />
     </main>
   );
 }
