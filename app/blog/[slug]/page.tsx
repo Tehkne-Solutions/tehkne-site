@@ -27,6 +27,59 @@ function getGeneratedCover(slug: string) {
   return `/blog/cover/${slug}`;
 }
 
+const coverImageStyle = {
+  position: 'absolute',
+  inset: 0,
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover'
+} as const;
+
+const featuredCoverCardStyle = {
+  position: 'relative',
+  minHeight: 430,
+  padding: 0,
+  display: 'block',
+  overflow: 'hidden',
+  background: '#020617'
+} as const;
+
+const featuredCoverOverlayStyle = {
+  position: 'absolute',
+  left: 18,
+  right: 18,
+  bottom: 18,
+  zIndex: 2,
+  padding: 18,
+  border: '1px solid rgba(148,163,184,.16)',
+  borderRadius: 20,
+  background: 'linear-gradient(180deg, rgba(2,6,23,.48), rgba(2,6,23,.9))'
+} as const;
+
+const relatedCoverStyle = {
+  position: 'relative',
+  overflow: 'hidden',
+  padding: 0,
+  display: 'block',
+  background: '#020617'
+} as const;
+
+const relatedBadgeStyle = {
+  position: 'absolute',
+  left: 18,
+  bottom: 18,
+  zIndex: 2,
+  margin: 0,
+  padding: '8px 12px',
+  borderRadius: 999,
+  border: '1px solid rgba(255,255,255,.18)',
+  background: 'rgba(2,6,23,.62)',
+  color: '#e0f2fe',
+  fontSize: 11,
+  fontWeight: 900,
+  textTransform: 'uppercase'
+} as const;
+
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = getBlogPost(slug);
@@ -189,9 +242,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 ))}
               </div>
             </div>
-            <aside className="blog-cover-card blog-featured-image-card" aria-label={`Imagem de destaque do artigo ${post.title}`}>
-              <img src={cover} alt={`Imagem de destaque do artigo ${post.title}`} />
-              <div className="blog-featured-image-overlay">
+            <aside className="blog-cover-card blog-featured-image-card" style={featuredCoverCardStyle} aria-label={`Imagem de destaque do artigo ${post.title}`}>
+              <img src={cover} alt={`Imagem de destaque do artigo ${post.title}`} style={coverImageStyle} />
+              <div className="blog-featured-image-overlay" style={featuredCoverOverlayStyle}>
                 <span>Tehkné Insights</span>
                 <strong>{post.category}</strong>
               </div>
@@ -272,9 +325,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="blog-grid compact-blog-grid">
             {relatedPosts.map((item) => (
               <article className="blog-card" key={item.slug}>
-                <div className="blog-card-cover generated-cover" aria-hidden="true">
-                  <img src={getGeneratedCover(item.slug)} alt="" />
-                  <span>{item.category}</span>
+                <div className="blog-card-cover generated-cover" style={relatedCoverStyle} aria-hidden="true">
+                  <img src={getGeneratedCover(item.slug)} alt="" style={coverImageStyle} />
+                  <span style={relatedBadgeStyle}>{item.category}</span>
                 </div>
                 <div className="blog-card-body">
                   <div className="blog-card-meta">
