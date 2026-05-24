@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useMemo, useState } from 'react';
-import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react';
+import { ArrowUpRight, Send } from 'lucide-react';
 import { WHATSAPP_DISPLAY, whatsAppHref } from '../contact';
 
 type ContactFormProps = {
@@ -33,7 +33,7 @@ const initialForm: LeadFormState = {
   mensagem: ''
 };
 
-export default function ContactForm({ page, context, title = 'Vamos transformar sua demanda em plano de execução?', description = 'Preencha o formulário para a Tehkné receber um briefing mais completo. Os dados podem alimentar planilha, CRM e uma proposta mais precisa.' }: ContactFormProps) {
+export default function ContactForm({ page, context, title = 'Vamos transformar sua demanda em plano de execução?', description = 'Preencha o formulário para a Tehkné receber um briefing mais completo. A proposta é definida depois do diagnóstico, considerando escopo, urgência, stack, conteúdo, integrações e sustentação.' }: ContactFormProps) {
   const [form, setForm] = useState<LeadFormState>(initialForm);
   const [status, setStatus] = useState<'idle' | 'sending' | 'saved' | 'error'>('idle');
 
@@ -47,7 +47,7 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
       `E-mail: ${form.email || 'não informado'}`,
       `Telefone: ${form.telefone || 'não informado'}`,
       `Serviço: ${form.servico || 'não selecionado'}`,
-      `Orçamento estimado: ${form.orcamento || 'não informado'}`,
+      `Perfil de investimento: ${form.orcamento || 'não informado'}`,
       `Prazo/urgência: ${form.prazo || 'não informado'}`,
       `Mensagem: ${form.mensagem || 'não informada'}`
     ].join('\n');
@@ -98,10 +98,6 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
           <span>WhatsApp principal</span>
           <strong>{WHATSAPP_DISPLAY}</strong>
         </div>
-        <div className="lead-routing-card">
-          <CheckCircle2 size={18} />
-          <p>Fluxo preparado para registrar lead em planilha/CRM via webhook e abrir WhatsApp com briefing completo.</p>
-        </div>
       </div>
 
       <form className="contact-form-card" onSubmit={handleSubmit}>
@@ -127,8 +123,8 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
           Serviço de interesse
           <select name="servico" value={form.servico} onChange={(event) => updateField('servico', event.target.value)} required>
             <option value="" disabled>Selecione uma opção</option>
-            <option>Landing page estratégica — a partir de R$ 1.600</option>
-            <option>Site institucional premium — a partir de R$ 3.000</option>
+            <option>Landing page estratégica</option>
+            <option>Site institucional premium</option>
             <option>Plataforma web sob medida</option>
             <option>Integrações CRM, ERP e APIs</option>
             <option>Governança, segurança e sustentação</option>
@@ -138,14 +134,14 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
         </label>
         <div className="contact-form-row">
           <label>
-            Orçamento estimado
+            Perfil de investimento
             <select name="orcamento" value={form.orcamento} onChange={(event) => updateField('orcamento', event.target.value)}>
-              <option value="">Selecione uma faixa</option>
-              <option>R$ 1.600 a R$ 3.000</option>
-              <option>R$ 3.000 a R$ 6.000</option>
-              <option>R$ 6.000 a R$ 12.000</option>
-              <option>R$ 12.000+</option>
-              <option>Ainda não sei</option>
+              <option value="">Selecione o perfil</option>
+              <option>Projeto enxuto com escopo fechado</option>
+              <option>Projeto premium com maior profundidade</option>
+              <option>Sprint técnica sob diagnóstico</option>
+              <option>Sustentação recorrente</option>
+              <option>Ainda quero entender o melhor caminho</option>
             </select>
           </label>
           <label>
@@ -164,13 +160,13 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
           <textarea name="mensagem" value={form.mensagem} onChange={(event) => updateField('mensagem', event.target.value)} placeholder="Conte o que você precisa criar, melhorar ou automatizar. Quanto mais contexto, melhor o diagnóstico." rows={5} required />
         </label>
         <button className="btn btn-primary coin" type="submit" disabled={status === 'sending'}>
-          {status === 'sending' ? 'Registrando lead...' : 'Enviar briefing e abrir WhatsApp'} <Send size={16} />
+          {status === 'sending' ? 'Enviando briefing...' : 'Enviar briefing e abrir WhatsApp'} <Send size={16} />
         </button>
         <a className="contact-direct-link" href={href} target="_blank" rel="noreferrer">
-          Chamar direto no WhatsApp sem registrar <ArrowUpRight size={14} />
+          Chamar direto no WhatsApp <ArrowUpRight size={14} />
         </a>
-        {status === 'saved' ? <p className="form-status success">Lead registrado. O WhatsApp foi aberto com a mensagem completa.</p> : null}
-        {status === 'error' ? <p className="form-status error">Não consegui confirmar o registro agora, mas abri o WhatsApp com o briefing completo.</p> : null}
+        {status === 'saved' ? <p className="form-status success">Briefing enviado. O WhatsApp foi aberto com a mensagem completa.</p> : null}
+        {status === 'error' ? <p className="form-status error">Não consegui confirmar o envio agora, mas abri o WhatsApp com o briefing completo.</p> : null}
       </form>
     </section>
   );
