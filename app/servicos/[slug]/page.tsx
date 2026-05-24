@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, GitBranch, HelpCircle, Layers3, SearchCheck, ShieldCheck, Sparkles, Target, Workflow } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronRight, GitBranch, HelpCircle, Home, Layers3, SearchCheck, ShieldCheck, Sparkles, Target, Workflow } from 'lucide-react';
 import ContactForm from '../../components/ContactForm';
 import ShareButtons from '../../components/ShareButtons';
 import { whatsAppHref } from '../../contact';
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const url = `https://tehkne.com/servicos/${service.slug}`;
+  const url = `https://tehknesolutions.com.br/servicos/${service.slug}`;
 
   return {
     title: service.seoTitle,
@@ -55,7 +55,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   const Icon = service.icon;
   const serviceWhatsApp = whatsAppHref(`Olá, Tehkné! Vim pela página ${service.title} e quero entender escopo, investimento, prazo e próximos passos.`);
-  const siteUrl = 'https://tehkne.com';
+  const siteUrl = 'https://tehknesolutions.com.br';
   const pageUrl = `${siteUrl}/servicos/${service.slug}`;
 
   const structuredData = {
@@ -112,8 +112,15 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
       <section className="section-frame service-detail-hero">
         <div className="service-detail-copy">
+          <nav className="service-breadcrumb" aria-label="Breadcrumb">
+            <a href="/"><Home size={14} /> Home</a>
+            <ChevronRight size={14} />
+            <a href="/servicos">Serviços</a>
+            <ChevronRight size={14} />
+            <span aria-current="page">{service.title}</span>
+          </nav>
           <a className="blog-back" href="/servicos"><ArrowLeft size={15} /> Voltar para serviços</a>
-          <span className="eyebrow">{service.eyebrow}</span>
+          <span className="eyebrow service-name-pill">{service.title}</span>
           <h1>{service.promise}</h1>
           <p>{service.description}</p>
           <div className="hero-actions">
@@ -146,8 +153,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <h2>Por que este serviço existe.</h2>
           </div>
         </div>
-        <div className="service-detail-editorial">
-          <article className="glass-card service-detail-main-card">
+        <div className="service-detail-editorial service-mosaic-grid service-mosaic-two">
+          <article className="glass-card service-detail-main-card service-mosaic-feature">
             <Target className="card-icon" size={32} />
             <h3>O problema</h3>
             <p>{service.pain}</p>
@@ -165,9 +172,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <span className="eyebrow">Resultados esperados</span>
           <h2>O que muda quando o serviço é bem executado.</h2>
         </div>
-        <div className="service-detail-grid">
-          {service.outcomes.map((item) => (
-            <article key={item}><CheckCircle2 size={20} /><h3>{item}</h3></article>
+        <div className="service-detail-grid service-mosaic-grid service-mosaic-auto">
+          {service.outcomes.map((item, index) => (
+            <article className={index === 0 ? 'service-mosaic-feature' : ''} key={item}><CheckCircle2 size={20} /><h3>{item}</h3></article>
           ))}
         </div>
       </section>
@@ -189,9 +196,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <span className="eyebrow">Processo</span>
           <h2>Como a Tehkné conduz este serviço.</h2>
         </div>
-        <div className="case-method-map service-detail-process">
-          {service.process.map(([number, title, text]) => (
-            <article className="method-step" key={title}>
+        <div className="case-method-map service-detail-process service-mosaic-grid service-mosaic-auto">
+          {service.process.map(([number, title, text], index) => (
+            <article className={`method-step ${index === 0 ? 'service-mosaic-feature' : ''}`} key={title}>
               <span>{number}</span>
               <GitBranch size={22} />
               <h3>{title}</h3>
@@ -206,8 +213,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <span className="eyebrow">Indicado para</span>
           <h2>Quando contratar {service.title.toLowerCase()}.</h2>
         </div>
-        <div className="services-audience-grid">
-          {service.bestFor.map((item) => <article key={item}><Workflow size={22} /><h3>{item}</h3><p>Este perfil tende a ganhar velocidade, clareza e previsibilidade com uma entrega bem arquitetada.</p></article>)}
+        <div className="services-audience-grid service-mosaic-grid service-mosaic-auto">
+          {service.bestFor.map((item, index) => <article className={index === 0 ? 'service-mosaic-feature' : ''} key={item}><Workflow size={22} /><h3>{item}</h3><p>Este perfil tende a ganhar velocidade, clareza e previsibilidade com uma entrega bem arquitetada.</p></article>)}
         </div>
       </section>
 
@@ -229,8 +236,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <span className="eyebrow">Perguntas frequentes</span>
           <h2>Dúvidas comuns antes de contratar.</h2>
         </div>
-        <div className="service-faq-grid">
-          <article>
+        <div className="service-faq-grid service-mosaic-grid service-mosaic-two">
+          <article className="service-mosaic-feature">
             <HelpCircle size={22} />
             <h3>Este serviço tem preço fechado?</h3>
             <p>O investimento depende de escopo, urgência, stack, integrações e nível de sustentação. A Tehkné começa por diagnóstico para evitar proposta artificial.</p>
