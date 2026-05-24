@@ -49,7 +49,7 @@ export function PortfolioCasePage({ slug }: Props) {
     [project.status, 'status no portfólio']
   ];
 
-  const siteUrl = 'https://tehkne.com';
+  const siteUrl = 'https://tehknesolutions.com.br';
   const pageUrl = `${siteUrl}/portfolio/${project.slug}`;
   const structuredImage = asset?.image ?? memeScreenshot ?? `${siteUrl}/images/logo-tehkne-solutions-header.png`;
   const structuredData = {
@@ -82,7 +82,7 @@ export function PortfolioCasePage({ slug }: Props) {
       <section className="section-frame case-hero portfolio-case-hero portfolio-case-hero-rich">
         <div className="case-hero-copy">
           <span className="eyebrow">{project.level} • {project.sector}</span>
-          <h1>{project.title}: {project.category.toLowerCase()} com participação técnica rastreável.</h1>
+          <h1>{project.title}: {project.category.toLowerCase()} apresentado como repertório técnico e criativo.</h1>
           <p>{project.summary}</p>
           <div className="hero-actions">
             <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Quero algo parecido <ArrowUpRight size={16} /></a>
@@ -91,7 +91,6 @@ export function PortfolioCasePage({ slug }: Props) {
           <div className="case-stack">
             {effectiveStack.map((tech) => <span key={tech}>{tech}</span>)}
           </div>
-          {stackOverride ? <p className="case-stack-audit-note">{stackOverride.note}</p> : null}
         </div>
 
         <div className="case-visual">
@@ -99,13 +98,13 @@ export function PortfolioCasePage({ slug }: Props) {
             <div className={`portfolio-case-preview portfolio-real-hero-preview ${project.tone}`}>
               <div className="case-window-bar"><span /><span /><span /></div>
               <img src={asset.image} alt={`Imagem do case ${project.title}`} loading="eager" />
-              <div className="portfolio-real-hero-caption"><span>Imagem oficial do case</span><strong>{project.imageLabel}</strong></div>
+              <div className="portfolio-real-hero-caption"><span>Imagem do case</span><strong>{project.imageLabel}</strong></div>
             </div>
           ) : memeScreenshot ? (
             <div className={`portfolio-case-preview portfolio-real-hero-preview ${project.tone}`}>
               <div className="case-window-bar"><span /><span /><span /></div>
               <img src={memeScreenshot} alt={`Imagem do case ${project.title}`} loading="eager" />
-              <div className="portfolio-real-hero-caption"><span>Print público do projeto</span><strong>{project.imageLabel}</strong></div>
+              <div className="portfolio-real-hero-caption"><span>Imagem do projeto</span><strong>{project.imageLabel}</strong></div>
             </div>
           ) : (
             <div className={`portfolio-case-preview ${project.tone}`}>
@@ -141,7 +140,7 @@ export function PortfolioCasePage({ slug }: Props) {
 
       {asset?.fullImage ? (
         <section className="section-frame case-full-showcase-section">
-          <div className="section-heading"><span className="eyebrow">Print completo do projeto</span><h2>Visual real usado no ecossistema UNTI Digital.</h2><p>Imagem completa do case, usada como evidência visual em vez de placeholder genérico.</p></div>
+          <div className="section-heading"><span className="eyebrow">Print completo do projeto</span><h2>Visual real do case.</h2><p>Imagem completa do projeto usada como evidência visual do trabalho apresentado.</p></div>
           <div className="case-full-showcase"><div className="case-window-bar"><span /><span /><span /></div><img src={asset.fullImage} alt={`Print completo do site ${project.title}`} loading="lazy" /></div>
         </section>
       ) : null}
@@ -157,7 +156,7 @@ export function PortfolioCasePage({ slug }: Props) {
         <div className="os-panel">
           <span className="eyebrow">Stack e capacidade</span>
           <h2>Experiência apresentada como capital técnico institucional.</h2>
-          <p>A stack exibida deve refletir a base real de cada projeto. Quando houver divergência entre a base original e a execução validada, a Tehkné prioriza a stack auditada.</p>
+          <p>A combinação de tecnologias, design, processo e sustentação mostra o tipo de solução que pode ser planejada, construída e evoluída em novos projetos.</p>
           <div className="os-features">{effectiveStack.map((item) => <span key={item}>{item}</span>)}</div>
         </div>
         <div className="stack-cloud">{['Arquitetura', 'Design & UX', 'Desenvolvimento', 'Performance', 'Sustentação', 'Evolução'].map((stack) => <span key={stack}>{stack}</span>)}</div>
