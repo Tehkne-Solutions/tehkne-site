@@ -5,7 +5,7 @@ import { ArrowUpRight, Orbit } from 'lucide-react';
 import type { PortfolioCase } from './portfolio-data';
 import { getUntiCaseAsset } from './unti-case-assets';
 
-const filters = ['Todos', 'Projetos Tehkné', 'Participação Técnica', 'Ecossistemas', 'UNTI', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
+const filters = ['Todos', 'Projetos Tehkné', 'Savana', 'UNTI', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
 
 const caseHeroScreens: Record<string, string> = {
   beggin: 'https://beggin.vercel.app/',
@@ -14,7 +14,8 @@ const caseHeroScreens: Record<string, string> = {
   'unti-digital': 'https://www.untidigital.com.br/',
   'savol-seminovos': 'https://savol-seminovos.vercel.app/',
   'savana-publicidade': 'https://savanapublicidade.com.br/',
-  'liugong-br': 'https://liugongla.com/'
+  'liugong-br': 'https://liugongla.com/',
+  'tehkne-flow-wp-lite': 'https://tehkne-flow-wp.page.gd/'
 };
 
 type Props = {
@@ -26,6 +27,15 @@ function normalize(value: string) {
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
+}
+
+function displayLevel(item: PortfolioCase) {
+  const text = normalize([item.level, item.status, item.source ?? ''].join(' '));
+  if (text.includes('savana')) return 'Case Tehkné • Savana';
+  if (text.includes('unti')) return 'Case Tehkné • UNTI';
+  if (text.includes('historico')) return 'Case Tehkné';
+  if (text.includes('participacao')) return 'Case Tehkné';
+  return item.level;
 }
 
 function getCaseCardImage(item: PortfolioCase, asset?: { image: string }) {
@@ -52,19 +62,15 @@ function matchesFilter(item: PortfolioCase, filter: string) {
   const key = normalize(filter);
 
   if (key === 'projetos tehkne') {
-    return normalize(item.level).includes('projeto tehkne') || normalize(item.level).includes('produto interno') || normalize(item.level).includes('laboratorio tehkne');
+    return text.includes('tehkne') || text.includes('produto interno') || text.includes('laboratorio') || text.includes('case tehkne');
   }
 
-  if (key === 'participacao tecnica') {
-    return normalize(item.level).includes('participacao tecnica') || normalize(item.level).includes('historico profissional');
-  }
-
-  if (key === 'ecossistemas') {
-    return normalize(item.level).includes('ecossistema') || normalize(item.status).includes('ecossistema') || normalize(item.source ?? '').includes('unti');
+  if (key === 'savana') {
+    return text.includes('savana');
   }
 
   if (key === 'unti') {
-    return normalize(item.source ?? '').includes('unti') || normalize(item.status).includes('unti');
+    return text.includes('unti');
   }
 
   if (key === 'apps') {
@@ -102,7 +108,7 @@ export default function PortfolioGrid({ cases }: Props) {
       </div>
 
       <div className="portfolio-filter-result">
-        <span>{visibleCases.length} experiência{visibleCases.length === 1 ? '' : 's'} em exibição</span>
+        <span>{visibleCases.length} case{visibleCases.length === 1 ? '' : 's'} em exibição</span>
         <strong>{activeFilter}</strong>
       </div>
 
@@ -124,7 +130,7 @@ export default function PortfolioGrid({ cases }: Props) {
                   <span />
                 </div>
               )}
-              <small>{item.level}</small>
+              <small>{displayLevel(item)}</small>
               <h3>{item.title}</h3>
               <p><strong>{item.category}</strong></p>
               <p>{item.summary}</p>
