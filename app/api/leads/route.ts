@@ -14,10 +14,36 @@ type LeadPayload = {
   source?: string;
   createdAt?: string;
   message?: string;
+  website?: string;
 };
+
+const submissions = new Map<string, number[]>();
 
 function sanitize(value: unknown) {
   return typeof value === 'string' ? value.trim().slice(0, 4000) : '';
+}
+
+function getClientKey(request: Request) {
+  return (
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('x-real-ip') ||
+    'unknown'
+  );
+}
+
+function isRateLimited(key: string) {
+  const now = Date.now();
+  const windowMs = 10 * 60 * 1000;
+  const maxRequests = 5;
+  const recent = (submissions.get(key) ?? []).filter((time) => now - time < windowMs);
+
+  if (recent.length >= maxRequests) {
+    submissions.set(key, recent);
+    return true;
+  }
+
+  submissions.set(key, [...recent, now]);
+  return false;
 }
 
 export async function POST(request: Request) {
@@ -25,6 +51,15 @@ export async function POST(request: Request) {
 
   if (!body) {
     return NextResponse.json({ ok: false, error: 'invalid_payload' }, { status: 400 });
+  }
+
+  if (sanitize(body.website)) {
+    return NextResponse.json({ ok: true, ignored: true });
+  }
+
+  const clientKey = getClientKey(request);
+  if (isRateLimited(clientKey)) {
+    return NextResponse.json({ ok: false, error: 'too_many_requests' }, { status: 429 });
   }
 
   const lead = {
@@ -42,7 +77,8 @@ export async function POST(request: Request) {
     mensagem: sanitize(body.mensagem),
     whatsappMessage: sanitize(body.message),
     userAgent: request.headers.get('user-agent') ?? '',
-    referer: request.headers.get('referer') ?? ''
+    referer: request.headers.get('referer') ?? '',
+    ipHashKey: clientKey === 'unknown' ? 'unknown' : 'captured'
   };
 
   if (!lead.nome || !lead.servico || !lead.mensagem) {
