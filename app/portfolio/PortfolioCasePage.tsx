@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { ArrowUpRight, CheckCircle2, LayoutDashboard, Layers3, Sparkles, Workflow, BarChart3, ShieldCheck, Network } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
+import ShareButtons from '../components/ShareButtons';
 import { whatsAppHref } from '../contact';
 import { getPortfolioCase } from './portfolio-data';
 import { getMemeProjectCase } from './meme-project-cases';
@@ -88,6 +89,7 @@ export function PortfolioCasePage({ slug }: Props) {
             <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Quero algo parecido <ArrowUpRight size={16} /></a>
             <a className="btn btn-secondary" href="/portfolio">Voltar ao portfólio <ArrowUpRight size={16} /></a>
           </div>
+          <ShareButtons title={`Case Tehkné: ${project.title}`} text={project.summary} />
           <div className="case-stack">
             {effectiveStack.map((tech) => <span key={tech}>{tech}</span>)}
           </div>
@@ -159,6 +161,7 @@ export function PortfolioCasePage({ slug }: Props) {
           <h2>Experiência apresentada como capital técnico institucional.</h2>
           <p>A stack exibida deve refletir a base real de cada projeto. Quando houver divergência entre a base original e a execução validada, a Tehkné prioriza a stack auditada.</p>
           <div className="os-features">{effectiveStack.map((item) => <span key={item}>{item}</span>)}</div>
+          <ShareButtons title={`Case Tehkné: ${project.title}`} text={project.summary} />
         </div>
         <div className="stack-cloud">{['Arquitetura', 'Design & UX', 'Desenvolvimento', 'Performance', 'Sustentação', 'Evolução'].map((stack) => <span key={stack}>{stack}</span>)}</div>
       </section>
