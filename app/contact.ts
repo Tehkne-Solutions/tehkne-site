@@ -2,7 +2,7 @@ export const WHATSAPP_NUMBER = '5519998930846';
 export const WHATSAPP_DISPLAY = '+55 19 99893-0846';
 
 export function whatsAppHref(message: string) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  return `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
 }
 
 export const whatsappMessages = {
