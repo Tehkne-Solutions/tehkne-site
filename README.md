@@ -1,3 +1,3 @@
 # Tehkne Site
 
-Initial repository bootstrap.
+Institutional website repository.
