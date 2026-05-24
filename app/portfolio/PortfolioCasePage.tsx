@@ -5,6 +5,7 @@ import { whatsAppHref } from '../contact';
 import { getPortfolioCase } from './portfolio-data';
 import { getMemeProjectCase } from './meme-project-cases';
 import { getUntiCaseAsset } from './unti-case-assets';
+import { getMemeCaseAsset } from './meme-case-assets';
 import { getCaseStackOverride } from './case-stack-overrides';
 
 type Props = { slug: string };
@@ -18,8 +19,8 @@ const defaultProcess: Array<[string, string, string]> = [
   ['04', 'Evolução', 'Ajustes, sustentação, melhorias incrementais e novos ciclos conforme a operação amadurece.']
 ];
 
-function screenshotUrl(url?: string) {
-  return url ? `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=1400` : undefined;
+function screenshotUrl(url?: string, disabled?: boolean) {
+  return !disabled && url ? `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=1400` : undefined;
 }
 
 export function PortfolioCasePage({ slug }: Props) {
@@ -28,8 +29,9 @@ export function PortfolioCasePage({ slug }: Props) {
 
   if (!project) notFound();
 
-  const asset = getUntiCaseAsset(project.slug);
-  const memeScreenshot = screenshotUrl(memeProject?.externalOfficialUrl);
+  const providedMemeAsset = getMemeCaseAsset(project.slug);
+  const asset = providedMemeAsset ?? getUntiCaseAsset(project.slug);
+  const memeScreenshot = screenshotUrl(memeProject?.externalOfficialUrl, Boolean(providedMemeAsset));
   const stackOverride = getCaseStackOverride(project.slug);
   const effectiveStack = stackOverride?.stack ?? project.stack;
   const pageWhatsApp = whatsAppHref(`Olá, Tehkné! Quero conversar sobre um projeto parecido com o case ${project.title}.`);
