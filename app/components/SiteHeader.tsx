@@ -1,16 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
 
 const navItems = [
-  ['Serviços', '/servicos'],
   ['Soluções', '/solucoes'],
   ['Portfólio', '/portfolio'],
   ['Método', '/metodo'],
   ['Blog', '/blog'],
   ['Sobre', '/sobre'],
   ['Contato', '/contato']
+];
+
+const serviceMenu = [
+  ['Sites premium', '/servicos/site-institucional-alta-performance'],
+  ['Plataformas web', '/servicos/plataforma-web-sob-medida'],
+  ['Integrações', '/servicos/integracoes-crm-erp-apis'],
+  ['Sustentação', '/servicos/governanca-seguranca-sustentacao'],
+  ['White label', '/servicos/white-label-tecnico-agencias']
 ];
 
 export default function SiteHeader() {
@@ -34,6 +41,12 @@ export default function SiteHeader() {
       </a>
 
       <nav className="main-nav" aria-label="Navegação principal">
+        <div className="nav-dropdown">
+          <a href="/servicos" className="nav-dropdown-trigger">Serviços <ChevronDown size={13} /></a>
+          <div className="nav-dropdown-menu" aria-label="Submenu de serviços">
+            {serviceMenu.map(([label, url]) => <a key={label} href={url}>{label}</a>)}
+          </div>
+        </div>
         {navItems.map(([label, url]) => (
           <a key={label} href={url}>{label}</a>
         ))}
@@ -55,6 +68,8 @@ export default function SiteHeader() {
       </a>
 
       <div id="mobile-navigation" className={`mobile-nav${mobileOpen ? ' open' : ''}`} role="menu">
+        <a href="/servicos" onClick={() => setMobileOpen(false)}>Serviços</a>
+        {serviceMenu.map(([label, url]) => <a key={label} href={url} onClick={() => setMobileOpen(false)}>— {label}</a>)}
         {navItems.map(([label, url]) => (
           <a key={label} href={url} onClick={() => setMobileOpen(false)}>{label}</a>
         ))}
