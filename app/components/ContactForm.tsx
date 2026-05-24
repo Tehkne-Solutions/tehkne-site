@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useMemo, useState } from 'react';
-import { ArrowUpRight, Send } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, Send, X } from 'lucide-react';
 import { WHATSAPP_DISPLAY, whatsAppHref } from '../contact';
 
 type ContactFormProps = {
@@ -36,6 +36,7 @@ const initialForm: LeadFormState = {
 export default function ContactForm({ page, context, title = 'Vamos transformar sua demanda em plano de execução?', description = 'Preencha o formulário para a Tehkné receber um briefing mais completo. Os dados podem alimentar planilha, CRM e uma proposta mais precisa.' }: ContactFormProps) {
   const [form, setForm] = useState<LeadFormState>(initialForm);
   const [status, setStatus] = useState<'idle' | 'sending' | 'saved' | 'error'>('idle');
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const message = useMemo(() => {
     return [
@@ -59,9 +60,14 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
     setForm((current) => ({ ...current, [field]: value }));
   }
 
+  function openWhatsApp() {
+    window.open(href, '_blank', 'noopener,noreferrer');
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus('sending');
+    setShowConfirmation(false);
 
     const payload = {
       ...form,
@@ -81,10 +87,12 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
 
       if (!response.ok) throw new Error('Lead not saved');
       setStatus('saved');
-      window.open(href, '_blank', 'noopener,noreferrer');
+      setShowConfirmation(true);
+      openWhatsApp();
     } catch {
       setStatus('error');
-      window.open(href, '_blank', 'noopener,noreferrer');
+      setShowConfirmation(true);
+      openWhatsApp();
     }
   }
 
@@ -165,9 +173,27 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
         <a className="contact-direct-link" href={href} target="_blank" rel="noreferrer">
           Chamar direto no WhatsApp <ArrowUpRight size={14} />
         </a>
-        {status === 'saved' ? <p className="form-status success">Briefing enviado. O WhatsApp foi aberto com a mensagem completa.</p> : null}
-        {status === 'error' ? <p className="form-status error">Não consegui confirmar o envio agora, mas abri o WhatsApp com o briefing completo.</p> : null}
+        {status === 'saved' ? <p className="form-status success">Briefing enviado. Abrimos o WhatsApp em uma nova guia com sua mensagem preenchida.</p> : null}
+        {status === 'error' ? <p className="form-status error">Não conseguimos confirmar o registro agora, mas abrimos o WhatsApp com sua mensagem preenchida.</p> : null}
       </form>
+
+      {showConfirmation ? (
+        <div className="contact-confirmation-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-confirmation-title">
+          <div className="contact-confirmation-card">
+            <button type="button" className="contact-confirmation-close" onClick={() => setShowConfirmation(false)} aria-label="Fechar confirmação">
+              <X size={18} />
+            </button>
+            <div className="contact-confirmation-icon"><CheckCircle2 size={30} /></div>
+            <span className="eyebrow">Mensagem preparada</span>
+            <h3 id="contact-confirmation-title">Obrigado! Seu briefing foi recebido.</h3>
+            <p>Também abrimos o WhatsApp em uma nova guia com a mensagem preenchida. Para concluir, revise e envie por lá.</p>
+            <div className="hero-actions">
+              <button type="button" className="btn btn-primary coin" onClick={openWhatsApp}>Abrir WhatsApp novamente <ArrowUpRight size={16} /></button>
+              <button type="button" className="btn btn-secondary" onClick={() => setShowConfirmation(false)}>Continuar no site</button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
