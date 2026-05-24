@@ -3,20 +3,9 @@
 import { useMemo, useState } from 'react';
 import { ArrowUpRight, Orbit } from 'lucide-react';
 import type { PortfolioCase } from './portfolio-data';
-import { getUntiCaseAsset } from './unti-case-assets';
+import { getPortfolioCaseCardImage } from './case-card-images';
 
 const filters = ['Todos', 'Projetos Tehkné', 'UNTI', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
-
-const caseHeroScreens: Record<string, string> = {
-  beggin: 'https://beggin.vercel.app/',
-  'vacina-one': 'https://vacina-one-site.vercel.app/',
-  'meme-digital': 'https://meme-servicos-delta.vercel.app/',
-  'unti-digital': 'https://www.untidigital.com.br/',
-  'savol-seminovos': 'https://savol-seminovos.vercel.app/',
-  'savana-publicidade': 'https://savanapublicidade.com.br/',
-  'liugong-br': 'https://liugongla.com/',
-  'tehkne-flow-wp-lite': 'https://tehkne-flow-wp.page.gd/'
-};
 
 type Props = {
   cases: PortfolioCase[];
@@ -42,15 +31,12 @@ function displayLevel(item: PortfolioCase) {
   return item.level;
 }
 
-function getCaseCardImage(item: PortfolioCase, asset?: { image: string }) {
+function getCaseCardImage(item: PortfolioCase) {
   if (isAgencyClientCase(item)) {
     return undefined;
   }
-  const url = caseHeroScreens[item.slug];
-  if (url) {
-    return `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=1100`;
-  }
-  return asset?.image;
+
+  return getPortfolioCaseCardImage(item);
 }
 
 function matchesFilter(item: PortfolioCase, filter: string) {
@@ -117,8 +103,7 @@ export default function PortfolioGrid({ cases }: Props) {
 
       <div className="project-grid portfolio-grid-expanded">
         {visibleCases.map((item) => {
-          const asset = getUntiCaseAsset(item.slug);
-          const cardImage = getCaseCardImage(item, asset);
+          const cardImage = getCaseCardImage(item);
 
           return (
             <article className="project-card portfolio-card-rich" key={item.slug}>
