@@ -1,0 +1,1 @@
+.case-reading-grid,.case-reading-grid-balanced{grid-template-columns:repeat(2,minmax(0,1fr))!important}.case-reading-card-balanced{min-height:260px}@media(max-width:720px){.case-reading-grid,.case-reading-grid-balanced{grid-template-columns:1fr!important}.case-reading-card-balanced{min-height:unset}}
