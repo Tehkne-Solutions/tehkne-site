@@ -14,6 +14,15 @@ const caseHeroScreens: Record<string, string> = {
   'unti-digital': 'https://www.untidigital.com.br/',
   'savol-seminovos': 'https://savol-seminovos.vercel.app/',
   'savana-publicidade': 'https://savanapublicidade.com.br/',
+  'savana-sinfonia-residencial': 'https://savanapublicidade.com.br/',
+  'savana-dafra-motos': 'https://savanapublicidade.com.br/',
+  'savana-eurofarma': 'https://savanapublicidade.com.br/',
+  'savana-stine-sementes': 'https://savanapublicidade.com.br/',
+  'savana-massas-de': 'https://savanapublicidade.com.br/',
+  'savana-nutralle': 'https://savanapublicidade.com.br/',
+  'savana-ecobrisa-energia': 'https://savanapublicidade.com.br/',
+  'savana-oficina-do-estudante': 'https://savanapublicidade.com.br/',
+  'savana-bob-imoveis': 'https://savanapublicidade.com.br/',
   'liugong-br': 'https://liugongla.com/',
   'tehkne-flow-wp-lite': 'https://tehkne-flow-wp.page.gd/'
 };
