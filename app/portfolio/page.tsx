@@ -4,8 +4,9 @@ import { whatsAppHref, whatsappMessages } from '../contact';
 import PortfolioGrid from './PortfolioGrid';
 import { portfolioCases, portfolioStats } from './portfolio-data';
 import { savanaProjectCases } from './savana-project-cases';
+import { memeProjectCases } from './meme-project-cases';
 
-const allPortfolioCases = [...portfolioCases, ...savanaProjectCases];
+const allPortfolioCases = [...portfolioCases, ...savanaProjectCases, ...memeProjectCases];
 const allPortfolioStats = [
   portfolioStats[0],
   portfolioStats[1],
@@ -62,7 +63,7 @@ export default function PortfolioPage() {
           <div>
             <span className="eyebrow">Inventário Tehkné Site</span>
             <h2>Uma vitrine organizada por entrega, stack e contexto.</h2>
-            <p>Os cards abaixo incluem produtos próprios, sites, sistemas, campanhas, clientes atendidos em agência, ecossistemas digitais, cases UNTI, projetos Savana e laboratórios Tehkné. Cada card entra como case navegável com a mesma estrutura de apresentação.</p>
+            <p>Os cards abaixo incluem produtos próprios, sites, sistemas, campanhas, clientes atendidos em agência, ecossistemas digitais, cases UNTI, projetos Savana, cases Meme Digital e laboratórios Tehkné. Cada card entra como case navegável com a mesma estrutura de apresentação.</p>
           </div>
         </div>
         <PortfolioGrid cases={allPortfolioCases} />
@@ -74,7 +75,7 @@ export default function PortfolioPage() {
           <h2>Experiência real, apresentada como repertório técnico da Tehkné.</h2>
           <p>A Tehkné apresenta os cases pelo valor técnico, visual e estratégico entregue: sites, campanhas, sistemas, produtos, conteúdo, automações, WordPress, Next.js e sustentação.</p>
           <div className="os-features">
-            {['Projetos Tehkné', 'Sites e sistemas', 'Agências e ecossistemas', 'Cases UNTI', 'Cases Savana', 'Produtos internos'].map((item) => <span key={item}>{item}</span>)}
+            {['Projetos Tehkné', 'Sites e sistemas', 'Agências e ecossistemas', 'Cases UNTI', 'Cases Savana', 'Cases Meme Digital', 'Produtos internos'].map((item) => <span key={item}>{item}</span>)}
           </div>
         </div>
         <div className="stack-cloud">
