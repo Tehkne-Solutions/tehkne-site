@@ -60,9 +60,9 @@ const authorityMetrics = [
 ];
 
 const pricingAnchors = [
-  ['LP estratégica', 'a partir de R$ 1.600', 'Landing page com copy, layout, responsividade, CTA e publicação.'],
-  ['Site institucional', 'a partir de R$ 3.000', 'Site premium com arquitetura, páginas estratégicas, SEO técnico e formulário qualificado.'],
-  ['Sprint técnica', 'sob diagnóstico', 'Integrações, sustentação, automações, WordPress avançado ou evolução de projeto.']
+  ['Projeto enxuto', 'sob diagnóstico', 'Entrada controlada para validar necessidade, páginas, conteúdo, urgência e escopo de publicação.'],
+  ['Projeto premium', 'sob escopo', 'Entrega mais completa com arquitetura, experiência, SEO técnico, integração e direção visual sob medida.'],
+  ['Sprint técnica', 'sob planejamento', 'Integrações, sustentação, automações, WordPress avançado ou evolução de projeto existente.']
 ];
 
 const homeCases = portfolioCases.filter((item) => item.featured).slice(0, 8);
@@ -157,9 +157,9 @@ export default function Home() {
       <motion.section className="section-frame pricing-anchor-section compact" {...fadeUp}>
         <div className="section-heading inline">
           <div>
-            <span className="eyebrow">Faixa mínima de projeto</span>
-            <h2>Projetos com escopo, copy, técnica e responsabilidade.</h2>
-            <p>Os valores abaixo servem como filtro comercial inicial. O orçamento final depende de páginas, integrações, urgência, stack, conteúdo, animações e sustentação.</p>
+            <span className="eyebrow">Modelo comercial</span>
+            <h2>Sem tabela pública: cada proposta nasce do diagnóstico.</h2>
+            <p>A Tehkné não expõe valores fechados no site porque escopo, urgência, stack, conteúdo, integrações, animações e sustentação mudam completamente a entrega.</p>
           </div>
         </div>
         <div className="pricing-anchor-grid">
@@ -299,7 +299,7 @@ export default function Home() {
         <div>
           <span className="eyebrow">Diagnóstico qualificado</span>
           <h2>Conte o que você quer construir para receber um caminho mais preciso.</h2>
-          <p>O formulário organiza dados do lead, tipo de projeto, orçamento, urgência e mensagem antes do contato. Isso prepara a base para CRM, planilha e proposta automatizada.</p>
+          <p>O formulário organiza dados do lead, tipo de projeto, perfil de investimento, urgência e mensagem antes do contato. Isso prepara a base para diagnóstico, CRM, planilha e proposta sob medida.</p>
         </div>
         <div className="hero-actions">
           <a className="btn btn-primary coin" href="#contato-form">Preencher formulário <ArrowUpRight size={16} /></a>
