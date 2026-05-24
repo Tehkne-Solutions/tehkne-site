@@ -1,12 +1,16 @@
 'use client';
 
-import { Copy, Linkedin, Send, Share2 } from 'lucide-react';
+import { Copy, Send, Share2 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
 type Props = {
   title: string;
   text?: string;
 };
+
+function LinkedInGlyph() {
+  return <span aria-hidden="true" className="share-glyph">in</span>;
+}
 
 export default function ShareButtons({ title, text }: Props) {
   const [copied, setCopied] = useState(false);
@@ -42,7 +46,7 @@ export default function ShareButtons({ title, text }: Props) {
       <span><Share2 size={15} /> Compartilhar</span>
       <button type="button" onClick={nativeShare}>Compartilhar <Share2 size={14} /></button>
       <a href={whatsapp} target="_blank" rel="noreferrer">WhatsApp <Send size={14} /></a>
-      <a href={linkedin} target="_blank" rel="noreferrer">LinkedIn <Linkedin size={14} /></a>
+      <a href={linkedin} target="_blank" rel="noreferrer">LinkedIn <LinkedInGlyph /></a>
       <button type="button" onClick={copyLink}>{copied ? 'Link copiado' : 'Copiar link'} <Copy size={14} /></button>
     </div>
   );
