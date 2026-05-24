@@ -10,7 +10,8 @@ const filters = ['Todos', 'Projetos Tehkné', 'Participação Técnica', 'Ecossi
 const caseHeroScreens: Record<string, string> = {
   beggin: 'https://beggin.vercel.app/',
   'vacina-one': 'https://vacina-one-site.vercel.app/',
-  'meme-digital': 'https://meme-servicos-delta.vercel.app/'
+  'meme-digital': 'https://meme-servicos-delta.vercel.app/',
+  'unti-digital': 'https://www.untidigital.com.br/'
 };
 
 type Props = {
