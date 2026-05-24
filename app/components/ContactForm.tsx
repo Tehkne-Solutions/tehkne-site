@@ -127,8 +127,8 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
           Serviço de interesse
           <select name="servico" value={form.servico} onChange={(event) => updateField('servico', event.target.value)} required>
             <option value="" disabled>Selecione uma opção</option>
-            <option>Landing page estratégica — a partir de R$ 1.600</option>
-            <option>Site institucional premium — a partir de R$ 3.000</option>
+            <option>Landing page estratégica — sob orçamento</option>
+            <option>Site institucional premium — sob orçamento</option>
             <option>Plataforma web sob medida</option>
             <option>Integrações CRM, ERP e APIs</option>
             <option>Governança, segurança e sustentação</option>

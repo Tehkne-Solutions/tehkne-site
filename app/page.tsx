@@ -60,8 +60,8 @@ const authorityMetrics = [
 ];
 
 const pricingAnchors = [
-  ['LP estratégica', 'a partir de R$ 1.600', 'Landing page com copy, layout, responsividade, CTA e publicação.'],
-  ['Site institucional', 'a partir de R$ 3.000', 'Site premium com arquitetura, páginas estratégicas, SEO técnico e formulário qualificado.'],
+  ['LP estratégica', 'sob orçamento', 'Landing page com copy, layout, responsividade, CTA e publicação.'],
+  ['Site institucional', 'sob orçamento', 'Site premium com arquitetura, páginas estratégicas, SEO técnico e formulário qualificado.'],
   ['Sprint técnica', 'sob diagnóstico', 'Integrações, sustentação, automações, WordPress avançado ou evolução de projeto.']
 ];
 
