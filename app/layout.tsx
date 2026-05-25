@@ -18,6 +18,7 @@ const siteUrl = 'https://tehknesolutions.com.br';
 const logoPath = '/images/logo-tehkne-solutions-header.png';
 const absoluteLogoUrl = `${siteUrl}${logoPath}`;
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID ?? 'G-MB46DPYC6K';
+const googleSiteVerificationToken = 'sVy4pW6HtkQHV0K6ATxm5VVVJd1LcKE_8fwJmJRNEWk';
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -74,6 +75,9 @@ export const metadata: Metadata = {
     'integrações CRM ERP API',
     'Campinas'
   ],
+  verification: {
+    google: googleSiteVerificationToken
+  },
   alternates: {
     canonical: '/'
   },
