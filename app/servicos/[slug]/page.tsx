@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronRight, GitBranch, HelpCircle, Layers3, SearchCheck, ShieldCheck, Sparkles, Target, Workflow } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, ChevronRight, GitBranch, HelpCircle, Layers3, SearchCheck, ShieldCheck, Sparkles, Target, Workflow } from 'lucide-react';
 import ContactForm from '../../components/ContactForm';
 import ShareButtons from '../../components/ShareButtons';
 import { whatsAppHref } from '../../contact';
@@ -120,8 +120,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <ChevronRight size={14} />
             <span aria-current="page">{service.title}</span>
           </nav>
-          <a className="blog-back" href="/servicos"><ArrowLeft size={15} /> Voltar para serviços</a>
-          <span className="eyebrow">Serviço Tehkné</span>
           <h1>{service.promise}</h1>
           <p>{service.description}</p>
           <div className="hero-actions">
@@ -220,49 +218,23 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       </section>
 
       <section className="section-frame service-detail-section">
-        <div className="section-heading inline">
-          <div>
-            <span className="eyebrow">Prova e contexto</span>
-            <h2>Cases e repertório relacionados.</h2>
-          </div>
-          <a className="btn btn-secondary" href="/portfolio">Abrir portfólio <ArrowUpRight size={15} /></a>
-        </div>
-        <div className="service-detail-deliverables related-cases-large">
-          {service.relatedCases.map((item) => <span key={item}><SearchCheck size={16} />{item}</span>)}
-        </div>
-      </section>
-
-      <section className="section-frame service-detail-section">
         <div className="section-heading">
           <span className="eyebrow">Perguntas frequentes</span>
-          <h2>Dúvidas comuns antes de contratar.</h2>
+          <h2>Dúvidas comuns antes de iniciar.</h2>
         </div>
-        <div className="service-faq-grid">
-          <article>
-            <HelpCircle size={22} />
-            <h3>Este serviço tem preço fechado?</h3>
-            <p>O investimento depende de escopo, urgência, stack, integrações e nível de sustentação. A Tehkné começa por diagnóstico para evitar proposta artificial.</p>
-          </article>
-          <article>
-            <ShieldCheck size={22} />
-            <h3>O serviço inclui sustentação?</h3>
-            <p>Pode incluir. Algumas entregas são projeto fechado; outras evoluem por sprint, manutenção ou braço técnico recorrente.</p>
-          </article>
+        <div className="service-faq-grid mosaic-grid">
+          <article><HelpCircle size={22} /><h3>O investimento é fixo?</h3><p>Alguns serviços possuem faixa inicial, mas o valor final depende de escopo, integrações, urgência, conteúdo, animações e sustentação.</p></article>
+          <article><SearchCheck size={22} /><h3>Vocês fazem diagnóstico antes?</h3><p>Sim. A Tehkné evita começar pelo código quando o problema ainda não está claro. O diagnóstico reduz retrabalho.</p></article>
+          <article><ShieldCheck size={22} /><h3>Há suporte depois da entrega?</h3><p>Sim. O projeto pode seguir com sustentação, melhorias, performance, automações e evolução contínua.</p></article>
+          <article><Sparkles size={22} /><h3>Podemos integrar IA?</h3><p>Sim, quando fizer sentido operacional. IA entra como ferramenta para ganho real, não como enfeite comercial.</p></article>
         </div>
       </section>
 
-      <ContactForm page={`Serviço: ${service.title}`} context={`interesse no serviço ${service.title}: ${service.description}`} title={`Quer contratar ${service.title}?`} description="Envie o contexto da sua demanda para transformarmos a conversa em diagnóstico, escopo e próximo passo." />
+      <ContactForm page={service.title} context={`serviço ${service.title}; ${service.description}; stack ${service.stack.join(', ')}`} title={`Quer contratar ${service.title.toLowerCase()}?`} description="Envie seu contexto para a Tehkné avaliar escopo, urgência, stack e próximos passos com mais precisão." />
 
       <section className="final-cta">
-        <div>
-          <span className="eyebrow">Próximo passo</span>
-          <h2>Vamos transformar essa demanda em plano de execução?</h2>
-          <p>Começamos entendendo contexto, objetivo, urgência, stack e o que precisa ser entregue para gerar valor real.</p>
-        </div>
-        <div className="hero-actions">
-          <a className="btn btn-primary coin" href={serviceWhatsApp} target="_blank" rel="noreferrer">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
-          <a className="btn btn-secondary" href="/servicos">Ver outros serviços <ArrowUpRight size={16} /></a>
-        </div>
+        <div><span className="eyebrow">Próximo passo</span><h2>Vamos transformar essa demanda em plano de execução.</h2><p>Conte o que você precisa criar, melhorar ou automatizar. A Tehkné organiza o caminho técnico e comercial.</p></div>
+        <div className="hero-actions"><a className="btn btn-primary coin" href={serviceWhatsApp} target="_blank" rel="noreferrer">Conversar sobre este serviço <ArrowUpRight size={16} /></a><a className="btn btn-secondary" href="/servicos">Ver todos os serviços <ArrowUpRight size={16} /></a></div>
       </section>
     </main>
   );
