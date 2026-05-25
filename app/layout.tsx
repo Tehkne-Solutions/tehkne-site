@@ -15,7 +15,7 @@ import './blog-generated-covers.css';
 import './mobile-qa-fixes.css';
 
 const siteUrl = 'https://tehknesolutions.com.br';
-const logoPath = '/images/logo-tehkne-solutions-header.png';
+const logoPath = '/images/tehkne-simbolo-isolado-logo.png';
 const absoluteLogoUrl = `${siteUrl}${logoPath}`;
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID ?? 'G-MB46DPYC6K';
 const googleSiteVerificationToken = 'sVy4pW6HtkQHV0K6ATxm5VVVJd1LcKE_8fwJmJRNEWk';
