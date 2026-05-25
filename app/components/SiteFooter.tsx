@@ -55,6 +55,11 @@ export default function SiteFooter() {
         <a href="/contato#localizacao">Campinas, SP • Brasil</a>
         <a href="/sobre">Sobre a Tehkné <ArrowUpRight size={12} /></a>
       </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="/privacidade">Política de Privacidade</a>
+        <a href="/termos-de-uso">Termos de Uso</a>
+      </div>
     </footer>
   );
 }
