@@ -7,11 +7,11 @@ export default function SiteFooter() {
   return (
     <footer className="footer section-frame">
       <div className="footer-brand">
-        <a className="brand" href="/" aria-label="Tehkné Solutions">
+        <a className="brand footer-brand-logo" href="/" aria-label="Tehkné Solutions">
           <img
             src="/images/tehkne-simbolo-isolado-logo.png"
             alt="Tehkné"
-            style={{ height: 56, display: 'block', marginBottom: 8 }}
+            className="footer-logo-img"
           />
           <div className="brand-wordmark">
             <strong>TEHKNÉ</strong>
