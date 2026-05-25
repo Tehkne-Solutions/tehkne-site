@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
+import { ArrowUpRight, ChevronDown } from 'lucide-react';
 
 const navItems = [
   ['Soluções', '/solucoes'],
@@ -54,13 +54,15 @@ export default function SiteHeader() {
 
       <button
         type="button"
-        className="mobile-menu-toggle"
+        className={`mobile-menu-toggle${mobileOpen ? ' open' : ''}`}
         aria-expanded={mobileOpen}
         aria-controls="mobile-navigation"
         aria-label={mobileOpen ? 'Fechar menu' : 'Abrir menu'}
         onClick={() => setMobileOpen((current) => !current)}
       >
-        {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+        <span className="hamburger-line" aria-hidden="true" />
+        <span className="hamburger-line" aria-hidden="true" />
+        <span className="hamburger-line" aria-hidden="true" />
       </button>
 
       <a className="btn btn-primary coin nav-cta" href={contactHref}>
@@ -73,7 +75,7 @@ export default function SiteHeader() {
         {navItems.map(([label, url]) => (
           <a key={label} href={url} onClick={() => setMobileOpen(false)}>{label}</a>
         ))}
-        <a className="btn btn-primary coin nav-cta" href={contactHref} onClick={() => setMobileOpen(false)}>
+        <a className="btn btn-primary coin nav-cta mobile-nav-cta" href={contactHref} onClick={() => setMobileOpen(false)}>
           Solicitar diagnóstico <ArrowUpRight size={16} />
         </a>
       </div>
