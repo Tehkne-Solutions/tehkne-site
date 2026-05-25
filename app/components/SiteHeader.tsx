@@ -5,6 +5,7 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 
 const navItems = [
   ['Serviços', '/servicos'],
+  ['Produtos', '/produtos'],
   ['Soluções', '/solucoes'],
   ['Portfólio', '/portfolio'],
   ['Método', '/metodo'],
