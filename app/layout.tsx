@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
 import BackToTop from './components/BackToTop';
+import CookieConsent from './components/CookieConsent';
 import CTAAnalytics from './components/CTAAnalytics';
 import FloatingContactButton from './components/FloatingContactButton';
 import RuntimeTextUpgrades from './components/RuntimeTextUpgrades';
@@ -9,6 +10,7 @@ import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 import './globals.css';
 import './contact.css';
+import './cookies.css';
 import './blog-generated-covers.css';
 
 const siteUrl = 'https://tehknesolutions.com.br';
@@ -44,7 +46,7 @@ const organizationJsonLd = {
     '@type': 'ContactPoint',
     contactType: 'sales',
     telephone: '+55 19 99893-0846',
-    availableLanguage: ['Portuguese', 'English']
+    availableLanguage: ['Portuguese', 'English', 'Spanish']
   }
 };
 
@@ -157,6 +159,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SiteFooter />
           <FloatingContactButton />
           <BackToTop />
+          <CookieConsent />
         </div>
         <Analytics />
       </body>
