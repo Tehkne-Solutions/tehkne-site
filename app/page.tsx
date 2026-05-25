@@ -51,12 +51,10 @@ const services = [
 ];
 
 const authorityMetrics = [
-  ['7+ anos', 'atuando em sites, sistemas, design, marketing, ensino e IA aplicada'],
-  ['120+', 'entregas, melhorias, páginas, automações e experiências digitais acumuladas'],
-  ['70+', 'sites WordPress, páginas e operações web criadas, ajustadas ou sustentadas'],
-  ['67+', 'repositórios mapeados entre produtos, estudos, automações, sites e laboratórios'],
-  ['30+', 'cases e experiências catalogadas entre Tehkné, UNTI, Savana, Meme e ecossistemas'],
-  ['15+', 'stacks e ferramentas usadas em projetos reais: Next.js, WordPress, PHP, Python, APIs, IA e automações']
+  ['9+ anos', 'de repertório em tecnologia, design, produto e operação digital'],
+  ['300+', 'sites, páginas e experiências digitais criadas, ajustadas ou sustentadas'],
+  ['42+', 'cases e experiências catalogadas no ecossistema Tehkné'],
+  ['24+', 'stacks e ferramentas aplicadas em projetos reais']
 ];
 
 const pricingAnchors = [
@@ -66,12 +64,10 @@ const pricingAnchors = [
 ];
 
 const proofTiles = [
-  { icon: ShieldCheck, value: '7+ anos', label: 'repertório validado', text: 'Sites, sistemas, WordPress, produto, design, marketing, ensino e IA aplicada.' },
-  { icon: Rocket, value: '120+', label: 'entregas e melhorias', text: 'Páginas, automações, ajustes, interfaces, fluxos comerciais e experiências digitais.' },
-  { icon: Layers3, value: '70+', label: 'operações WordPress', text: 'Criação, manutenção, performance, Elementor, JetEngine, temas, plugins e catálogos.' },
-  { icon: Code2, value: '67+', label: 'repositórios mapeados', text: 'Produtos, estudos, automações, sites, apps, laboratórios e bases técnicas próprias.' },
-  { icon: Orbit, value: '30+', label: 'cases catalogados', text: 'Tehkné, UNTI, Savana, Meme Digital, projetos próprios e participação técnica segura.' },
-  { icon: BrainCircuit, value: '15+', label: 'stacks e ferramentas', text: 'Next.js, React, WordPress, PHP, Python, APIs, Vercel, IA, automações e design systems.' }
+  { icon: ShieldCheck, value: '9+ anos', label: 'repertório validado', text: 'Tecnologia, design, produto, operação digital, WordPress avançado, IA aplicada e sustentação.' },
+  { icon: Rocket, value: '300+', label: 'experiências digitais', text: 'Sites, páginas, landing pages, catálogos, campanhas, interfaces e operações criadas, ajustadas ou sustentadas.' },
+  { icon: Orbit, value: '42+', label: 'cases catalogados', text: 'Experiências próprias, participação técnica segura, UNTI, Savana, Meme Digital, produtos e ecossistemas.' },
+  { icon: BrainCircuit, value: '24+', label: 'stacks e ferramentas', text: 'Next.js, React, WordPress, PHP, Python, APIs, Vercel, IA, automações, analytics e design systems.' }
 ];
 
 const operationSignals = [
