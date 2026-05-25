@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
 
 const navItems = [
+  ['Produtos', '/produtos'],
   ['Soluções', '/solucoes'],
   ['Portfólio', '/portfolio'],
   ['Método', '/metodo'],
