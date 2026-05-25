@@ -22,7 +22,7 @@ function isCTA(element: HTMLElement) {
     href.includes('/contato') ||
     href.includes('wa.me') ||
     href.includes('whatsapp') ||
-    /diagnóstico|contato|whatsapp|briefing|proposta|solicitar|agendar|quero|falar/i.test(text)
+    /diagnóstico|contato|whatsapp|briefing|proposta|solicitar|agendar|quero|falar|portfolio|portfólio|case|blog|artigo/i.test(text)
   );
 }
 
@@ -30,14 +30,24 @@ function getCTAContext(element: HTMLElement) {
   const section = element.closest('section');
   const sectionId = section?.getAttribute('id') ?? undefined;
   const heading = section?.querySelector('h1, h2, h3')?.textContent?.trim() ?? undefined;
+  const href = element.getAttribute('href') ?? undefined;
+  const text = element.textContent?.trim().replace(/\s+/g, ' ') ?? '';
+
+  let ctaIntent = 'navigation';
+  if (href?.includes('/contato') || /diagnóstico|contato|briefing|proposta|solicitar|agendar|quero|falar/i.test(text)) ctaIntent = 'lead';
+  if (href?.includes('wa.me') || href?.includes('whatsapp')) ctaIntent = 'whatsapp';
+  if (href?.includes('/portfolio') || /portf[oó]lio|case/i.test(text)) ctaIntent = 'portfolio';
+  if (href?.includes('/blog') || /blog|artigo/i.test(text)) ctaIntent = 'content';
 
   return {
-    cta_text: element.textContent?.trim().replace(/\s+/g, ' ') ?? '',
-    cta_href: element.getAttribute('href') ?? undefined,
+    cta_text: text,
+    cta_href: href,
     cta_class: element.getAttribute('class') ?? undefined,
+    cta_intent: ctaIntent,
     section_id: sectionId,
     section_heading: heading,
-    page_path: window.location.pathname
+    page_path: window.location.pathname,
+    page_url: window.location.href
   };
 }
 
@@ -62,6 +72,18 @@ export default function CTAAnalytics() {
         event_label: eventData.cta_text,
         ...eventData
       });
+
+      if (eventData.cta_intent === 'lead' || eventData.cta_intent === 'whatsapp') {
+        window.dataLayer.push({
+          event: 'generate_lead_intent',
+          ...eventData
+        });
+        window.gtag?.('event', 'generate_lead', {
+          event_category: 'conversion',
+          event_label: eventData.cta_text,
+          ...eventData
+        });
+      }
     }
 
     document.addEventListener('click', handleClick);
