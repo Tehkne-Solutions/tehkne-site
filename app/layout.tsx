@@ -12,6 +12,7 @@ import './globals.css';
 import './contact.css';
 import './cookies.css';
 import './blog-generated-covers.css';
+import './mobile-qa-fixes.css';
 
 const siteUrl = 'https://tehknesolutions.com.br';
 const logoPath = '/images/logo-tehkne-solutions-header.png';
