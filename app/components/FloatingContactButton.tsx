@@ -19,9 +19,8 @@ export default function FloatingContactButton() {
   }
 
   return (
-    <a className="floating-contact-button coin" href="/contato#contato-form" aria-label="Abrir formulário de contato Tehkné" onClick={handleClick}>
-      <MessageCircle size={22} />
-      <span>Briefing</span>
+    <a className="floating-contact-button coin icon-only" href="/contato#contato-form" aria-label="Abrir formulário de contato Tehkné" title="Contato" onClick={handleClick}>
+      <MessageCircle size={23} />
     </a>
   );
 }
