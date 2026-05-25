@@ -9,6 +9,7 @@ type LeadPayload = {
   orcamento?: string;
   prazo?: string;
   mensagem?: string;
+  website?: string;
   page?: string;
   context?: string;
   source?: string;
@@ -16,8 +17,16 @@ type LeadPayload = {
   message?: string;
 };
 
-function sanitize(value: unknown) {
-  return typeof value === 'string' ? value.trim().slice(0, 4000) : '';
+function sanitize(value: unknown, maxLength = 4000) {
+  return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
+}
+
+function hasSpamPattern(text: string) {
+  const normalized = text.toLowerCase();
+  const linkCount = (normalized.match(/https?:\/\//g) ?? []).length;
+  const repeatedChars = /(.)\1{18,}/.test(normalized);
+  const tooManyEmails = (normalized.match(/[\w.-]+@[\w.-]+\.[a-z]{2,}/g) ?? []).length > 3;
+  return linkCount > 3 || repeatedChars || tooManyEmails;
 }
 
 export async function POST(request: Request) {
@@ -27,26 +36,35 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: 'invalid_payload' }, { status: 400 });
   }
 
+  if (sanitize(body.website)) {
+    return NextResponse.json({ ok: true, skipped: 'honeypot' });
+  }
+
   const lead = {
     createdAt: sanitize(body.createdAt) || new Date().toISOString(),
-    source: sanitize(body.source) || 'site-tehkne',
-    page: sanitize(body.page),
-    context: sanitize(body.context),
-    nome: sanitize(body.nome),
-    empresa: sanitize(body.empresa),
-    email: sanitize(body.email),
-    telefone: sanitize(body.telefone),
-    servico: sanitize(body.servico),
-    orcamento: sanitize(body.orcamento),
-    prazo: sanitize(body.prazo),
+    source: sanitize(body.source, 120) || 'site-tehkne',
+    page: sanitize(body.page, 180),
+    context: sanitize(body.context, 600),
+    nome: sanitize(body.nome, 120),
+    empresa: sanitize(body.empresa, 160),
+    email: sanitize(body.email, 180),
+    telefone: sanitize(body.telefone, 80),
+    servico: sanitize(body.servico, 220),
+    orcamento: sanitize(body.orcamento, 160),
+    prazo: sanitize(body.prazo, 120),
     mensagem: sanitize(body.mensagem),
     whatsappMessage: sanitize(body.message),
     userAgent: request.headers.get('user-agent') ?? '',
-    referer: request.headers.get('referer') ?? ''
+    referer: request.headers.get('referer') ?? '',
+    ipHint: request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? ''
   };
 
   if (!lead.nome || !lead.servico || !lead.mensagem) {
     return NextResponse.json({ ok: false, error: 'missing_required_fields' }, { status: 400 });
+  }
+
+  if (hasSpamPattern(`${lead.nome}\n${lead.empresa}\n${lead.email}\n${lead.mensagem}`)) {
+    return NextResponse.json({ ok: false, error: 'spam_pattern' }, { status: 422 });
   }
 
   const webhookUrl = process.env.LEADS_WEBHOOK_URL;
