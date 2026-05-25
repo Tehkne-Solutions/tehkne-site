@@ -2,7 +2,7 @@ import { ArrowUpRight } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import { whatsAppHref, whatsappMessages } from '../contact';
 import PortfolioGrid from './PortfolioGrid';
-import { portfolioCases, portfolioStats } from './portfolio-data';
+import { portfolioCases } from './portfolio-data';
 import { savanaProjectCases } from './savana-project-cases';
 import { memeProjectCases } from './meme-project-cases';
 
@@ -16,10 +16,10 @@ function uniqueCasesBySlug<T extends { slug: string }>(cases: T[]) {
 
 const allPortfolioCases = uniqueCasesBySlug([...portfolioCases, ...savanaProjectCases, ...memeProjectCases]);
 const allPortfolioStats = [
-  portfolioStats[0],
-  portfolioStats[1],
-  [`${allPortfolioCases.length}+`, 'cases e experiências catalogadas'],
-  portfolioStats[3]
+  ['9+ anos', 'de repertório em tecnologia, design, produto e operação digital'],
+  ['300+', 'sites, páginas e experiências digitais criadas, ajustadas ou sustentadas'],
+  ['42+', 'cases e experiências catalogadas no ecossistema Tehkné'],
+  ['24+', 'stacks e ferramentas aplicadas em projetos reais']
 ];
 
 export const metadata = {
@@ -49,7 +49,7 @@ export default function PortfolioPage() {
           <span className="eyebrow">Portfólio e prova de execução</span>
           <h1>Repertório real para quem precisa contratar tecnologia com menos risco.</h1>
           <p>
-            A Tehkné reúne experiência prática em mais de 70 sites WordPress criados ou melhorados, projetos próprios, cases de agência, plugins, temas, apps, jogos, automações, IA e conteúdos didáticos/comerciais. Aqui o portfólio mostra contexto, stack, tipo de entrega e resultado esperado — não apenas telas bonitas.
+            A Tehkné reúne experiência prática em 300+ sites, páginas e experiências digitais criadas, ajustadas ou sustentadas, além de produtos próprios, cases de agência, plugins, temas, apps, jogos, automações, IA e conteúdos didáticos/comerciais. Aqui o portfólio mostra contexto, stack, tipo de entrega e resultado esperado — não apenas telas bonitas.
           </p>
           <div className="hero-actions">
             <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Quero algo parecido <ArrowUpRight size={16} /></a>
@@ -71,10 +71,10 @@ export default function PortfolioPage() {
           </div>
         </div>
         <div className="solutions-proof-grid portfolio-proof-grid">
-          <article><h3>70+ sites WordPress</h3><p>Criação, melhoria, manutenção, performance, Elementor, JetEngine, temas, plugins, filtros, catálogos e páginas comerciais.</p></article>
-          <article><h3>Produto e código</h3><p>Projetos em Next.js, React, PHP, APIs, automações, repositórios próprios, dashboards e produtos internos.</p></article>
-          <article><h3>Apps e jogos</h3><p>Experiências com React Native, Flutter, educação digital, game design, lore, sistemas vivos e produtos interativos.</p></article>
-          <article><h3>Conteúdo e estratégia</h3><p>Criação de materiais didáticos, comerciais, documentação, apresentações, copy, arquitetura de informação e vendas.</p></article>
+          <article><h3>300+ experiências digitais</h3><p>Sites, landing pages, WordPress, catálogos, interfaces, campanhas, páginas comerciais e operações web criadas, ajustadas ou sustentadas.</p></article>
+          <article><h3>96+ bases técnicas</h3><p>Projetos em Next.js, React, PHP, APIs, automações, repositórios próprios, dashboards, produtos internos, estudos e laboratórios.</p></article>
+          <article><h3>42+ cases catalogados</h3><p>Experiências próprias, participação técnica segura, ecossistemas parceiros, UNTI, Savana, Meme Digital, apps, jogos e produtos interativos.</p></article>
+          <article><h3>24+ stacks aplicadas</h3><p>Criação de materiais didáticos, comerciais, documentação, apresentações, copy, arquitetura de informação, IA, analytics e integrações.</p></article>
         </div>
       </section>
 
@@ -105,7 +105,7 @@ export default function PortfolioPage() {
 
       <ContactForm
         page="Portfólio"
-        context="mais de 70 sites WordPress, projetos próprios, cases de agência, apps, jogos, IA, automações e cases semelhantes aos apresentados no portfólio"
+        context="300+ sites, páginas e experiências digitais, produtos próprios, cases de agência, apps, jogos, IA, automações e cases semelhantes aos apresentados no portfólio"
         title="Quer criar algo parecido com os cases da Tehkné?"
         description="Use este bloco para organizar seu interesse e chamar a Tehkné no WhatsApp com contexto de portfólio."
       />
