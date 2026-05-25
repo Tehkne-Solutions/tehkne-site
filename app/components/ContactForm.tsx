@@ -20,6 +20,7 @@ type LeadFormState = {
   orcamento: string;
   prazo: string;
   mensagem: string;
+  website: string;
 };
 
 const initialForm: LeadFormState = {
@@ -30,7 +31,8 @@ const initialForm: LeadFormState = {
   servico: '',
   orcamento: '',
   prazo: '',
-  mensagem: ''
+  mensagem: '',
+  website: ''
 };
 
 export default function ContactForm({ page, context, title = 'Vamos transformar sua demanda em plano de execução?', description = 'Preencha o formulário para a Tehkné receber um briefing mais completo. Os dados podem alimentar planilha, CRM e uma proposta mais precisa.' }: ContactFormProps) {
@@ -48,7 +50,7 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
       `E-mail: ${form.email || 'não informado'}`,
       `Telefone: ${form.telefone || 'não informado'}`,
       `Serviço: ${form.servico || 'não selecionado'}`,
-      `Orçamento estimado: ${form.orcamento || 'não informado'}`,
+      `Perfil de investimento: ${form.orcamento || 'não informado'}`,
       `Prazo/urgência: ${form.prazo || 'não informado'}`,
       `Mensagem: ${form.mensagem || 'não informada'}`
     ].join('\n');
@@ -60,14 +62,42 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
     setForm((current) => ({ ...current, [field]: value }));
   }
 
+  function trackLeadForm(eventName: string) {
+    window.dataLayer = window.dataLayer ?? [];
+    window.dataLayer.push({
+      event: eventName,
+      page,
+      context,
+      service: form.servico,
+      investment_profile: form.orcamento,
+      deadline: form.prazo,
+      page_path: window.location.pathname
+    });
+    window.gtag?.('event', eventName, {
+      event_category: 'lead',
+      event_label: form.servico || page,
+      page,
+      service: form.servico,
+      investment_profile: form.orcamento,
+      deadline: form.prazo
+    });
+  }
+
   function openWhatsApp() {
     window.open(href, '_blank', 'noopener,noreferrer');
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (form.website) {
+      setStatus('saved');
+      return;
+    }
+
     setStatus('sending');
     setShowConfirmation(false);
+    trackLeadForm('lead_form_submit');
 
     const payload = {
       ...form,
@@ -88,10 +118,12 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
       if (!response.ok) throw new Error('Lead not saved');
       setStatus('saved');
       setShowConfirmation(true);
+      trackLeadForm('lead_form_saved');
       openWhatsApp();
     } catch {
       setStatus('error');
       setShowConfirmation(true);
+      trackLeadForm('lead_form_fallback_whatsapp');
       openWhatsApp();
     }
   }
@@ -109,6 +141,10 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
       </div>
 
       <form className="contact-form-card" onSubmit={handleSubmit}>
+        <label className="form-honeypot" aria-hidden="true">
+          Website
+          <input name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={(event) => updateField('website', event.target.value)} />
+        </label>
         <label>
           Nome
           <input name="nome" value={form.nome} onChange={(event) => updateField('nome', event.target.value)} placeholder="Seu nome" required />
@@ -142,13 +178,13 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
         </label>
         <div className="contact-form-row">
           <label>
-            Orçamento estimado
+            Perfil de investimento
             <select name="orcamento" value={form.orcamento} onChange={(event) => updateField('orcamento', event.target.value)}>
-              <option value="">Selecione uma faixa</option>
-              <option>R$ 1.600 a R$ 3.000</option>
-              <option>R$ 3.000 a R$ 6.000</option>
-              <option>R$ 6.000 a R$ 12.000</option>
-              <option>R$ 12.000+</option>
+              <option value="">Selecione o perfil</option>
+              <option>Projeto enxuto com escopo fechado</option>
+              <option>Projeto premium com maior profundidade</option>
+              <option>Sprint técnica sob diagnóstico</option>
+              <option>Sustentação ou projeto avançado sob proposta</option>
               <option>Ainda não sei</option>
             </select>
           </label>
