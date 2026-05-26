@@ -4,14 +4,14 @@ import styles from './products.module.css';
 import { productPages } from './product-data';
 
 export const metadata: Metadata = {
-  title: 'Produtos Tehkné | Hub de produtos digitais próprios',
+  title: 'Produtos Tehkné | WordPress, CRM, Delivery, automações e operação digital',
   description:
-    'Conheça os produtos próprios da Tehkné: WP Business Hub, Flow WP, CRM WP e Integrações WP para gestão, vendas, automação e operação em WordPress.',
+    'Conheça os produtos próprios da Tehkné: WP Business Hub, Delivery WP, Flow WP, CRM WP e Integrações WP para vendas, pedidos, gestão, automação e operação em WordPress.',
   alternates: { canonical: '/produtos' },
   openGraph: {
-    title: 'Produtos Tehkné | Soluções próprias para operação digital',
+    title: 'Produtos Tehkné | Soluções próprias para vendas e operação digital',
     description:
-      'Use o Hub completo ou escolha produtos individuais: WP Business Hub, Flow WP, CRM WP e Integrações WP.',
+      'Use o Hub completo ou escolha produtos individuais: WP Business Hub, Delivery WP, Flow WP, CRM WP e Integrações WP.',
     url: '/produtos',
     type: 'website',
     images: [{ url: '/images/products/tehkne-wp-business-hub-hero.svg', width: 1200, height: 675, alt: 'Produtos Tehkné' }]
@@ -19,7 +19,8 @@ export const metadata: Metadata = {
 };
 
 const comparison = [
-  ['WP Business Hub', 'Ecossistema completo', 'Flow + CRM + Integrações em um ambiente único.'],
+  ['WP Business Hub', 'Ecossistema completo', 'Flow + CRM + Integrações + módulos comerciais em um ambiente único.'],
+  ['Delivery WP', 'Pedidos e cardápio digital', 'Produtos, categorias, carrinho, dados do cliente e pedido formatado no WhatsApp.'],
   ['Flow WP', 'Gestão operacional', 'Processos, tarefas, responsáveis, prazos e rotinas.'],
   ['CRM WP', 'Vendas e relacionamento', 'Leads, pipeline, histórico, follow-up e conversão.'],
   ['Integrações WP', 'Conectividade', 'Formulários, webhooks, logs, APIs e roteamento de dados.']
@@ -31,13 +32,13 @@ export default function ProdutosPage() {
       <section className={`${styles.hero} section-frame`}>
         <div className={styles.heroCopy}>
           <span className="eyebrow">Produtos Tehkné • Ecossistema próprio</span>
-          <h1>Nossos produtos para simplificar <span>operação, vendas e integrações.</span></h1>
+          <h1>Nossos produtos para simplificar <span>vendas, pedidos, gestão e integrações.</span></h1>
           <p>
-            A Tehkné cria soluções próprias para WordPress que reduzem custo operacional, aumentam rastreabilidade e ajudam empresas a organizar processos, leads e automações com baixa manutenção.
+            A Tehkné cria soluções próprias para WordPress que reduzem custo operacional, aumentam rastreabilidade e ajudam empresas a organizar pedidos, leads, processos e automações com baixa manutenção.
           </p>
           <div className={styles.heroActions}>
             <a className="btn btn-primary coin" href="#produtos">Conhecer produtos <ArrowUpRight size={16} /></a>
-            <a className="btn btn-secondary" href="/contato#contato-form">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
+            <a className="btn btn-secondary" href="/produtos/delivery-wp">Ver Delivery WP <ArrowUpRight size={16} /></a>
           </div>
         </div>
         <div className={styles.heroVisual}>
@@ -48,10 +49,10 @@ export default function ProdutosPage() {
       <section className={`${styles.intro} section-frame compact`}>
         <div>
           <span className="eyebrow">Escolha flexível</span>
-          <h2>Use o Hub completo ou escolha apenas o produto que sua equipe precisa.</h2>
+          <h2>Use o Hub completo ou escolha apenas o produto que sua operação precisa agora.</h2>
         </div>
         <p>
-          O WP Business Hub também é um produto próprio. Ele representa a visão integrada da linha, enquanto Flow WP, CRM WP e Integrações WP podem ser vendidos e implementados separadamente.
+          O WP Business Hub representa a visão integrada da linha. Delivery WP, Flow WP, CRM WP e Integrações WP podem ser vendidos separadamente ou conectados em uma operação maior conforme a empresa evolui.
         </p>
       </section>
 
@@ -91,7 +92,7 @@ export default function ProdutosPage() {
           <span className="eyebrow">Comparativo simples</span>
           <h2>O Hub é a soma estratégica. Os produtos individuais resolvem dores específicas.</h2>
           <p>
-            Essa estrutura facilita decisão comercial: o cliente pode começar por uma necessidade clara e evoluir para o ecossistema completo quando fizer sentido.
+            Essa estrutura facilita decisão comercial: o cliente pode começar por uma necessidade clara, como pedidos, CRM, gestão ou integrações, e evoluir para o ecossistema completo quando fizer sentido.
           </p>
         </div>
         <div className={styles.comparisonGrid}>
@@ -109,9 +110,9 @@ export default function ProdutosPage() {
       <section className={`${styles.comingSoon} section-frame`}>
         <div>
           <span className="eyebrow">O que vem por aí</span>
-          <h2>Novos produtos estão em desenvolvimento.</h2>
+          <h2>Novos módulos estão em desenvolvimento.</h2>
           <p>
-            A missão da Tehkné é ampliar continuamente seu ecossistema de produtos próprios para WordPress, automações, IA, governança e operação digital.
+            A missão da Tehkné é ampliar continuamente seu ecossistema de produtos próprios para WordPress, delivery, automações, IA, governança e operação digital.
           </p>
         </div>
         <div className={styles.soonCard}>
@@ -126,10 +127,10 @@ export default function ProdutosPage() {
         <span className="eyebrow">Comece pelo diagnóstico</span>
         <h2>Escolha o produto ideal ou comece com o Hub completo.</h2>
         <p>
-          A Tehkné avalia seu cenário atual, identifica gargalos de gestão, CRM, captação e integrações, e recomenda o melhor caminho de implementação.
+          A Tehkné avalia seu cenário atual, identifica gargalos de pedidos, gestão, CRM, captação e integrações, e recomenda o melhor caminho de implementação.
         </p>
         <div className={styles.heroActions}>
-          <a className="btn btn-primary coin" href="/produtos/wp-business-hub">Quero o WP Business Hub <ArrowUpRight size={16} /></a>
+          <a className="btn btn-primary coin" href="/produtos/delivery-wp">Quero o Delivery WP <ArrowUpRight size={16} /></a>
           <a className="btn btn-secondary" href="/contato#contato-form">Falar com especialista <ArrowUpRight size={16} /></a>
         </div>
       </section>
