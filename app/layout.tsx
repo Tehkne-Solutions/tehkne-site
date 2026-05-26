@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
 import BackToTop from './components/BackToTop';
-import ConditionalFaqSections from './components/ConditionalFaqSections';
 import CookieConsent from './components/CookieConsent';
 import CTAAnalytics from './components/CTAAnalytics';
 import FloatingContactButton from './components/FloatingContactButton';
@@ -162,7 +161,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <div className="background-grid" />
           <SiteHeader />
           {children}
-          <ConditionalFaqSections />
           <SiteFooter />
           <FloatingContactButton />
           <BackToTop />
