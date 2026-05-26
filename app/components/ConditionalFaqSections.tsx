@@ -1,6 +1,5 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import { ArrowUpRight, HelpCircle } from 'lucide-react';
 
 const homeFaq = [
@@ -69,7 +68,7 @@ const productFaq = [
   }
 ];
 
-function FaqSection({ type }: { type: 'home' | 'products' }) {
+export function FaqSection({ type }: { type: 'home' | 'products' }) {
   const faq = type === 'home' ? homeFaq : productFaq;
   const heading = type === 'home' ? 'Dúvidas frequentes antes de contratar tecnologia.' : 'Dúvidas frequentes sobre os produtos Tehkné.';
   const eyebrow = type === 'home' ? 'FAQ geral' : 'FAQ de produtos';
@@ -100,11 +99,6 @@ function FaqSection({ type }: { type: 'home' | 'products' }) {
   );
 }
 
-export default function ConditionalFaqSections() {
-  const pathname = usePathname();
-
-  if (pathname === '/') return <FaqSection type="home" />;
-  if (pathname === '/produtos' || pathname.startsWith('/produtos/')) return <FaqSection type="products" />;
-
-  return null;
+export default function ConditionalFaqSections({ type }: { type: 'home' | 'products' }) {
+  return <FaqSection type={type} />;
 }
