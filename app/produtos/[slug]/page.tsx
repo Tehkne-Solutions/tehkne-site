@@ -9,6 +9,14 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+const siteUrl = 'https://tehknesolutions.com.br';
+
+const productFaq = [
+  ['Posso contratar apenas um produto ou preciso do Hub completo?', 'Pode contratar separadamente. Flow WP, CRM WP e Integrações WP funcionam como produtos individuais, mas também podem evoluir para o WP Business Hub completo.'],
+  ['O produto exige muita manutenção?', 'A linha WP foi pensada para baixa manutenção, arquitetura modular e evolução por fases. Sustentação recorrente pode ser recomendada para operação, segurança e melhorias.'],
+  ['Dá para integrar formulários, WhatsApp, planilhas e APIs?', 'Sim. A camada de integrações pode receber dados, registrar logs, normalizar payloads e enviar informações para CRM, Flow, planilhas, webhooks ou APIs.']
+];
+
 export function generateStaticParams() {
   return productPages.map((product) => ({ slug: product.slug }));
 }
@@ -38,11 +46,59 @@ export default async function ProductDetailPage({ params }: PageProps) {
   const product = getProductPage(slug);
   if (!product) notFound();
 
-  const Icon = product.icon;
   const otherProducts = productPages.filter((item) => item.slug !== product.slug).slice(0, 3);
+  const pageUrl = `${siteUrl}/produtos/${product.slug}`;
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'SoftwareApplication',
+        name: product.title,
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'WordPress',
+        description: product.summary,
+        url: pageUrl,
+        image: `${siteUrl}${product.image}`,
+        publisher: {
+          '@type': 'Organization',
+          name: 'Tehkné Solutions',
+          url: siteUrl
+        },
+        offers: {
+          '@type': 'Offer',
+          availability: 'https://schema.org/InStock',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            priceCurrency: 'BRL',
+            description: 'Sob diagnóstico e escopo personalizado'
+          }
+        }
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+          { '@type': 'ListItem', position: 2, name: 'Produtos', item: `${siteUrl}/produtos` },
+          { '@type': 'ListItem', position: 3, name: product.title, item: pageUrl }
+        ]
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: productFaq.map(([question, answer]) => ({
+          '@type': 'Question',
+          name: question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: answer
+          }
+        }))
+      }
+    ]
+  };
 
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <section className={`${styles.hero} section-frame`}>
         <div className={styles.heroCopy}>
           <nav className="service-breadcrumb" aria-label="Breadcrumb">
