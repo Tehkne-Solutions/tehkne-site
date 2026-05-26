@@ -4,13 +4,20 @@ import { useState } from 'react';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
 
 const navItems = [
-  ['Produtos', '/produtos'],
   ['Soluções', '/solucoes'],
   ['Portfólio', '/portfolio'],
   ['Método', '/metodo'],
   ['Blog', '/blog'],
   ['Sobre', '/sobre'],
   ['Contato', '/contato']
+];
+
+const productMenu = [
+  ['Todos os produtos', '/produtos'],
+  ['WP Business Hub', '/produtos/wp-business-hub'],
+  ['Flow WP', '/produtos/flow-wp'],
+  ['CRM WP', '/produtos/crm-wp'],
+  ['Integrações WP', '/produtos/integracoes-wp']
 ];
 
 const serviceMenu = [
@@ -48,6 +55,12 @@ export default function SiteHeader() {
             {serviceMenu.map(([label, url]) => <a key={label} href={url}>{label}</a>)}
           </div>
         </div>
+        <div className="nav-dropdown">
+          <a href="/produtos" className="nav-dropdown-trigger">Produtos <ChevronDown size={13} /></a>
+          <div className="nav-dropdown-menu" aria-label="Submenu de produtos">
+            {productMenu.map(([label, url]) => <a key={label} href={url}>{label}</a>)}
+          </div>
+        </div>
         {navItems.map(([label, url]) => (
           <a key={label} href={url}>{label}</a>
         ))}
@@ -73,6 +86,8 @@ export default function SiteHeader() {
       <div id="mobile-navigation" className={`mobile-nav${mobileOpen ? ' open' : ''}`} role="menu">
         <a href="/servicos" onClick={() => setMobileOpen(false)}>Serviços</a>
         {serviceMenu.map(([label, url]) => <a key={label} href={url} onClick={() => setMobileOpen(false)}>— {label}</a>)}
+        <a href="/produtos" onClick={() => setMobileOpen(false)}>Produtos</a>
+        {productMenu.slice(1).map(([label, url]) => <a key={label} href={url} onClick={() => setMobileOpen(false)}>— {label}</a>)}
         {navItems.map(([label, url]) => (
           <a key={label} href={url} onClick={() => setMobileOpen(false)}>{label}</a>
         ))}
