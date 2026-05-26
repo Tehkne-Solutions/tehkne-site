@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import ContactForm from './components/ContactForm';
 import ClientProofSection from './components/ClientProofSection';
+import { FaqSection } from './components/ConditionalFaqSections';
 import { portfolioCases } from './portfolio/portfolio-data';
 import { getPortfolioCaseCardImage } from './portfolio/case-card-images';
 import { blogPosts } from './blog/blog-data';
@@ -380,6 +381,8 @@ export default function Home() {
           ))}
         </div>
       </motion.section>
+
+      <FaqSection type="home" />
 
       <motion.section id="contato" className="final-cta" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
         <div>
