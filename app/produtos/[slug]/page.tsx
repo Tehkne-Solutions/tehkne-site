@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronRight, Home, Layers3, Workflow } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, ChevronRight, Home, Layers3, Workflow } from 'lucide-react';
 import ContactForm from '../../components/ContactForm';
+import { FaqSection } from '../../components/ConditionalFaqSections';
 import styles from '../products.module.css';
 import { getProductPage, productPages } from '../product-data';
 
@@ -99,16 +100,15 @@ export default async function ProductDetailPage({ params }: PageProps) {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      <section className={`${styles.hero} section-frame`}>
+      <section className={`${styles.hero} section-frame product-detail-hero`}>
         <div className={styles.heroCopy}>
-          <nav className="service-breadcrumb" aria-label="Breadcrumb">
+          <nav className="service-breadcrumb product-breadcrumb" aria-label="Breadcrumb">
             <a href="/"><Home size={14} /> Home</a>
             <ChevronRight size={14} />
             <a href="/produtos">Produtos</a>
             <ChevronRight size={14} />
             <span aria-current="page">{product.title}</span>
           </nav>
-          <a className="blog-back" href="/produtos"><ArrowLeft size={15} /> Voltar para produtos</a>
           <span className="eyebrow">{product.eyebrow}</span>
           <h1>{product.title}: <span>{product.subtitle}</span></h1>
           <p>{product.microcopy} {product.summary}</p>
@@ -211,6 +211,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </a>
         </div>
       </section>
+
+      <FaqSection type="products" />
 
       <ContactForm
         page={`Produto: ${product.title}`}
