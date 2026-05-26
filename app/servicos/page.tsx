@@ -6,11 +6,11 @@ const serviceCatalog = [
   {
     icon: Gauge,
     slug: 'site-institucional-alta-performance',
-    eyebrow: 'Serviço 01',
+    eyebrow: 'Site que vende melhor',
     title: 'Site institucional de alta performance',
-    short: 'Para empresas que precisam de presença digital premium, rápida, clara e preparada para conversão.',
-    pain: 'Seu site precisa comunicar valor, carregar bem, organizar conteúdo e gerar contato qualificado sem parecer genérico.',
-    deliverables: ['Arquitetura de páginas', 'UI premium responsiva', 'SEO técnico inicial', 'Performance e deploy', 'Formulários e WhatsApp', 'Base para evolução'],
+    short: 'Para empresas que precisam sair do “site bonito” e criar uma presença digital clara, rápida e preparada para gerar contato.',
+    pain: 'Seu site precisa explicar valor em poucos segundos, carregar bem, organizar conteúdo e conduzir o visitante para o próximo passo.',
+    deliverables: ['Arquitetura de páginas', 'UI premium responsiva', 'SEO técnico inicial', 'Performance e publicação', 'Formulários e WhatsApp', 'Base para evolução'],
     bestFor: ['Empresas em crescimento', 'Marcas premium', 'Clínicas', 'Indústrias', 'Serviços B2B'],
     relatedCases: ['Beggin', 'Vacina One', 'Human Clinic'],
     commercial: 'Projeto sob diagnóstico',
@@ -20,24 +20,24 @@ const serviceCatalog = [
   {
     icon: Code2,
     slug: 'plataforma-web-sob-medida',
-    eyebrow: 'Serviço 02',
+    eyebrow: 'Sistema para organizar',
     title: 'Plataforma web sob medida',
-    short: 'Para transformar processos, produtos e operações em sistemas digitais reais, com áreas logadas, dados e módulos próprios.',
-    pain: 'Quando planilhas, mensagens e ferramentas soltas já não sustentam a operação, a solução precisa virar plataforma.',
+    short: 'Para transformar processos, planilhas e rotinas soltas em um sistema digital com dados, módulos e controle.',
+    pain: 'Quando mensagens, planilhas e ferramentas desconectadas já não sustentam a operação, a solução precisa virar plataforma.',
     deliverables: ['Mapeamento de requisitos', 'Modelagem de dados', 'Dashboard e módulos', 'Área logada', 'Permissões', 'Deploy e documentação'],
     bestFor: ['Produtos digitais', 'Operações internas', 'SaaS inicial', 'Dashboards', 'Portais privados'],
     relatedCases: ['Tehkné Flow', 'UNTI Digital', 'HNK Agent'],
-    commercial: 'Projeto sob orçamento',
+    commercial: 'Projeto sob escopo',
     cta: 'Planejar plataforma',
     stack: ['Next.js', 'APIs', 'PostgreSQL', 'Prisma', 'GitHub']
   },
   {
     icon: Network,
     slug: 'integracoes-crm-erp-apis',
-    eyebrow: 'Serviço 03',
+    eyebrow: 'Ferramentas conversando',
     title: 'Integrações com CRM, ERP e APIs',
     short: 'Para conectar formulários, catálogos, sistemas internos, CRMs, ERPs, automações e bases de dados.',
-    pain: 'A operação perde velocidade quando informação importante fica presa em ferramentas que não conversam entre si.',
+    pain: 'A operação perde velocidade quando informação importante fica presa em sistemas que não conversam entre si.',
     deliverables: ['Diagnóstico de integrações', 'Mapeamento de fluxos', 'APIs e webhooks', 'Automação entre ferramentas', 'Validação de dados', 'Documentação técnica'],
     bestFor: ['Comercial e vendas', 'Catálogos', 'Operações com CRM', 'Sistemas legados', 'Automação interna'],
     relatedCases: ['Savol Seminovos', 'Auto Shopping Tiquatira', 'Conect 7G'],
@@ -48,7 +48,7 @@ const serviceCatalog = [
   {
     icon: ShieldCheck,
     slug: 'governanca-seguranca-sustentacao',
-    eyebrow: 'Serviço 04',
+    eyebrow: 'Projeto vivo depois do deploy',
     title: 'Governança, segurança e sustentação',
     short: 'Para manter sites, sistemas e operações digitais vivos, estáveis, organizados e prontos para evoluir.',
     pain: 'Depois do deploy, projetos sem dono técnico acumulam erros, lentidão, risco, dependência e retrabalho.',
@@ -62,9 +62,9 @@ const serviceCatalog = [
   {
     icon: Building2,
     slug: 'white-label-tecnico-agencias',
-    eyebrow: 'Serviço 05',
+    eyebrow: 'Braço técnico para vender mais',
     title: 'White label técnico para agências',
-    short: 'Para agências, estúdios e operações comerciais que precisam de braço técnico confiável sem montar time interno completo.',
+    short: 'Para agências, estúdios e operações comerciais que precisam entregar mais sem montar time técnico completo.',
     pain: 'Agências vendem bem, mas podem travar quando falta arquitetura, desenvolvimento, manutenção, automação ou integração técnica.',
     deliverables: ['Execução técnica em parceria', 'Landing pages e sites', 'WordPress avançado', 'Next.js e integrações', 'Suporte evolutivo', 'Comunicação por sprint'],
     bestFor: ['Agências digitais', 'Estúdios de design', 'Operações comerciais', 'Times de marketing', 'Parceiros white label'],
@@ -76,10 +76,10 @@ const serviceCatalog = [
 ];
 
 const audiences = [
-  ['Empresas', 'Sites premium, plataformas internas, integrações, governança e sustentação.'],
-  ['Agências', 'Execução técnica white label, WordPress, landing pages, integrações e suporte.'],
-  ['Operações em crescimento', 'Automação, dashboards, processos, CRM, ERP e melhoria contínua.'],
-  ['Produtos digitais', 'MVP, roadmap técnico, UX, sistema, validação, deploy e evolução.']
+  ['Empresas', 'Sites premium, sistemas internos, integrações, manutenção e evolução contínua.'],
+  ['Agências', 'Execução técnica white label, WordPress, landing pages, integrações e suporte confiável.'],
+  ['Operações em crescimento', 'Menos planilha, menos retrabalho, mais controle de processos, CRM, dados e rotinas.'],
+  ['Produtos digitais', 'MVP, roadmap técnico, UX, sistema, validação, publicação e evolução por fases.']
 ];
 
 const comparison = [
@@ -88,6 +88,13 @@ const comparison = [
   ['Quero conectar ferramentas', 'Integrações CRM/ERP/APIs'],
   ['Quero manter e evoluir', 'Governança, segurança e sustentação'],
   ['Sou agência/parceiro', 'White label técnico para agências']
+];
+
+const servicesMetrics = [
+  ['05', 'serviços principais para contratar com clareza'],
+  ['300+', 'sites, páginas e experiências digitais criadas ou evoluídas'],
+  ['96+', 'bases técnicas, repositórios, estudos e laboratórios mapeados'],
+  ['GIP', 'método para diagnóstico, arquitetura, execução e evolução']
 ];
 
 export const metadata = {
@@ -103,8 +110,8 @@ export default function ServicosPage() {
       <section className="section-frame services-hero">
         <div className="section-heading services-hero-copy">
           <span className="eyebrow">Catálogo de serviços</span>
-          <h1>Serviços claros para transformar demanda digital em execução real.</h1>
-          <p>Esta página organiza o que a Tehkné entrega como serviço. Produtos próprios terão uma página separada; aqui o foco é contratação, diagnóstico, arquitetura, desenvolvimento, integração e sustentação.</p>
+          <h1>Serviços para vender melhor, organizar processos e manter sua operação evoluindo.</h1>
+          <p>Esta página mostra como a Tehkné pode ajudar quando sua empresa precisa criar um site melhor, organizar uma operação, conectar ferramentas, sustentar um projeto ou contar com braço técnico confiável.</p>
           <div className="hero-actions">
             <a className="btn btn-primary coin" href="#servicos-lista">Ver serviços <ArrowUpRight size={16} /></a>
             <a className="btn btn-secondary" href="/contato#contato-form">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
@@ -112,23 +119,20 @@ export default function ServicosPage() {
         </div>
         <div className="services-hero-panel" aria-hidden="true">
           <div className="services-radar-core"><Sparkles size={34} /></div>
-          {['Sites', 'Plataformas', 'Integrações', 'Governança', 'White label'].map((item) => <span key={item}>{item}</span>)}
+          {['Sites', 'Sistemas', 'Integrações', 'Sustentação', 'Agências'].map((item) => <span key={item}>{item}</span>)}
         </div>
       </section>
 
       <section className="metrics section-frame compact">
-        <div><strong>05</strong><span>serviços principais para contratação</span></div>
-        <div><strong>70+</strong><span>experiências web/WordPress acumuladas</span></div>
-        <div><strong>67+</strong><span>repositórios mapeados no inventário técnico</span></div>
-        <div><strong>GIP</strong><span>método de descoberta, arquitetura e evolução</span></div>
+        {servicesMetrics.map(([value, label]) => <div key={label}><strong>{value}</strong><span>{label}</span></div>)}
       </section>
 
       <section className="section-frame services-audience-section">
         <div className="section-heading inline">
           <div>
             <span className="eyebrow">Escolha por contexto</span>
-            <h2>O ponto de entrada muda conforme o tipo de operação.</h2>
-            <p>A Tehkné pode atuar como software house, estúdio de produto, braço técnico de agência ou sustentação evolutiva.</p>
+            <h2>O ponto de entrada muda conforme o tipo de problema.</h2>
+            <p>A Tehkné pode entrar como software house, estúdio de produto, braço técnico de agência ou sustentação evolutiva. O objetivo é reduzir improviso e criar um caminho claro.</p>
           </div>
         </div>
         <div className="services-audience-grid">
@@ -139,7 +143,7 @@ export default function ServicosPage() {
       <section id="servicos-lista" className="services-list">
         {serviceCatalog.map((service, index) => {
           const Icon = service.icon;
-          const serviceWhatsApp = whatsAppHref(`Olá, Tehkné! Vim pela página de Serviços e quero conversar sobre: ${service.title}. Meu objetivo é entender escopo, investimento, prazo e próximos passos.`);
+          const serviceWhatsApp = whatsAppHref(`Olá, Tehkné! Vim pela página de Serviços e quero conversar sobre: ${service.title}. Meu objetivo é entender escopo, prazo e próximos passos.`);
           return (
             <section className="section-frame service-offer-section" id={service.slug} key={service.slug}>
               <div className="service-offer-heading">
@@ -202,8 +206,8 @@ export default function ServicosPage() {
         <div className="section-heading inline">
           <div>
             <span className="eyebrow">Como contratamos com segurança</span>
-            <h2>Sem preço genérico para problema complexo.</h2>
-            <p>Os serviços são tratados como projeto sob diagnóstico. Isso evita prometer escopo errado, preço artificial ou solução que não resolve a operação.</p>
+            <h2>Sem preço genérico para problema que precisa de diagnóstico.</h2>
+            <p>Cada serviço nasce de uma leitura simples: o que precisa vender melhor, o que precisa organizar, o que precisa conectar e o que precisa continuar funcionando depois da entrega.</p>
           </div>
         </div>
         <div className="solutions-proof-grid">
