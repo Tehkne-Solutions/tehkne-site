@@ -1,4 +1,4 @@
-import { Boxes, ClipboardList, LineChart, PlugZap } from 'lucide-react';
+import { Boxes, ClipboardList, LineChart, PlugZap, ShoppingCart } from 'lucide-react';
 
 export const productPages = [
   {
@@ -68,6 +68,40 @@ export const productPages = [
     features: ['Endpoint REST para entrada de dados', 'Webhooks e entrega para sistemas externos', 'Logs operacionais e chaves de integração', 'Roteamento para CRM, Flow e planilhas'],
     useCases: ['Sites que precisam enviar leads para múltiplos destinos.', 'Operações que dependem de planilhas e querem rastreabilidade.', 'Empresas que precisam conectar WordPress com ferramentas externas.'],
     hubNote: 'Integrações WP é a camada que conecta os produtos e permite o WP Business Hub funcionar como operação.'
+  },
+  {
+    slug: 'delivery-wp',
+    icon: ShoppingCart,
+    eyebrow: 'Produto Tehkné • Pedidos e cardápio digital',
+    title: 'Tehkné Delivery WP',
+    subtitle: 'Sistema de pedidos e cardápio digital para WordPress.',
+    microcopy: 'Venda direto pelo seu site, sem aplicativo pesado e sem comissão por pedido.',
+    summary: 'Transforme o site do negócio em uma central de pedidos simples, rápida e conectada ao WhatsApp, com produtos, categorias, carrinho, dados do cliente e pedido formatado automaticamente.',
+    image: '/images/products/tehkne-delivery-wp-product.svg',
+    cta: 'Quero meu Delivery WP',
+    secondaryCta: 'Ver fluxo de pedido',
+    accent: 'cyan',
+    benefits: [
+      'Venda direto pelo site sem depender apenas de marketplaces ou aplicativos externos.',
+      'Organize produtos, categorias, carrinho e dados do cliente em uma experiência simples.',
+      'Receba pedidos no WhatsApp com resumo completo, endereço, pagamento e observações.',
+      'Controle disponibilidade e estoque simples dentro do próprio WordPress.'
+    ],
+    features: [
+      'Cardápio digital com produtos, categorias, imagens, preços e variações simples',
+      'Carrinho com quantidades, subtotal e revisão antes do envio',
+      'Formulário de cliente com nome, telefone, endereço, forma de pagamento e observações',
+      'Pedido formatado automaticamente para WhatsApp com todas as informações necessárias',
+      'Controle simples de estoque e disponibilidade por produto',
+      'Base preparada para integrações com CRM, Flow, Sheets, webhooks e pagamentos futuros'
+    ],
+    useCases: [
+      'Restaurantes, churrascarias, marmitarias, hamburguerias, pizzarias, lanchonetes, açaíterias, padarias, mercados de bairro e lojas locais.',
+      'Negócios que já vendem pelo WhatsApp e precisam organizar o pedido antes da conversa com o atendente.',
+      'Empresas que querem um canal próprio de pedidos sem comissão por venda e sem depender de aplicativo externo.',
+      'Operações que querem transformar pedido em atendimento, lead, tarefa, registro comercial ou relatório.'
+    ],
+    hubNote: 'O Delivery WP pode funcionar como produto independente ou conectado ao WP Business Hub para transformar pedidos em registros comerciais, tarefas operacionais e relatórios.'
   }
 ];
 
