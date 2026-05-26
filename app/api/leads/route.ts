@@ -15,10 +15,19 @@ type LeadPayload = {
   source?: string;
   createdAt?: string;
   message?: string;
+  formStartedAt?: string;
+  elapsedMs?: number;
+  interactionScore?: number;
 };
+
+const SITE_HOSTS = ['tehknesolutions.com.br', 'www.tehknesolutions.com.br', 'tehkne-site.vercel.app', 'localhost'];
 
 function sanitize(value: unknown, maxLength = 4000) {
   return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
+}
+
+function normalize(text: string) {
+  return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim();
 }
 
 function hasSpamPattern(text: string) {
@@ -27,6 +36,53 @@ function hasSpamPattern(text: string) {
   const repeatedChars = /(.)\1{18,}/.test(normalized);
   const tooManyEmails = (normalized.match(/[\w.-]+@[\w.-]+\.[a-z]{2,}/g) ?? []).length > 3;
   return linkCount > 3 || repeatedChars || tooManyEmails;
+}
+
+function isValidEmail(value: string) {
+  return !value || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+}
+
+function isValidPhone(value: string) {
+  const digits = value.replace(/\D/g, '');
+  return !value || digits.length >= 10;
+}
+
+function isTrustedReferer(value: string) {
+  if (!value) return false;
+  try {
+    const url = new URL(value);
+    return SITE_HOSTS.some((host) => url.hostname === host || url.hostname.endsWith(`.${host}`));
+  } catch {
+    return false;
+  }
+}
+
+function looksLikeEmptyPlaceholder(lead: ReturnType<typeof buildLead>) {
+  const combined = normalize([
+    lead.nome,
+    lead.empresa,
+    lead.email,
+    lead.telefone,
+    lead.servico,
+    lead.orcamento,
+    lead.prazo,
+    lead.page,
+    lead.mensagem,
+    lead.whatsappMessage
+  ].join('\n'));
+
+  const oldPlaceholder = combined.includes('ola, vim pelo site da tehkne solutions')
+    && combined.includes('nome: -')
+    && combined.includes('email: -')
+    && combined.includes('mensagem: -');
+
+  const currentPlaceholder = combined.includes('nome: nao informado')
+    && combined.includes('servico: nao selecionado')
+    && combined.includes('mensagem: nao informada');
+
+  const allBusinessFieldsEmpty = !lead.nome && !lead.email && !lead.telefone && !lead.servico && !lead.mensagem;
+
+  return oldPlaceholder || currentPlaceholder || allBusinessFieldsEmpty;
 }
 
 function mapToHubLead(lead: ReturnType<typeof buildLead>) {
@@ -69,10 +125,29 @@ function buildLead(body: LeadPayload, request: Request) {
     prazo: sanitize(body.prazo, 120),
     mensagem: sanitize(body.mensagem),
     whatsappMessage: sanitize(body.message),
+    formStartedAt: sanitize(body.formStartedAt, 80),
+    elapsedMs: typeof body.elapsedMs === 'number' ? body.elapsedMs : 0,
+    interactionScore: typeof body.interactionScore === 'number' ? body.interactionScore : 0,
     userAgent: request.headers.get('user-agent') ?? '',
     referer: request.headers.get('referer') ?? '',
     ipHint: request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? ''
   };
+}
+
+function validateLead(lead: ReturnType<typeof buildLead>) {
+  if (looksLikeEmptyPlaceholder(lead)) return 'empty_placeholder';
+  if (!isTrustedReferer(lead.referer)) return 'invalid_referer';
+  if (!lead.formStartedAt) return 'missing_form_started_at';
+  if (lead.elapsedMs > 0 && lead.elapsedMs < 2500) return 'submitted_too_fast';
+  if (lead.interactionScore < 2) return 'low_interaction_score';
+  if (!lead.nome || lead.nome.length < 2) return 'missing_name';
+  if (!lead.servico) return 'missing_service';
+  if (!lead.mensagem || lead.mensagem.length < 10) return 'missing_message';
+  if (!lead.email && !lead.telefone) return 'missing_contact';
+  if (!isValidEmail(lead.email)) return 'invalid_email';
+  if (!isValidPhone(lead.telefone)) return 'invalid_phone';
+  if (hasSpamPattern(`${lead.nome}\n${lead.empresa}\n${lead.email}\n${lead.telefone}\n${lead.mensagem}\n${lead.whatsappMessage}`)) return 'spam_pattern';
+  return null;
 }
 
 async function deliverToHub(lead: ReturnType<typeof buildLead>) {
@@ -103,14 +178,18 @@ async function deliverToHub(lead: ReturnType<typeof buildLead>) {
 
 async function deliverToLegacyWebhook(lead: ReturnType<typeof buildLead>) {
   const webhookUrl = process.env.LEADS_WEBHOOK_URL;
+  const webhookKey = process.env.LEADS_WEBHOOK_KEY;
 
   if (!webhookUrl) {
     return { skipped: true, reason: 'legacy_webhook_not_configured' };
   }
 
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  if (webhookKey) headers['X-Tehkne-Lead-Key'] = webhookKey;
+
   const response = await fetch(webhookUrl, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify(lead)
   });
 
@@ -133,17 +212,10 @@ export async function POST(request: Request) {
   }
 
   const lead = buildLead(body, request);
+  const validationError = validateLead(lead);
 
-  if (!lead.nome || !lead.servico || !lead.mensagem) {
-    return NextResponse.json({ ok: false, error: 'missing_required_fields' }, { status: 400 });
-  }
-
-  if (!lead.email && !lead.telefone) {
-    return NextResponse.json({ ok: false, error: 'missing_contact' }, { status: 400 });
-  }
-
-  if (hasSpamPattern(`${lead.nome}\n${lead.empresa}\n${lead.email}\n${lead.mensagem}`)) {
-    return NextResponse.json({ ok: false, error: 'spam_pattern' }, { status: 422 });
+  if (validationError) {
+    return NextResponse.json({ ok: false, error: validationError }, { status: 422 });
   }
 
   const deliveries: Record<string, unknown> = {};
@@ -164,8 +236,8 @@ export async function POST(request: Request) {
   }
 
   if (warnings.length > 0 && !process.env.TEHKNE_HUB_LEADS_URL && !process.env.LEADS_WEBHOOK_URL) {
-    return NextResponse.json({ ok: false, error: 'no_delivery_configured', lead }, { status: 500 });
+    return NextResponse.json({ ok: false, error: 'no_delivery_configured' }, { status: 500 });
   }
 
-  return NextResponse.json({ ok: true, lead, deliveries, warnings });
+  return NextResponse.json({ ok: true, deliveries, warnings });
 }
