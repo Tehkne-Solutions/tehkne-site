@@ -18,42 +18,44 @@ export default function SiteFooter() {
             <small>SOLUTIONS</small>
           </div>
         </a>
-        <p>Arquitetura, tecnologia e design para criar soluções digitais com clareza, performance e evolução contínua.</p>
+        <p>Produtos digitais, software sob medida e WordPress avançado para transformar sites, vendas e operações em sistemas evolutivos.</p>
       </div>
       <div>
-        <h4>Serviços</h4>
-        <a href="/servicos#site-institucional-alta-performance">Sites premium</a>
-        <a href="/servicos#plataforma-web-sob-medida">Plataformas web</a>
-        <a href="/servicos#integracoes-crm-erp-apis">Integrações</a>
-        <a href="/servicos#white-label-tecnico-agencias">White label</a>
+        <h4>Produtos</h4>
+        <a href="/produtos">Hub de Produtos</a>
+        <a href="/produtos/wp-business-hub">WP Business Hub</a>
+        <a href="/produtos/flow-wp">Tehkné Flow WP</a>
+        <a href="/produtos/crm-wp">Tehkné CRM WP</a>
+        <a href="/produtos/integracoes-wp">Integrações WP</a>
       </div>
       <div>
         <h4>Soluções</h4>
-        <a href="/solucoes#diagnostico-arquitetura">Arquitetura</a>
-        <a href="/solucoes#wordpress-avancado">WordPress</a>
-        <a href="/solucoes#ia-automacoes">IA & Automações</a>
-        <a href="/solucoes#sustentacao-evolucao">Sustentação</a>
+        <a href="/servicos/site-institucional-alta-performance">Site premium</a>
+        <a href="/servicos/plataforma-web-sob-medida">Sistema sob medida</a>
+        <a href="/servicos/integracoes-crm-erp-apis">CRM, ERP e APIs</a>
+        <a href="/servicos/governanca-seguranca-sustentacao">Sustentação técnica</a>
+        <a href="/servicos/white-label-tecnico-agencias">White label para agências</a>
       </div>
       <div>
-        <h4>GIP Tehkné OS</h4>
-        <a href="/metodo#visao">Visão do sistema</a>
-        <a href="/metodo#fluxo-gip">Fluxo GIP</a>
-        <a href="/metodo#modulos">Módulos do OS</a>
-        <a href="/metodo#camadas">Camadas operacionais</a>
-      </div>
-      <div>
-        <h4>Conteúdo</h4>
-        <a href="/blog">Blog Tehkné</a>
+        <h4>Decisão</h4>
+        <a href="/portfolio#cases">Ver cases</a>
+        <a href="/metodo#fluxo-gip">Como entregamos</a>
         <a href="/blog/o-que-e-arquitetura-de-solucoes">Arquitetura de Soluções</a>
-        <a href="/metodo#governanca">Governança</a>
-        <a href="/portfolio#cases">Portfólio</a>
+        <a href="/blog">Blog Tehkné</a>
       </div>
       <div>
-        <h4>Contato</h4>
-        <a href={href} target="_blank" rel="noreferrer">{WHATSAPP_DISPLAY}</a>
-        <a href="/contato#contato-form">Formulário de diagnóstico</a>
+        <h4>Empresa</h4>
+        <a href="/sobre">Sobre a Tehkné</a>
+        <a href="/metodo">Método GIP Tehkné</a>
         <a href="/contato#localizacao">Campinas, SP • Brasil</a>
-        <a href="/sobre">Sobre a Tehkné <ArrowUpRight size={12} /></a>
+        <a href={href} target="_blank" rel="noreferrer">{WHATSAPP_DISPLAY}</a>
+      </div>
+      <div>
+        <h4>Começar</h4>
+        <a href="/contato#contato-form">Solicitar diagnóstico</a>
+        <a href="/produtos/wp-business-hub">Quero o WP Business Hub</a>
+        <a href="/produtos/crm-wp">Quero organizar leads</a>
+        <a href="/produtos/flow-wp">Quero organizar tarefas</a>
       </div>
       <div>
         <h4>Legal</h4>
