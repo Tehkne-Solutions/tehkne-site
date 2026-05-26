@@ -15,6 +15,7 @@ const serviceCatalog = [
     relatedCases: ['Beggin', 'Vacina One', 'Human Clinic'],
     commercial: 'Projeto sob diagnóstico',
     cta: 'Quero um site premium',
+    ctaMicro: 'Veja o escopo, entregáveis e quando esse serviço faz sentido para sua empresa.',
     stack: ['Next.js', 'React', 'WordPress', 'Vercel', 'SEO']
   },
   {
@@ -29,6 +30,7 @@ const serviceCatalog = [
     relatedCases: ['Tehkné Flow', 'UNTI Digital', 'HNK Agent'],
     commercial: 'Projeto sob escopo',
     cta: 'Planejar plataforma',
+    ctaMicro: 'Entenda como transformar processo, dados e operação em um sistema sob medida.',
     stack: ['Next.js', 'APIs', 'PostgreSQL', 'Prisma', 'GitHub']
   },
   {
@@ -43,6 +45,7 @@ const serviceCatalog = [
     relatedCases: ['Savol Seminovos', 'Auto Shopping Tiquatira', 'Conect 7G'],
     commercial: 'Sob diagnóstico',
     cta: 'Diagnosticar integração',
+    ctaMicro: 'Veja como conectar formulários, sistemas, planilhas, CRM, ERP, APIs e automações.',
     stack: ['APIs', 'n8n', 'CRM', 'ERP', 'Webhooks']
   },
   {
@@ -57,6 +60,7 @@ const serviceCatalog = [
     relatedCases: ['WordPress avançado', 'Beggin', 'Savana Publicidade'],
     commercial: 'Sob diagnóstico',
     cta: 'Avaliar operação',
+    ctaMicro: 'Entenda como manter seu site ou sistema estável, seguro e pronto para evoluir.',
     stack: ['Git', 'QA', 'WordPress', 'Vercel', 'Analytics']
   },
   {
@@ -71,6 +75,7 @@ const serviceCatalog = [
     relatedCases: ['UNTI Digital', 'Savana Publicidade', 'Meme Digital'],
     commercial: 'Sob consulta',
     cta: 'Quero operar em white label',
+    ctaMicro: 'Veja como a Tehkné pode atuar como braço técnico para sua agência vender e entregar melhor.',
     stack: ['WordPress', 'Next.js', 'Elementor', 'APIs', 'Suporte']
   }
 ];
@@ -145,40 +150,49 @@ export default function ServicosPage() {
           const Icon = service.icon;
           const serviceWhatsApp = whatsAppHref(`Olá, Tehkné! Vim pela página de Serviços e quero conversar sobre: ${service.title}. Meu objetivo é entender escopo, prazo e próximos passos.`);
           return (
-            <section className="section-frame service-offer-section" id={service.slug} key={service.slug}>
-              <div className="service-offer-heading">
-                <span className="service-offer-index">{String(index + 1).padStart(2, '0')}</span>
-                <div className="service-offer-icon"><Icon size={30} /></div>
-                <div>
-                  <span className="eyebrow">{service.eyebrow}</span>
-                  <h2>{service.title}</h2>
-                  <p>{service.short}</p>
-                </div>
-              </div>
-
-              <div className="service-offer-grid">
-                <article className="service-offer-card main">
-                  <span>Dor que resolve</span>
-                  <p>{service.pain}</p>
-                </article>
-                <article className="service-offer-card list-card">
-                  <span>Entregáveis</span>
-                  <ul>{service.deliverables.map((item) => <li key={item}><CheckCircle2 size={15} />{item}</li>)}</ul>
-                </article>
-                <article className="service-offer-card list-card">
-                  <span>Ideal para</span>
-                  <ul>{service.bestFor.map((item) => <li key={item}><Workflow size={15} />{item}</li>)}</ul>
-                </article>
-                <article className="service-offer-card result">
-                  <span>Modelo comercial</span>
-                  <strong>{service.commercial}</strong>
-                  <div className="case-stack service-stack">{service.stack.map((item) => <span key={item}>{item}</span>)}</div>
-                  <div className="related-cases">{service.relatedCases.map((item) => <em key={item}>{item}</em>)}</div>
-                  <div className="service-card-actions">
-                    <a className="btn btn-secondary" href={`/servicos/${service.slug}`}>Página do serviço <ArrowUpRight size={15} /></a>
-                    <a className="btn btn-primary coin" href={serviceWhatsApp} target="_blank" rel="noreferrer">{service.cta} <ArrowUpRight size={15} /></a>
+            <section className="section-frame service-offer-section service-offer-capsule" id={service.slug} key={service.slug}>
+              <div className="service-offer-inner">
+                <div className="service-offer-heading">
+                  <span className="service-offer-index">{String(index + 1).padStart(2, '0')}</span>
+                  <div className="service-offer-icon"><Icon size={30} /></div>
+                  <div>
+                    <span className="eyebrow">{service.eyebrow}</span>
+                    <h2>{service.title}</h2>
+                    <p>{service.short}</p>
                   </div>
-                </article>
+                </div>
+
+                <div className="service-offer-grid">
+                  <article className="service-offer-card main">
+                    <span>Dor que resolve</span>
+                    <p>{service.pain}</p>
+                  </article>
+                  <article className="service-offer-card list-card">
+                    <span>Entregáveis</span>
+                    <ul>{service.deliverables.map((item) => <li key={item}><CheckCircle2 size={15} />{item}</li>)}</ul>
+                  </article>
+                  <article className="service-offer-card list-card">
+                    <span>Ideal para</span>
+                    <ul>{service.bestFor.map((item) => <li key={item}><Workflow size={15} />{item}</li>)}</ul>
+                  </article>
+                  <article className="service-offer-card result">
+                    <span>Modelo comercial</span>
+                    <strong>{service.commercial}</strong>
+                    <div className="case-stack service-stack">{service.stack.map((item) => <span key={item}>{item}</span>)}</div>
+                    <div className="related-cases">{service.relatedCases.map((item) => <em key={item}>{item}</em>)}</div>
+                  </article>
+                </div>
+
+                <div className="service-offer-cta-strip">
+                  <div>
+                    <span>Próximo passo para este serviço</span>
+                    <strong>{service.ctaMicro}</strong>
+                  </div>
+                  <div className="service-offer-cta-actions">
+                    <a className="btn btn-primary coin" href={`/servicos/${service.slug}`}>Abrir página do serviço <ArrowUpRight size={15} /></a>
+                    <a className="btn btn-secondary" href={serviceWhatsApp} target="_blank" rel="noreferrer">Conversar sobre este serviço <ArrowUpRight size={15} /></a>
+                  </div>
+                </div>
               </div>
             </section>
           );
