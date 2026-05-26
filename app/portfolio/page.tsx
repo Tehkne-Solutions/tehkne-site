@@ -43,7 +43,7 @@ export default function PortfolioPage() {
   const pageWhatsApp = whatsAppHref(whatsappMessages.portfolio);
 
   return (
-    <main>
+    <main className="portfolio-page">
       <section className="section-frame solutions-hero portfolio-hero-pro">
         <div className="section-heading">
           <span className="eyebrow">Portfólio e prova de execução</span>
