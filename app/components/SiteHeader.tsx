@@ -15,6 +15,7 @@ const navItems = [
 const productMenu = [
   ['Todos os produtos', '/produtos'],
   ['WP Business Hub', '/produtos/wp-business-hub'],
+  ['Delivery WP', '/produtos/delivery-wp'],
   ['Flow WP', '/produtos/flow-wp'],
   ['CRM WP', '/produtos/crm-wp'],
   ['Integrações WP', '/produtos/integracoes-wp']
@@ -58,7 +59,7 @@ export default function SiteHeader() {
         <div className="nav-dropdown">
           <a href="/produtos" className="nav-dropdown-trigger">Produtos <ChevronDown size={13} /></a>
           <div className="nav-dropdown-menu" aria-label="Submenu de produtos">
-            {productMenu.map(([label, url]) => <a key={label} href={url}>{label}</a>)}
+            {productMenu.map(([label, url]) => <a key={label} href={url}>{label}</a>) }
           </div>
         </div>
         {navItems.map(([label, url]) => (
