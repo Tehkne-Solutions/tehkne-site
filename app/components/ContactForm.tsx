@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowUpRight, CheckCircle2, Send, X } from 'lucide-react';
 import { WHATSAPP_DISPLAY, whatsAppHref } from '../contact';
 
@@ -39,6 +39,12 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
   const [form, setForm] = useState<LeadFormState>(initialForm);
   const [status, setStatus] = useState<'idle' | 'sending' | 'saved' | 'error'>('idle');
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [formStartedAt, setFormStartedAt] = useState('');
+  const interactionScoreRef = useRef(0);
+
+  useEffect(() => {
+    setFormStartedAt(new Date().toISOString());
+  }, []);
 
   const message = useMemo(() => {
     return [
@@ -58,7 +64,12 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
 
   const href = whatsAppHref(message);
 
+  function registerInteraction() {
+    interactionScoreRef.current = Math.min(interactionScoreRef.current + 1, 20);
+  }
+
   function updateField(field: keyof LeadFormState, value: string) {
+    registerInteraction();
     setForm((current) => ({ ...current, [field]: value }));
   }
 
@@ -95,6 +106,9 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
       return;
     }
 
+    const startedAt = formStartedAt ? new Date(formStartedAt).getTime() : Date.now();
+    const elapsedMs = Math.max(Date.now() - startedAt, 0);
+
     setStatus('sending');
     setShowConfirmation(false);
     trackLeadForm('lead_form_submit');
@@ -105,7 +119,10 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
       context,
       source: 'site-tehkne',
       createdAt: new Date().toISOString(),
-      message
+      message,
+      formStartedAt,
+      elapsedMs,
+      interactionScore: interactionScoreRef.current
     };
 
     try {
@@ -140,7 +157,7 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
         </div>
       </div>
 
-      <form className="contact-form-card" onSubmit={handleSubmit}>
+      <form className="contact-form-card" onSubmit={handleSubmit} onPointerDown={registerInteraction} onFocus={registerInteraction}>
         <label className="form-honeypot" aria-hidden="true">
           Website
           <input name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={(event) => updateField('website', event.target.value)} />
