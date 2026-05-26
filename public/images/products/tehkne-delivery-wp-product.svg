@@ -1,0 +1,35 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" rx="48" fill="#06101F"/>
+  <path d="M0 0h1200v675H0z" fill="url(#bg)"/>
+  <circle cx="1008" cy="118" r="180" fill="#15E6FF" fill-opacity=".12"/>
+  <circle cx="183" cy="585" r="220" fill="#6E5BFF" fill-opacity=".16"/>
+  <rect x="110" y="88" width="980" height="499" rx="36" fill="#09182B" fill-opacity=".82" stroke="#1FE7FF" stroke-opacity=".28"/>
+  <rect x="170" y="145" width="278" height="385" rx="28" fill="#06101F" stroke="#1FE7FF" stroke-opacity=".34"/>
+  <rect x="493" y="145" width="537" height="84" rx="22" fill="#0C2036" stroke="#1FE7FF" stroke-opacity=".25"/>
+  <rect x="493" y="257" width="245" height="273" rx="26" fill="#0C2036" stroke="#1FE7FF" stroke-opacity=".18"/>
+  <rect x="785" y="257" width="245" height="273" rx="26" fill="#0C2036" stroke="#1FE7FF" stroke-opacity=".18"/>
+  <path d="M232 261h154M232 320h154M232 379h116" stroke="#1FE7FF" stroke-width="12" stroke-linecap="round" stroke-opacity=".75"/>
+  <rect x="220" y="433" width="176" height="44" rx="22" fill="#15E6FF"/>
+  <path d="M543 194h226M543 309h115M543 363h146M543 417h92" stroke="#EAF7FF" stroke-width="12" stroke-linecap="round" stroke-opacity=".86"/>
+  <path d="M835 309h91M835 363h127M835 417h76" stroke="#EAF7FF" stroke-width="12" stroke-linecap="round" stroke-opacity=".86"/>
+  <g filter="url(#glow)">
+    <circle cx="874" cy="178" r="22" fill="#15E6FF"/>
+    <circle cx="940" cy="178" r="22" fill="#7FFFD4"/>
+    <circle cx="1006" cy="178" r="22" fill="#6E5BFF"/>
+  </g>
+  <path d="M880 493c38-2 69-31 74-69l8-69H817l10 72c5 38 37 68 76 66h-23Z" fill="#15E6FF" fill-opacity=".12" stroke="#1FE7FF" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M800 355h179" stroke="#1FE7FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M817 354l-28-64M962 354l28-64" stroke="#1FE7FF" stroke-width="8" stroke-linecap="round"/>
+  <text x="171" y="106" fill="#EAF7FF" font-family="Inter, Arial" font-size="28" font-weight="800" letter-spacing="4">TEHKNÉ DELIVERY WP</text>
+  <text x="493" y="125" fill="#1FE7FF" font-family="Inter, Arial" font-size="18" font-weight="700" letter-spacing="3">CARDÁPIO • CARRINHO • WHATSAPP</text>
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1055 94) rotate(148) scale(823 582)">
+      <stop stop-color="#163B77"/>
+      <stop offset=".45" stop-color="#071324"/>
+      <stop offset="1" stop-color="#050814"/>
+    </radialGradient>
+    <filter id="glow" x="820" y="124" width="240" height="108" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+  </defs>
+</svg>
