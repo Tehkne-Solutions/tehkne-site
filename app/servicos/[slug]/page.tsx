@@ -11,14 +11,26 @@ type PageProps = {
 };
 
 const siteUrl = 'https://tehknesolutions.com.br';
+const serviceSlugAliases: Record<string, string> = {
+  'solucoes-ia': 'ia-automacoes-agentes-inteligentes'
+};
+
+function resolveServiceSlug(slug: string) {
+  return serviceSlugAliases[slug] ?? slug;
+}
+
+function canonicalServiceSlug(slug: string) {
+  return slug === 'ia-automacoes-agentes-inteligentes' ? 'solucoes-ia' : slug;
+}
 
 export function generateStaticParams() {
-  return servicePages.map((service) => ({ slug: service.slug }));
+  const canonicalSlugs = servicePages.map((service) => ({ slug: canonicalServiceSlug(service.slug) }));
+  return canonicalSlugs;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const service = getServicePage(slug);
+  const service = getServicePage(resolveServiceSlug(slug));
 
   if (!service) {
     return {
@@ -26,12 +38,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const url = `${siteUrl}/servicos/${service.slug}`;
+  const canonicalSlug = canonicalServiceSlug(service.slug);
+  const url = `${siteUrl}/servicos/${canonicalSlug}`;
 
   return {
     title: service.seoTitle,
     description: service.description,
-    alternates: { canonical: `/servicos/${service.slug}` },
+    alternates: { canonical: `/servicos/${canonicalSlug}` },
     openGraph: {
       title: service.seoTitle,
       description: service.description,
@@ -51,13 +64,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ServiceDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const service = getServicePage(slug);
+  const service = getServicePage(resolveServiceSlug(slug));
 
   if (!service) notFound();
 
   const Icon = service.icon;
+  const canonicalSlug = canonicalServiceSlug(service.slug);
   const serviceWhatsApp = whatsAppHref(`Olá, Tehkné! Vim pela página ${service.title} e quero entender escopo, investimento, prazo e próximos passos.`);
-  const pageUrl = `${siteUrl}/servicos/${service.slug}`;
+  const pageUrl = `${siteUrl}/servicos/${canonicalSlug}`;
 
   const structuredData = {
     '@context': 'https://schema.org',
