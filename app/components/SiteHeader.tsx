@@ -26,7 +26,7 @@ const serviceMenu = [
   ['Plataformas web', '/servicos/plataforma-web-sob-medida'],
   ['Integrações', '/servicos/integracoes-crm-erp-apis'],
   ['Soluções IA', '/servicos/solucoes-ia'],
-  ['Sustentação', '/servicos/governanca-seguranca-sustentacao'],
+  ['Manutenção e Gestão', '/servicos/governanca-seguranca-sustentacao'],
   ['White label', '/servicos/white-label-tecnico-agencias']
 ];
 
