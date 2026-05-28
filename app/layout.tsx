@@ -16,7 +16,9 @@ import './mobile-qa-fixes.css';
 
 const siteUrl = 'https://tehknesolutions.com.br';
 const logoPath = '/images/tehkne-simbolo-isolado-logo.png';
+const socialImagePath = '/images/tehkne-social-preview.png';
 const absoluteLogoUrl = `${siteUrl}${logoPath}`;
+const absoluteSocialImageUrl = `${siteUrl}${socialImagePath}`;
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID ?? 'G-MB46DPYC6K';
 const googleSiteVerificationToken = 'sVy4pW6HtkQHV0K6ATxm5VVVJd1LcKE_8fwJmJRNEWk';
 
@@ -27,7 +29,7 @@ const organizationJsonLd = {
   alternateName: 'Tehkne Solutions',
   url: siteUrl,
   logo: absoluteLogoUrl,
-  image: absoluteLogoUrl,
+  image: absoluteSocialImageUrl,
   description:
     'Software house, estúdio de produto digital e braço técnico para empresas, agências e operações que precisam transformar ideias, processos e operações em sistemas digitais reais.',
   telephone: '+55 19 99893-0846',
@@ -108,19 +110,25 @@ export const metadata: Metadata = {
     ]
   },
   openGraph: {
-    title: 'Tehkné Solutions | Sistemas digitais reais para operações que precisam escalar',
+    title: 'Tehkné Solutions | Software sob medida, IA e produtos digitais',
     description:
-      'Arquitetura, design, desenvolvimento, automações e IA para empresas, agências e operações digitais que precisam sair do improviso.',
+      'Software house, estúdio de produto digital e braço técnico para empresas e agências. Criamos sites, sistemas, automações, IA, WordPress avançado e produtos digitais escaláveis.',
     url: siteUrl,
     siteName: 'Tehkné Solutions',
     type: 'website',
     locale: 'pt_BR',
     images: [
       {
-        url: absoluteLogoUrl,
+        url: absoluteSocialImageUrl,
         width: 1200,
         height: 630,
-        alt: 'Tehkné Solutions — software house, IA e produto digital'
+        alt: 'Tehkné Solutions — software house, IA, automações e produto digital'
+      },
+      {
+        url: absoluteLogoUrl,
+        width: 512,
+        height: 512,
+        alt: 'Logo Tehkné Solutions'
       }
     ]
   },
@@ -128,8 +136,15 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Tehkné Solutions | Software sob medida, IA e produtos digitais',
     description:
-      'Sites, sistemas, automações e produtos digitais para empresas que precisam vender mais, reduzir retrabalho e escalar com segurança.',
-    images: [absoluteLogoUrl]
+      'Sites, sistemas, automações, IA e produtos digitais para empresas que precisam vender mais, reduzir retrabalho e escalar com segurança.',
+    images: [absoluteSocialImageUrl]
+  },
+  other: {
+    'og:image:secure_url': absoluteSocialImageUrl,
+    'og:image:type': 'image/png',
+    'og:image:width': '1200',
+    'og:image:height': '630',
+    'twitter:image': absoluteSocialImageUrl
   }
 };
 
