@@ -1,4 +1,4 @@
-import { Building2, Code2, Gauge, Network, ShieldCheck, type LucideIcon } from 'lucide-react';
+import { Bot, Building2, Code2, Gauge, Network, ShieldCheck, type LucideIcon } from 'lucide-react';
 
 export type ServicePageData = {
   icon: LucideIcon;
@@ -75,9 +75,27 @@ export const servicePages: ServicePageData[] = [
     cta: 'Diagnosticar integrações'
   },
   {
+    icon: Bot,
+    slug: 'ia-automacoes-agentes-inteligentes',
+    eyebrow: 'Serviço 04',
+    title: 'IA, automações e agentes inteligentes',
+    seoTitle: 'IA, automações e agentes inteligentes | Tehkné Solutions',
+    description: 'Implementação de IA aplicada, chatbots, assistentes internos, automações, análise de dados, geração de conteúdo operacional e agentes inteligentes integrados aos processos da empresa.',
+    promise: 'Use IA para ganhar velocidade, clareza e automação sem colocar dados e operação em risco.',
+    pain: 'Muitas empresas querem usar IA, mas começam pelo hype: prompts soltos, ferramentas desconectadas, dados sensíveis em ambientes errados e automações sem dono. A Tehkné transforma IA em fluxo operacional com objetivo, revisão humana, segurança, integração e melhoria contínua.',
+    authority: 'A Tehkné combina arquitetura de soluções, produto digital, integrações, automações, UX, dados e governança para aplicar IA onde existe ganho real: atendimento, vendas, marketing, relatórios, backoffice, conteúdo, suporte, análise e tomada de decisão.',
+    outcomes: ['Atendimento mais rápido e padronizado', 'Automação de tarefas repetitivas', 'Relatórios e resumos mais claros', 'Apoio a vendas, marketing e suporte', 'Menos retrabalho entre ferramentas', 'Uso responsável com revisão humana'],
+    deliverables: ['Diagnóstico de oportunidades de IA', 'Mapa de processos automatizáveis', 'Chatbots e assistentes internos', 'Prompts, fluxos e bases de conhecimento', 'Integrações com CRM, WhatsApp, planilhas e APIs', 'Política de uso, revisão humana e segurança de dados'],
+    process: [['01', 'Objetivo', 'Definimos onde IA realmente ajuda: atendimento, vendas, dados, conteúdo, suporte ou operação.'], ['02', 'Arquitetura', 'Mapeamos dados, riscos, ferramentas, integrações, permissões e pontos de revisão humana.'], ['03', 'Implementação', 'Criamos prompts, agentes, automações, conectores e interfaces para uso real.'], ['04', 'Governança', 'Validamos respostas, registramos limites, medimos ganho e evoluímos com segurança.']],
+    bestFor: ['Atendimento e suporte', 'Marketing e vendas', 'Operações com muitos dados', 'Times com tarefas repetitivas', 'Empresas que precisam inovar com segurança'],
+    stack: ['OpenAI', 'n8n', 'APIs', 'WhatsApp', 'CRM', 'RAG'],
+    relatedCases: ['HNK Agent', 'Tehkné Flow', 'Integrações WP', 'CRM WP'],
+    cta: 'Mapear oportunidades com IA'
+  },
+  {
     icon: ShieldCheck,
     slug: 'governanca-seguranca-sustentacao',
-    eyebrow: 'Serviço 04',
+    eyebrow: 'Serviço 05',
     title: 'Governança, segurança e sustentação',
     seoTitle: 'Sustentação técnica, segurança e governança digital | Tehkné',
     description: 'Sustentação técnica para sites e sistemas: manutenção, performance, segurança, documentação, backlog evolutivo e governança pós-deploy.',
@@ -95,7 +113,7 @@ export const servicePages: ServicePageData[] = [
   {
     icon: Building2,
     slug: 'white-label-tecnico-agencias',
-    eyebrow: 'Serviço 05',
+    eyebrow: 'Serviço 06',
     title: 'White label técnico para agências',
     seoTitle: 'White label técnico para agências | Desenvolvimento parceiro Tehkné',
     description: 'Braço técnico white label para agências: sites, landing pages, WordPress, Next.js, integrações, automações, manutenção e suporte por sprint.',
