@@ -13,6 +13,7 @@ import './contact.css';
 import './cookies.css';
 import './blog-generated-covers.css';
 import './mobile-qa-fixes.css';
+import './mobile-first-hardening.css';
 
 const siteUrl = 'https://tehknesolutions.com.br';
 const logoPath = '/images/tehkne-simbolo-isolado-logo.png';
@@ -110,9 +111,9 @@ export const metadata: Metadata = {
     ]
   },
   openGraph: {
-    title: 'Tehkné Solutions | Software sob medida, IA e produtos digitais',
+    title: 'Tehkné Solutions | Sistemas digitais reais para operações que precisam escalar',
     description:
-      'Software house, estúdio de produto digital e braço técnico para empresas e agências. Criamos sites, sistemas, automações, IA, WordPress avançado e produtos digitais escaláveis.',
+      'Arquitetura, design, desenvolvimento, automações e IA para empresas, agências e operações digitais que precisam sair do improviso.',
     url: siteUrl,
     siteName: 'Tehkné Solutions',
     type: 'website',
@@ -122,13 +123,7 @@ export const metadata: Metadata = {
         url: absoluteSocialImageUrl,
         width: 1200,
         height: 630,
-        alt: 'Tehkné Solutions — software house, IA, automações e produto digital'
-      },
-      {
-        url: absoluteLogoUrl,
-        width: 512,
-        height: 512,
-        alt: 'Logo Tehkné Solutions'
+        alt: 'Tehkné Solutions — software house, IA e produto digital'
       }
     ]
   },
@@ -136,15 +131,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Tehkné Solutions | Software sob medida, IA e produtos digitais',
     description:
-      'Sites, sistemas, automações, IA e produtos digitais para empresas que precisam vender mais, reduzir retrabalho e escalar com segurança.',
+      'Sites, sistemas, automações e produtos digitais para empresas que precisam vender mais, reduzir retrabalho e escalar com segurança.',
     images: [absoluteSocialImageUrl]
-  },
-  other: {
-    'og:image:secure_url': absoluteSocialImageUrl,
-    'og:image:type': 'image/png',
-    'og:image:width': '1200',
-    'og:image:height': '630',
-    'twitter:image': absoluteSocialImageUrl
   }
 };
 
