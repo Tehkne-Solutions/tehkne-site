@@ -1,4 +1,4 @@
-import { ArrowUpRight, Building2, CheckCircle2, Code2, Gauge, GitBranch, Layers3, Network, ShieldCheck, Sparkles, Workflow, Wrench, Zap } from 'lucide-react';
+import { ArrowUpRight, Bot, Building2, CheckCircle2, Code2, Gauge, GitBranch, Layers3, Network, ShieldCheck, Sparkles, Workflow, Wrench, Zap } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import { whatsAppHref } from '../contact';
 
@@ -49,6 +49,21 @@ const serviceCatalog = [
     stack: ['APIs', 'n8n', 'CRM', 'ERP', 'Webhooks']
   },
   {
+    icon: Bot,
+    slug: 'solucoes-ia',
+    eyebrow: 'IA aplicada com segurança',
+    title: 'Soluções com IA',
+    short: 'Para empresas que querem usar IA em atendimento, vendas, marketing, relatórios, conteúdo e operação sem depender de prompts soltos.',
+    pain: 'A IA vira risco quando é usada sem objetivo, revisão humana, segurança de dados e integração com processos reais. A Tehkné transforma IA em fluxo: agentes, automações, bases de conhecimento, análise e rotina operacional.',
+    deliverables: ['Diagnóstico de oportunidades de IA', 'Chatbots e assistentes internos', 'Prompts e bases de conhecimento', 'Automações com n8n e APIs', 'Integrações com CRM e WhatsApp', 'Governança e revisão humana'],
+    bestFor: ['Atendimento e suporte', 'Marketing e vendas', 'Relatórios e dados', 'Operações repetitivas', 'Empresas inovadoras'],
+    relatedCases: ['HNK Agent', 'Tehkné Flow', 'CRM WP', 'Integrações WP'],
+    commercial: 'Sob diagnóstico',
+    cta: 'Mapear oportunidades com IA',
+    ctaMicro: 'Veja como aplicar IA com objetivo, segurança, integração e ganho operacional real.',
+    stack: ['OpenAI', 'n8n', 'APIs', 'WhatsApp', 'CRM', 'RAG']
+  },
+  {
     icon: ShieldCheck,
     slug: 'governanca-seguranca-sustentacao',
     eyebrow: 'Projeto vivo depois do deploy',
@@ -81,8 +96,8 @@ const serviceCatalog = [
 ];
 
 const audiences = [
-  ['Empresas', 'Sites premium, sistemas internos, integrações, manutenção e evolução contínua.'],
-  ['Agências', 'Execução técnica white label, WordPress, landing pages, integrações e suporte confiável.'],
+  ['Empresas', 'Sites premium, sistemas internos, IA aplicada, integrações, manutenção e evolução contínua.'],
+  ['Agências', 'Execução técnica white label, WordPress, landing pages, IA, integrações e suporte confiável.'],
   ['Operações em crescimento', 'Menos planilha, menos retrabalho, mais controle de processos, CRM, dados e rotinas.'],
   ['Produtos digitais', 'MVP, roadmap técnico, UX, sistema, validação, publicação e evolução por fases.']
 ];
@@ -91,20 +106,21 @@ const comparison = [
   ['Quero presença digital', 'Site institucional de alta performance'],
   ['Quero organizar uma operação', 'Plataforma web sob medida'],
   ['Quero conectar ferramentas', 'Integrações CRM/ERP/APIs'],
+  ['Quero aplicar IA com segurança', 'Soluções com IA'],
   ['Quero manter e evoluir', 'Governança, segurança e sustentação'],
   ['Sou agência/parceiro', 'White label técnico para agências']
 ];
 
 const servicesMetrics = [
-  ['05', 'serviços principais para contratar com clareza'],
+  ['06', 'serviços principais para contratar com clareza'],
   ['300+', 'sites, páginas e experiências digitais criadas ou evoluídas'],
   ['96+', 'bases técnicas, repositórios, estudos e laboratórios mapeados'],
-  ['GIP', 'método para diagnóstico, arquitetura, execução e evolução']
+  ['IA', 'automações, agentes, dados e processos com revisão humana']
 ];
 
 export const metadata = {
   title: 'Serviços | Tehkné Solutions',
-  description: 'Catálogo de serviços da Tehkné: sites de alta performance, plataformas web, integrações, governança, sustentação e white label técnico para agências.'
+  description: 'Catálogo de serviços da Tehkné: sites de alta performance, plataformas web, soluções com IA, integrações, governança, sustentação e white label técnico para agências.'
 };
 
 export default function ServicosPage() {
@@ -115,8 +131,8 @@ export default function ServicosPage() {
       <section className="section-frame services-hero">
         <div className="section-heading services-hero-copy">
           <span className="eyebrow">Catálogo de serviços</span>
-          <h1>Serviços para vender melhor, organizar processos e manter sua operação evoluindo.</h1>
-          <p>Esta página mostra como a Tehkné pode ajudar quando sua empresa precisa criar um site melhor, organizar uma operação, conectar ferramentas, sustentar um projeto ou contar com braço técnico confiável.</p>
+          <h1>Serviços para vender melhor, organizar processos, aplicar IA e manter sua operação evoluindo.</h1>
+          <p>Esta página mostra como a Tehkné pode ajudar quando sua empresa precisa criar um site melhor, organizar uma operação, conectar ferramentas, aplicar IA com segurança, sustentar um projeto ou contar com braço técnico confiável.</p>
           <div className="hero-actions">
             <a className="btn btn-primary coin" href="#servicos-lista">Ver serviços <ArrowUpRight size={16} /></a>
             <a className="btn btn-secondary" href="/contato#contato-form">Solicitar diagnóstico <ArrowUpRight size={16} /></a>
@@ -124,7 +140,7 @@ export default function ServicosPage() {
         </div>
         <div className="services-hero-panel" aria-hidden="true">
           <div className="services-radar-core"><Sparkles size={34} /></div>
-          {['Sites', 'Sistemas', 'Integrações', 'Sustentação', 'Agências'].map((item) => <span key={item}>{item}</span>)}
+          {['Sites', 'Sistemas', 'IA', 'Integrações', 'Sustentação', 'Agências'].map((item) => <span key={item}>{item}</span>)}
         </div>
       </section>
 
@@ -137,7 +153,7 @@ export default function ServicosPage() {
           <div>
             <span className="eyebrow">Escolha por contexto</span>
             <h2>O ponto de entrada muda conforme o tipo de problema.</h2>
-            <p>A Tehkné pode entrar como software house, estúdio de produto, braço técnico de agência ou sustentação evolutiva. O objetivo é reduzir improviso e criar um caminho claro.</p>
+            <p>A Tehkné pode entrar como software house, estúdio de produto, braço técnico de agência, parceiro de IA aplicada ou sustentação evolutiva. O objetivo é reduzir improviso e criar um caminho claro.</p>
           </div>
         </div>
         <div className="services-audience-grid">
@@ -221,24 +237,24 @@ export default function ServicosPage() {
           <div>
             <span className="eyebrow">Como contratamos com segurança</span>
             <h2>Sem preço genérico para problema que precisa de diagnóstico.</h2>
-            <p>Cada serviço nasce de uma leitura simples: o que precisa vender melhor, o que precisa organizar, o que precisa conectar e o que precisa continuar funcionando depois da entrega.</p>
+            <p>Cada serviço nasce de uma leitura simples: o que precisa vender melhor, o que precisa organizar, o que precisa conectar, onde IA pode ajudar e o que precisa continuar funcionando depois da entrega.</p>
           </div>
         </div>
         <div className="solutions-proof-grid">
           <article><Layers3 size={24} /><h3>Diagnóstico</h3><p>Entendemos contexto, problema, urgência, público e objetivo antes de propor execução.</p></article>
           <article><GitBranch size={24} /><h3>Arquitetura</h3><p>Transformamos intenção em escopo, stack, fases, entregáveis e critérios de aceite.</p></article>
           <article><Wrench size={24} /><h3>Execução</h3><p>Desenvolvemos com versionamento, documentação, validação e comunicação por etapa.</p></article>
-          <article><Zap size={24} /><h3>Evolução</h3><p>Depois do deploy, mantemos melhoria, sustentação, performance e novas demandas.</p></article>
+          <article><Zap size={24} /><h3>Evolução</h3><p>Depois do deploy, mantemos melhoria, sustentação, performance, automações, IA e novas demandas.</p></article>
         </div>
       </section>
 
-      <ContactForm page="Serviços" context="catálogo de serviços da Tehkné: site premium, plataforma web, integrações, governança, sustentação ou white label técnico" title="Qual serviço combina com sua demanda agora?" description="Use este bloco para iniciar o diagnóstico com contexto. A Tehkné ajuda a transformar a demanda em escopo, arquitetura e próximos passos." />
+      <ContactForm page="Serviços" context="catálogo de serviços da Tehkné: site premium, plataforma web, soluções com IA, integrações, governança, sustentação ou white label técnico" title="Qual serviço combina com sua demanda agora?" description="Use este bloco para iniciar o diagnóstico com contexto. A Tehkné ajuda a transformar a demanda em escopo, arquitetura e próximos passos." />
 
       <section className="final-cta">
         <div>
           <span className="eyebrow">Próxima decisão</span>
           <h2>Serviço certo primeiro. Tecnologia depois.</h2>
-          <p>Vamos entender a demanda, indicar o melhor serviço e organizar o caminho entre estratégia, produto, código e evolução.</p>
+          <p>Vamos entender a demanda, indicar o melhor serviço e organizar o caminho entre estratégia, produto, código, IA e evolução.</p>
         </div>
         <div className="hero-actions">
           <a className="btn btn-primary coin" href={pageWhatsApp} target="_blank" rel="noreferrer">Falar sobre serviços <ArrowUpRight size={16} /></a>
