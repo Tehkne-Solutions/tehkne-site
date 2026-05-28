@@ -14,6 +14,7 @@ import './cookies.css';
 import './blog-generated-covers.css';
 import './mobile-qa-fixes.css';
 import './mobile-first-hardening.css';
+import './mobile-overflow-kill.css';
 
 const siteUrl = 'https://tehknesolutions.com.br';
 const logoPath = '/images/tehkne-simbolo-isolado-logo.png';
