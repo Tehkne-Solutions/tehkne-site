@@ -6,6 +6,7 @@ import type { PortfolioCase } from './portfolio-data';
 import { getPortfolioCaseCardImage } from './case-card-images';
 
 const filters = ['Todos', 'Projetos Tehkné', 'UNTI', 'Meme Digital', 'Automotivo', 'Saúde', 'Corporativo', 'Indústria', 'WordPress', 'Next.js', 'Apps', 'Jogos', 'IA'];
+const prioritySlugs = ['tehkne-flow', 'vacina-one', 'unti-digital', 'savol-seminovos', 'beggin', 'hnk-agent'];
 
 type Props = {
   cases: PortfolioCase[];
@@ -92,13 +93,34 @@ function matchesSearch(item: PortfolioCase, query: string) {
   return value.split(/\s+/).every((term) => text.includes(term));
 }
 
+function randomizeCases(items: PortfolioCase[]) {
+  const priority = items
+    .filter((item) => prioritySlugs.includes(item.slug) || item.featured)
+    .sort((a, b) => {
+      const indexA = prioritySlugs.includes(a.slug) ? prioritySlugs.indexOf(a.slug) : prioritySlugs.length;
+      const indexB = prioritySlugs.includes(b.slug) ? prioritySlugs.indexOf(b.slug) : prioritySlugs.length;
+      return indexA - indexB;
+    });
+
+  const prioritySet = new Set(priority.map((item) => item.slug));
+  const remaining = items.filter((item) => !prioritySet.has(item.slug));
+
+  for (let index = remaining.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [remaining[index], remaining[randomIndex]] = [remaining[randomIndex], remaining[index]];
+  }
+
+  return [...priority, ...remaining];
+}
+
 export default function PortfolioGrid({ cases }: Props) {
   const [activeFilter, setActiveFilter] = useState('Todos');
   const [searchTerm, setSearchTerm] = useState('');
+  const [caseOrder] = useState(() => randomizeCases(cases));
 
   const visibleCases = useMemo(
-    () => cases.filter((item) => matchesFilter(item, activeFilter) && matchesSearch(item, searchTerm)),
-    [cases, activeFilter, searchTerm]
+    () => caseOrder.filter((item) => matchesFilter(item, activeFilter) && matchesSearch(item, searchTerm)),
+    [caseOrder, activeFilter, searchTerm]
   );
 
   return (
