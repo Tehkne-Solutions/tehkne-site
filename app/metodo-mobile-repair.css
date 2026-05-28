@@ -57,14 +57,26 @@
     letter-spacing: -.045em !important;
   }
 
+  .methodos-page .gip-flow-section {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .methodos-page .gip-flow-section .section-heading {
+    width: min(100%, 560px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
   .methodos-page .gip-timeline {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) !important;
+    justify-items: center !important;
     gap: 16px !important;
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
-    margin-top: 24px !important;
+    margin: 24px auto 0 !important;
     padding: 0 !important;
     overflow: visible !important;
   }
@@ -76,12 +88,15 @@
   .methodos-page .gip-timeline-card {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    justify-self: center !important;
+    width: min(100%, 540px) !important;
+    max-width: calc(100vw - 28px) !important;
     min-width: 0 !important;
     min-height: 0 !important;
     height: auto !important;
-    padding: 20px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 18px 16px !important;
     overflow: visible !important;
     transform: none !important;
   }
@@ -91,8 +106,8 @@
   }
 
   .methodos-page .gip-timeline-card h3 {
-    margin: 12px 0 8px !important;
-    font-size: clamp(22px, 6.5vw, 28px) !important;
+    margin: 10px 0 8px !important;
+    font-size: clamp(21px, 6.2vw, 27px) !important;
     line-height: 1.12 !important;
   }
 
@@ -103,29 +118,30 @@
   }
 
   .methodos-page .gip-step-number {
-    width: 44px !important;
-    height: 44px !important;
-    margin-bottom: 8px !important;
+    width: 42px !important;
+    height: 42px !important;
+    margin-bottom: 6px !important;
   }
 
   .methodos-page .gip-deliverables {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: flex-start !important;
-    gap: 8px !important;
+    gap: 7px !important;
     width: 100% !important;
     max-width: 100% !important;
-    margin-top: 16px !important;
+    margin-top: 14px !important;
     overflow: visible !important;
   }
 
   .methodos-page .gip-deliverables span {
     display: inline-flex !important;
     width: auto !important;
-    max-width: 100% !important;
+    max-width: calc(100vw - 68px) !important;
     white-space: normal !important;
-    line-height: 1.25 !important;
-    padding: 8px 10px !important;
+    line-height: 1.22 !important;
+    padding: 7px 9px !important;
+    font-size: 10.5px !important;
   }
 
   .methodos-page .gip-os-dashboard,
@@ -230,7 +246,18 @@
     padding-right: 14px !important;
   }
 
-  .methodos-page .gip-timeline-card,
+  .methodos-page .gip-flow-section {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .methodos-page .gip-timeline-card {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+    padding: 17px 15px !important;
+    border-radius: 18px !important;
+  }
+
   .methodos-page .gip-os-core-card,
   .methodos-page .gip-os-modules article,
   .methodos-page .gip-comparison-card,
