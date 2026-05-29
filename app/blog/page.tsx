@@ -1,5 +1,5 @@
 import { ArrowUpRight, BookOpen, Clock, Layers3 } from 'lucide-react';
-import { blogPosts } from './blog-data';
+import { allBlogPosts } from './all-blog-posts';
 
 export const metadata = {
   title: 'Blog | Tehkné Solutions',
@@ -12,7 +12,7 @@ function getGeneratedCover(slug: string) {
 }
 
 export default function BlogPage() {
-  const featuredPost = blogPosts[0];
+  const featuredPost = allBlogPosts[0];
 
   return (
     <main>
@@ -33,11 +33,11 @@ export default function BlogPage() {
         <aside className="blog-hero-panel blog-featured-index-panel">
           <img src={getGeneratedCover(featuredPost.slug)} alt={`Imagem de destaque do artigo ${featuredPost.title}`} />
           <div>
-            <span className="panel-kicker">Primeira trilha editorial</span>
+            <span className="panel-kicker">Biblioteca editorial Tehkné</span>
             <strong>{featuredPost.category}</strong>
             <p>
-              Começamos pelo fundamento: entender como transformar ideias, processos e operações
-              em sistemas digitais reais sem cair em retrabalho.
+              Guias conectados aos serviços, produtos e temas estratégicos da Tehkné para orientar decisões
+              técnicas, comerciais e operacionais.
             </p>
           </div>
         </aside>
@@ -46,7 +46,7 @@ export default function BlogPage() {
       <section className="section-frame blog-section" id="artigos">
         <div className="section-heading inline">
           <div>
-            <span className="eyebrow">Biblioteca inicial</span>
+            <span className="eyebrow">Biblioteca completa</span>
             <h2>Artigos publicados</h2>
           </div>
           <p>
@@ -56,7 +56,7 @@ export default function BlogPage() {
         </div>
 
         <div className="blog-grid">
-          {blogPosts.map((post) => (
+          {allBlogPosts.map((post) => (
             <article className="blog-card" key={post.slug}>
               <div className="blog-card-cover generated-cover" aria-hidden="true">
                 <img src={getGeneratedCover(post.slug)} alt="" />
