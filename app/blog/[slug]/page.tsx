@@ -1,8 +1,9 @@
 import { ArrowLeft, ArrowUpRight, CalendarDays, Clock, Layers3, Network, Orbit, UserRound } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import ShareButtons from '../../components/ShareButtons';
+import { allBlogPosts, getAllBlogPost } from '../all-blog-posts';
 import { getBlogImageAsset } from '../blog-image-assets';
-import { blogPosts, getBlogPost, type BlogBlock } from '../blog-data';
+import type { BlogBlock } from '../blog-data';
 import { getBlogExpansionBlocks } from '../blog-expansions';
 
 type BlogPostPageProps = {
@@ -14,7 +15,7 @@ type BlogPostPageProps = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return allBlogPosts.map((post) => ({ slug: post.slug }));
 }
 
 function slugify(text: string) {
@@ -85,7 +86,7 @@ const relatedBadgeStyle = {
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = getAllBlogPost(slug);
 
   if (!post) {
     return {
@@ -187,7 +188,7 @@ function BlogBlockRenderer({ block }: { block: BlogBlock }) {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = getAllBlogPost(slug);
 
   if (!post) {
     notFound();
@@ -198,10 +199,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const heroImage = asset?.src ?? getGeneratedCover(post.slug);
   const heroAlt = asset?.alt ?? `Imagem de destaque do artigo ${post.title}`;
   const headings = expandedBlocks.filter((block): block is Extract<BlogBlock, { type: 'heading' }> => block.type === 'heading');
-  const relatedPosts = blogPosts
+  const relatedPosts = allBlogPosts
     .filter((item) => item.slug !== post.slug)
     .filter((item) => item.category === post.category || item.tags.some((tag) => post.tags.includes(tag)))
-    .concat(blogPosts.filter((item) => item.slug !== post.slug))
+    .concat(allBlogPosts.filter((item) => item.slug !== post.slug))
     .filter((item, index, array) => array.findIndex((candidate) => candidate.slug === item.slug) === index)
     .slice(0, 3);
 
