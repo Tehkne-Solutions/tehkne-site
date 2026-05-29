@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { blogPosts } from './blog/blog-data';
+import { allBlogPosts } from './blog/all-blog-posts';
 import { portfolioCases } from './portfolio/portfolio-data';
 import { productPages } from './produtos/product-data';
 import { servicePages } from './servicos/service-data';
@@ -35,11 +35,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: product.slug === 'wp-business-hub' ? 0.88 : 0.82
   })) satisfies MetadataRoute.Sitemap;
 
-  const blogUrls = blogPosts.map((post) => ({
+  const blogUrls = allBlogPosts.map((post) => ({
     url: `${siteUrl}/blog/${post.slug}`,
     lastModified: post.date,
     changeFrequency: 'monthly',
-    priority: 0.7
+    priority: 0.72
   })) satisfies MetadataRoute.Sitemap;
 
   const portfolioUrls = portfolioCases.map((project) => ({
