@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import ShareButtons from '../../components/ShareButtons';
 import { getBlogImageAsset } from '../blog-image-assets';
 import { blogPosts, getBlogPost, type BlogBlock } from '../blog-data';
+import { getBlogExpansionBlocks } from '../blog-expansions';
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -192,10 +193,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const expandedBlocks = [...post.blocks, ...getBlogExpansionBlocks(post.slug)];
   const asset = getBlogImageAsset(post.slug);
   const heroImage = asset?.src ?? getGeneratedCover(post.slug);
   const heroAlt = asset?.alt ?? `Imagem de destaque do artigo ${post.title}`;
-  const headings = post.blocks.filter((block): block is Extract<BlogBlock, { type: 'heading' }> => block.type === 'heading');
+  const headings = expandedBlocks.filter((block): block is Extract<BlogBlock, { type: 'heading' }> => block.type === 'heading');
   const relatedPosts = blogPosts
     .filter((item) => item.slug !== post.slug)
     .filter((item) => item.category === post.category || item.tags.some((tag) => post.tags.includes(tag)))
@@ -264,7 +266,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <aside className="blog-toc">
             <span className="eyebrow">Neste artigo</span>
             <a href="#artigo">Leitura principal</a>
-            {headings.slice(0, 6).map((heading) => {
+            {headings.slice(0, 8).map((heading) => {
               const id = slugify(heading.text);
               return <a href={`#${id}`} key={heading.text}>{heading.text}</a>;
             })}
@@ -274,7 +276,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <div className="blog-content" id="artigo">
             <p className="blog-lead">{post.description}</p>
-            {post.blocks.map((block, index) => (
+            {expandedBlocks.map((block, index) => (
               <BlogBlockRenderer block={block} key={`${block.type}-${index}`} />
             ))}
             <ShareButtons title={post.title} text={post.description} />
@@ -338,16 +340,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <img src={getGeneratedCover(item.slug)} alt="" style={coverImageStyle} />
                   <span style={relatedBadgeStyle}>{item.category}</span>
                 </div>
-                <div className="blog-card-body">
-                  <div className="blog-card-meta">
-                    <span>{item.date}</span>
-                    <span>{item.readingTime}</span>
-                  </div>
+                <div>
+                  <span className="eyebrow">{item.category}</span>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
-                  <a className="btn btn-secondary" href={`/blog/${item.slug}`}>
-                    Ler artigo <ArrowUpRight size={15} />
-                  </a>
+                  <a className="text-link" href={`/blog/${item.slug}`}>Ler artigo <ArrowUpRight size={14} /></a>
                 </div>
               </article>
             ))}
