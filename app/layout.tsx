@@ -18,27 +18,35 @@ import './mobile-overflow-kill.css';
 import './metodo-mobile-repair.css';
 
 const siteUrl = 'https://tehknesolutions.com.br';
+const siteName = 'Tehkné Solutions';
+const authorName = 'Thales Wallison';
+const phoneNumber = '+55 19 99893-0846';
 const logoPath = '/images/tehkne-simbolo-isolado-logo.png';
-const socialImagePath = '/images/tehkne-simbolo-isolado-logo.png?v=linkedin-logo-v2';
+const socialImagePath = '/images/tehkne-simbolo-isolado-logo.png?v=linkedin-logo-v3';
 const absoluteLogoUrl = `${siteUrl}${logoPath}`;
 const absoluteSocialImageUrl = `${siteUrl}${socialImagePath}`;
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID ?? 'G-MB46DPYC6K';
 const googleSiteVerificationToken = 'sVy4pW6HtkQHV0K6ATxm5VVVJd1LcKE_8fwJmJRNEWk';
 
-const socialTitle = 'Tehkné Solutions | Software house, IA, automações e sistemas sob medida';
+const socialSlogan = 'Software house, IA, automações e sistemas sob medida.';
 const socialDescription =
-  'A Tehkné Solutions cria sites, sistemas, automações, IA, integrações e produtos digitais para empresas que precisam vender mais, reduzir retrabalho e escalar com segurança.';
+  'Sites, sistemas, automações, integrações e produtos digitais para empresas que precisam vender mais, reduzir retrabalho e escalar com segurança.';
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Tehkné Solutions',
+  name: siteName,
   alternateName: 'Tehkne Solutions',
+  slogan: socialSlogan,
   url: siteUrl,
   logo: absoluteLogoUrl,
   image: absoluteLogoUrl,
   description: socialDescription,
-  telephone: '+55 19 99893-0846',
+  telephone: phoneNumber,
+  founder: {
+    '@type': 'Person',
+    name: authorName
+  },
   areaServed: ['Campinas', 'São Paulo', 'Brasil'],
   knowsAbout: [
     'Arquitetura de Soluções',
@@ -56,20 +64,24 @@ const organizationJsonLd = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
-    telephone: '+55 19 99893-0846',
+    telephone: phoneNumber,
     availableLanguage: ['Portuguese', 'English', 'Spanish']
   }
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  applicationName: 'Tehkné Solutions',
+  applicationName: siteName,
+  authors: [{ name: authorName }],
+  creator: authorName,
+  publisher: siteName,
   title: {
-    default: socialTitle,
-    template: '%s | Tehkné Solutions'
+    default: siteName,
+    template: `%s | ${siteName}`
   },
   description: socialDescription,
   keywords: [
+    'Tehkné Solutions',
     'software house Campinas',
     'desenvolvimento de sistemas sob medida',
     'desenvolvimento web',
@@ -119,12 +131,13 @@ export const metadata: Metadata = {
     ]
   },
   openGraph: {
-    title: socialTitle,
-    description: socialDescription,
+    title: siteName,
+    description: `${socialSlogan} ${socialDescription}`,
     url: siteUrl,
-    siteName: 'Tehkné Solutions',
+    siteName,
     type: 'website',
     locale: 'pt_BR',
+    phoneNumbers: [phoneNumber],
     images: [
       {
         url: absoluteSocialImageUrl,
@@ -136,14 +149,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: socialTitle,
-    description: socialDescription,
+    title: siteName,
+    description: `${socialSlogan} ${socialDescription}`,
+    creator: '@tehknesolutions',
     images: [absoluteSocialImageUrl]
   },
   other: {
+    author: authorName,
+    'article:author': authorName,
+    'og:author': authorName,
+    'og:phone_number': phoneNumber,
+    'business:contact_data:phone_number': phoneNumber,
     'og:image:secure_url': absoluteSocialImageUrl,
     'og:image:type': 'image/png',
-    'og:image:alt': 'Logo oficial da Tehkné Solutions'
+    'og:image:alt': 'Logo oficial da Tehkné Solutions',
+    'description:short': socialDescription,
+    slogan: socialSlogan
   }
 };
 
