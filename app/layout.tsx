@@ -18,8 +18,8 @@ import './mobile-overflow-kill.css';
 import './metodo-mobile-repair.css';
 
 const siteUrl = 'https://tehknesolutions.com.br';
-const logoPath = '/images/logo-tehkne-solutions-header.png';
-const socialImagePath = logoPath;
+const logoPath = '/images/tehkne-simbolo-isolado-logo.png';
+const socialImagePath = '/images/tehkne-simbolo-isolado-logo.png?v=linkedin-logo-v2';
 const absoluteLogoUrl = `${siteUrl}${logoPath}`;
 const absoluteSocialImageUrl = `${siteUrl}${socialImagePath}`;
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID ?? 'G-MB46DPYC6K';
@@ -36,7 +36,7 @@ const organizationJsonLd = {
   alternateName: 'Tehkne Solutions',
   url: siteUrl,
   logo: absoluteLogoUrl,
-  image: absoluteSocialImageUrl,
+  image: absoluteLogoUrl,
   description: socialDescription,
   telephone: '+55 19 99893-0846',
   areaServed: ['Campinas', 'São Paulo', 'Brasil'],
@@ -128,8 +128,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: absoluteSocialImageUrl,
-        width: 966,
-        height: 942,
+        width: 1200,
+        height: 1200,
         alt: 'Logo oficial da Tehkné Solutions'
       }
     ]
