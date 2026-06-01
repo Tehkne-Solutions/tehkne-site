@@ -18,12 +18,16 @@ import './mobile-overflow-kill.css';
 import './metodo-mobile-repair.css';
 
 const siteUrl = 'https://tehknesolutions.com.br';
-const logoPath = '/images/tehkne-simbolo-isolado-logo.png';
-const socialImagePath = '/images/tehkne-social-preview.png';
+const logoPath = '/images/logo-tehkne-solutions-header.png';
+const socialImagePath = logoPath;
 const absoluteLogoUrl = `${siteUrl}${logoPath}`;
 const absoluteSocialImageUrl = `${siteUrl}${socialImagePath}`;
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID ?? 'G-MB46DPYC6K';
 const googleSiteVerificationToken = 'sVy4pW6HtkQHV0K6ATxm5VVVJd1LcKE_8fwJmJRNEWk';
+
+const socialTitle = 'Tehkné Solutions | Software house, IA, automações e sistemas sob medida';
+const socialDescription =
+  'A Tehkné Solutions cria sites, sistemas, automações, IA, integrações e produtos digitais para empresas que precisam vender mais, reduzir retrabalho e escalar com segurança.';
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -33,8 +37,7 @@ const organizationJsonLd = {
   url: siteUrl,
   logo: absoluteLogoUrl,
   image: absoluteSocialImageUrl,
-  description:
-    'Software house, estúdio de produto digital e braço técnico para empresas, agências e operações que precisam transformar ideias, processos e operações em sistemas digitais reais.',
+  description: socialDescription,
   telephone: '+55 19 99893-0846',
   areaServed: ['Campinas', 'São Paulo', 'Brasil'],
   knowsAbout: [
@@ -47,6 +50,7 @@ const organizationJsonLd = {
     'IA aplicada',
     'Automações',
     'Sistemas sob medida',
+    'Manutenção e gestão de sites',
     'Sustentação digital'
   ],
   contactPoint: {
@@ -59,12 +63,12 @@ const organizationJsonLd = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  applicationName: 'Tehkné Solutions',
   title: {
-    default: 'Tehkné Solutions | Software sob medida, IA e produtos digitais',
+    default: socialTitle,
     template: '%s | Tehkné Solutions'
   },
-  description:
-    'A Tehkné Solutions projeta, desenvolve e evolui sites, sistemas, automações, IA e produtos digitais para empresas que precisam vender mais, reduzir retrabalho e escalar com segurança.',
+  description: socialDescription,
   keywords: [
     'software house Campinas',
     'desenvolvimento de sistemas sob medida',
@@ -78,6 +82,8 @@ export const metadata: Metadata = {
     'sites de alta performance',
     'white label técnico para agências',
     'integrações CRM ERP API',
+    'manutenção de sites',
+    'gestão técnica de sites',
     'Campinas'
   ],
   verification: {
@@ -113,9 +119,8 @@ export const metadata: Metadata = {
     ]
   },
   openGraph: {
-    title: 'Tehkné Solutions | Sistemas digitais reais para operações que precisam escalar',
-    description:
-      'Arquitetura, design, desenvolvimento, automações e IA para empresas, agências e operações digitais que precisam sair do improviso.',
+    title: socialTitle,
+    description: socialDescription,
     url: siteUrl,
     siteName: 'Tehkné Solutions',
     type: 'website',
@@ -123,18 +128,22 @@ export const metadata: Metadata = {
     images: [
       {
         url: absoluteSocialImageUrl,
-        width: 1200,
-        height: 630,
-        alt: 'Tehkné Solutions — software house, IA e produto digital'
+        width: 966,
+        height: 942,
+        alt: 'Logo oficial da Tehkné Solutions'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tehkné Solutions | Software sob medida, IA e produtos digitais',
-    description:
-      'Sites, sistemas, automações e produtos digitais para empresas que precisam vender mais, reduzir retrabalho e escalar com segurança.',
+    title: socialTitle,
+    description: socialDescription,
     images: [absoluteSocialImageUrl]
+  },
+  other: {
+    'og:image:secure_url': absoluteSocialImageUrl,
+    'og:image:type': 'image/png',
+    'og:image:alt': 'Logo oficial da Tehkné Solutions'
   }
 };
 
