@@ -59,6 +59,15 @@ function isTrustedReferer(value: string) {
   }
 }
 
+function parseJsonMaybe(text: string) {
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch {
+    return null;
+  }
+}
+
 function safeResponseExcerpt(value: string) {
   return value.replace(/https?:\/\/[^\s]+/g, '[url]').replace(/[A-Za-z0-9_-]{24,}/g, '[token]').slice(0, 420);
 }
@@ -146,7 +155,6 @@ function mapToLegacyWebhookLead(lead: BuiltLead) {
     budget_profile: lead.orcamento,
     deadline: lead.prazo,
     whatsapp_message: buildMessage(lead),
-    // Campos PT-BR preservados para compatibilidade com scripts antigos.
     nome: lead.nome,
     empresa: lead.empresa,
     telefone: lead.telefone,
@@ -229,13 +237,13 @@ async function deliverToHub(lead: BuiltLead) {
   });
 
   const text = await response.text().catch(() => '');
-  const data = text ? JSON.parse(text).catch?.(() => null) : null;
+  const data = parseJsonMaybe(text);
 
   if (!response.ok) {
     return { ok: false, status: response.status, error: 'hub_failed', response: safeResponseExcerpt(text) };
   }
 
-  return { ok: true, status: response.status, data };
+  return { ok: true, status: response.status, data: data ?? safeResponseExcerpt(text) };
 }
 
 async function deliverToLegacyWebhook(lead: BuiltLead) {
@@ -256,12 +264,7 @@ async function deliverToLegacyWebhook(lead: BuiltLead) {
   });
 
   const text = await response.text().catch(() => '');
-  let data: unknown = null;
-  try {
-    data = text ? JSON.parse(text) : null;
-  } catch {
-    data = null;
-  }
+  const data = parseJsonMaybe(text);
 
   if (!response.ok) {
     return { ok: false, status: response.status, error: 'legacy_webhook_failed', response: safeResponseExcerpt(text) };
