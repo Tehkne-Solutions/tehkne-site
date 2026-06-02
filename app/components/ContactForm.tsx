@@ -23,6 +23,12 @@ type LeadFormState = {
   website: string;
 };
 
+type LeadApiResponse = {
+  ok?: boolean;
+  error?: string;
+  deliveries?: Record<string, unknown>;
+};
+
 const initialForm: LeadFormState = {
   nome: '',
   empresa: '',
@@ -35,11 +41,31 @@ const initialForm: LeadFormState = {
   website: ''
 };
 
+const leadErrorMessages: Record<string, string> = {
+  lead_delivery_not_configured: 'Integração de leads não configurada na Vercel. Configure LEADS_WEBHOOK_URL ou TEHKNE_HUB_LEADS_URL.',
+  lead_delivery_failed: 'A integração recebeu o lead, mas não confirmou gravação. Verifique o webhook/Apps Script.',
+  legacy_webhook_rejected: 'O Apps Script rejeitou o lead. Verifique validações e chave compartilhada.',
+  legacy_webhook_failed: 'O webhook da planilha retornou erro HTTP.',
+  hub_failed: 'O Hub/CRM retornou erro HTTP.',
+  invalid_payload: 'Payload inválido.',
+  submitted_too_fast: 'Envio rápido demais. Aguarde alguns segundos e tente novamente.',
+  low_interaction_score: 'Preencha os campos manualmente antes de enviar.',
+  missing_contact: 'Informe e-mail ou WhatsApp.',
+  invalid_email: 'Informe um e-mail válido.',
+  invalid_phone: 'Informe um WhatsApp válido.'
+};
+
+function getLeadErrorMessage(data: LeadApiResponse | null) {
+  if (!data?.error) return 'Não conseguimos confirmar o registro agora. Verifique a integração de leads.';
+  return leadErrorMessages[data.error] ?? `Falha na integração de leads: ${data.error}`;
+}
+
 export default function ContactForm({ page, context, title = 'Vamos transformar sua demanda em plano de execução?', description = 'Preencha o formulário para a Tehkné receber um briefing mais completo. Os dados podem alimentar planilha, CRM e uma proposta mais precisa.' }: ContactFormProps) {
   const [form, setForm] = useState<LeadFormState>(initialForm);
   const [status, setStatus] = useState<'idle' | 'sending' | 'saved' | 'error'>('idle');
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [formStartedAt, setFormStartedAt] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const interactionScoreRef = useRef(0);
 
   useEffect(() => {
@@ -110,6 +136,7 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
     const elapsedMs = Math.max(Date.now() - startedAt, 0);
 
     setStatus('sending');
+    setErrorMessage('');
     setShowConfirmation(false);
     trackLeadForm('lead_form_submit');
 
@@ -132,12 +159,19 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
         body: JSON.stringify(payload)
       });
 
-      if (!response.ok) throw new Error('Lead not saved');
+      const data = (await response.json().catch(() => null)) as LeadApiResponse | null;
+
+      if (!response.ok || data?.ok === false) {
+        throw new Error(getLeadErrorMessage(data));
+      }
+
       setStatus('saved');
       setShowConfirmation(true);
       trackLeadForm('lead_form_saved');
       openWhatsApp();
-    } catch {
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Não conseguimos confirmar o registro agora.';
+      setErrorMessage(message);
       setStatus('error');
       setShowConfirmation(true);
       trackLeadForm('lead_form_fallback_whatsapp');
@@ -187,6 +221,7 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
             <option>Landing page estratégica — sob orçamento</option>
             <option>Site institucional premium — sob orçamento</option>
             <option>Plataforma web sob medida</option>
+            <option>Soluções com IA</option>
             <option>Integrações CRM, ERP e APIs</option>
             <option>Governança, segurança e sustentação</option>
             <option>White label técnico para agência</option>
@@ -227,7 +262,7 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
           Chamar direto no WhatsApp <ArrowUpRight size={14} />
         </a>
         {status === 'saved' ? <p className="form-status success">Briefing enviado. Abrimos o WhatsApp em uma nova guia com sua mensagem preenchida.</p> : null}
-        {status === 'error' ? <p className="form-status error">Não conseguimos confirmar o registro agora, mas abrimos o WhatsApp com sua mensagem preenchida.</p> : null}
+        {status === 'error' ? <p className="form-status error">{errorMessage || 'Não conseguimos confirmar o registro agora, mas abrimos o WhatsApp com sua mensagem preenchida.'}</p> : null}
       </form>
 
       {showConfirmation ? (
@@ -238,8 +273,8 @@ export default function ContactForm({ page, context, title = 'Vamos transformar 
             </button>
             <div className="contact-confirmation-icon"><CheckCircle2 size={30} /></div>
             <span className="eyebrow">Mensagem preparada</span>
-            <h3 id="contact-confirmation-title">Obrigado! Seu briefing foi recebido.</h3>
-            <p>Também abrimos o WhatsApp em uma nova guia com a mensagem preenchida. Para concluir, revise e envie por lá.</p>
+            <h3 id="contact-confirmation-title">Obrigado! Sua mensagem foi preparada.</h3>
+            <p>{status === 'saved' ? 'Seu briefing foi registrado e o WhatsApp foi aberto em uma nova guia com a mensagem preenchida.' : `${errorMessage || 'Não conseguimos confirmar o registro na integração agora.'} O WhatsApp foi aberto com sua mensagem preenchida.`}</p>
             <div className="hero-actions">
               <button type="button" className="btn btn-primary coin" onClick={openWhatsApp}>Abrir WhatsApp novamente <ArrowUpRight size={16} /></button>
               <button type="button" className="btn btn-secondary" onClick={() => setShowConfirmation(false)}>Continuar no site</button>
