@@ -100,6 +100,18 @@
     right: 12px !important;
     width: auto !important;
     max-width: calc(100vw - 24px) !important;
+    max-height: calc(100dvh - 88px) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: calc(26px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .nav-shell.nav-shell-premium .mobile-nav.open {
+    display: grid !important;
+    max-height: calc(100dvh - 78px) !important;
+    overflow-y: auto !important;
     overflow-x: hidden !important;
   }
 
@@ -314,6 +326,15 @@
   .os-panel {
     padding-left: 16px !important;
     padding-right: 16px !important;
+  }
+
+  .mobile-nav.open,
+  .nav-shell.nav-shell-premium .mobile-nav.open {
+    left: 10px !important;
+    right: 10px !important;
+    max-width: calc(100vw - 20px) !important;
+    max-height: calc(100dvh - 72px) !important;
+    overflow-y: auto !important;
   }
 
   .eyebrow {
