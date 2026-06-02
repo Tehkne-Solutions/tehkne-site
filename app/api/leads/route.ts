@@ -20,6 +20,8 @@ type LeadPayload = {
   interactionScore?: number;
 };
 
+type BuiltLead = ReturnType<typeof buildLead>;
+
 const SITE_HOSTS = ['tehknesolutions.com.br', 'www.tehknesolutions.com.br', 'tehkne-site.vercel.app', 'localhost'];
 
 function sanitize(value: unknown, maxLength = 4000) {
@@ -48,7 +50,7 @@ function isValidPhone(value: string) {
 }
 
 function isTrustedReferer(value: string) {
-  if (!value) return false;
+  if (!value) return true;
   try {
     const url = new URL(value);
     return SITE_HOSTS.some((host) => url.hostname === host || url.hostname.endsWith(`.${host}`));
@@ -57,7 +59,11 @@ function isTrustedReferer(value: string) {
   }
 }
 
-function looksLikeEmptyPlaceholder(lead: ReturnType<typeof buildLead>) {
+function safeResponseExcerpt(value: string) {
+  return value.replace(/https?:\/\/[^\s]+/g, '[url]').replace(/[A-Za-z0-9_-]{24,}/g, '[token]').slice(0, 420);
+}
+
+function looksLikeEmptyPlaceholder(lead: BuiltLead) {
   const combined = normalize([
     lead.nome,
     lead.empresa,
@@ -85,7 +91,24 @@ function looksLikeEmptyPlaceholder(lead: ReturnType<typeof buildLead>) {
   return oldPlaceholder || currentPlaceholder || allBusinessFieldsEmpty;
 }
 
-function mapToHubLead(lead: ReturnType<typeof buildLead>) {
+function buildMessage(lead: BuiltLead) {
+  return lead.whatsappMessage || [
+    `Olá, Tehkné! Vim pela página ${lead.page || 'site'}.`,
+    `Contexto: ${lead.context || 'não informado'}.`,
+    '',
+    `Nome: ${lead.nome}`,
+    `Empresa/projeto: ${lead.empresa || 'não informado'}`,
+    `E-mail: ${lead.email || 'não informado'}`,
+    `Telefone: ${lead.telefone || 'não informado'}`,
+    `Serviço: ${lead.servico}`,
+    `Perfil de investimento: ${lead.orcamento || 'não informado'}`,
+    `Prazo/urgência: ${lead.prazo || 'não informado'}`,
+    `Mensagem: ${lead.mensagem}`
+  ].join('\n');
+}
+
+function mapToHubLead(lead: BuiltLead) {
+  const pageUrl = lead.page || lead.referer;
   return {
     source: lead.source || 'tehkne-site',
     form: 'next-contact-form',
@@ -100,13 +123,51 @@ function mapToHubLead(lead: ReturnType<typeof buildLead>) {
       `Contexto: ${lead.context || 'não informado'}`,
       `Perfil de investimento: ${lead.orcamento || 'não informado'}`,
       `Prazo/urgência: ${lead.prazo || 'não informado'}`,
-      `Mensagem WhatsApp: ${lead.whatsappMessage || 'não informada'}`
+      `Mensagem WhatsApp: ${buildMessage(lead)}`
     ].join('\n'),
-    page_url: lead.referer || lead.page,
+    page_url: pageUrl,
     utm_source: '',
     utm_medium: '',
     utm_campaign: '',
     consent: true
+  };
+}
+
+function mapToLegacyWebhookLead(lead: BuiltLead) {
+  const normalized = mapToHubLead(lead);
+  return {
+    ...normalized,
+    created_at: lead.createdAt,
+    updated_at: lead.createdAt,
+    status: 'Novo',
+    user_agent: lead.userAgent,
+    referer: lead.referer,
+    context: lead.context,
+    budget_profile: lead.orcamento,
+    deadline: lead.prazo,
+    whatsapp_message: buildMessage(lead),
+    // Campos PT-BR preservados para compatibilidade com scripts antigos.
+    nome: lead.nome,
+    empresa: lead.empresa,
+    telefone: lead.telefone,
+    servico: lead.servico,
+    orcamento: lead.orcamento,
+    prazo: lead.prazo,
+    mensagem: lead.mensagem,
+    page: lead.page,
+    message_full: buildMessage(lead),
+    lead: {
+      name: normalized.name,
+      email: normalized.email,
+      phone: normalized.phone,
+      company: normalized.company,
+      interest: normalized.interest,
+      message: normalized.message,
+      page_url: normalized.page_url,
+      source: normalized.source,
+      form: normalized.form,
+      status: 'Novo'
+    }
   };
 }
 
@@ -134,7 +195,7 @@ function buildLead(body: LeadPayload, request: Request) {
   };
 }
 
-function validateLead(lead: ReturnType<typeof buildLead>) {
+function validateLead(lead: BuiltLead) {
   if (looksLikeEmptyPlaceholder(lead)) return 'empty_placeholder';
   if (!isTrustedReferer(lead.referer)) return 'invalid_referer';
   if (!lead.formStartedAt) return 'missing_form_started_at';
@@ -142,7 +203,7 @@ function validateLead(lead: ReturnType<typeof buildLead>) {
   if (lead.interactionScore < 2) return 'low_interaction_score';
   if (!lead.nome || lead.nome.length < 2) return 'missing_name';
   if (!lead.servico) return 'missing_service';
-  if (!lead.mensagem || lead.mensagem.length < 10) return 'missing_message';
+  if (!lead.mensagem || lead.mensagem.length < 5) return 'missing_message';
   if (!lead.email && !lead.telefone) return 'missing_contact';
   if (!isValidEmail(lead.email)) return 'invalid_email';
   if (!isValidPhone(lead.telefone)) return 'invalid_phone';
@@ -150,12 +211,12 @@ function validateLead(lead: ReturnType<typeof buildLead>) {
   return null;
 }
 
-async function deliverToHub(lead: ReturnType<typeof buildLead>) {
+async function deliverToHub(lead: BuiltLead) {
   const hubUrl = process.env.TEHKNE_HUB_LEADS_URL;
   const hubKey = process.env.TEHKNE_HUB_INTEGRATION_KEY;
 
   if (!hubUrl || !hubKey) {
-    return { skipped: true, reason: 'hub_not_configured' };
+    return { ok: false, skipped: true, reason: 'hub_not_configured' };
   }
 
   const response = await fetch(hubUrl, {
@@ -167,21 +228,22 @@ async function deliverToHub(lead: ReturnType<typeof buildLead>) {
     body: JSON.stringify(mapToHubLead(lead))
   });
 
-  const data = await response.json().catch(() => null);
+  const text = await response.text().catch(() => '');
+  const data = text ? JSON.parse(text).catch?.(() => null) : null;
 
   if (!response.ok) {
-    throw new Error(`hub_failed:${response.status}`);
+    return { ok: false, status: response.status, error: 'hub_failed', response: safeResponseExcerpt(text) };
   }
 
-  return { ok: true, data };
+  return { ok: true, status: response.status, data };
 }
 
-async function deliverToLegacyWebhook(lead: ReturnType<typeof buildLead>) {
+async function deliverToLegacyWebhook(lead: BuiltLead) {
   const webhookUrl = process.env.LEADS_WEBHOOK_URL;
   const webhookKey = process.env.LEADS_WEBHOOK_KEY;
 
   if (!webhookUrl) {
-    return { skipped: true, reason: 'legacy_webhook_not_configured' };
+    return { ok: false, skipped: true, reason: 'legacy_webhook_not_configured' };
   }
 
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
@@ -190,14 +252,26 @@ async function deliverToLegacyWebhook(lead: ReturnType<typeof buildLead>) {
   const response = await fetch(webhookUrl, {
     method: 'POST',
     headers,
-    body: JSON.stringify(lead)
+    body: JSON.stringify(mapToLegacyWebhookLead(lead))
   });
 
-  if (!response.ok) {
-    throw new Error(`legacy_webhook_failed:${response.status}`);
+  const text = await response.text().catch(() => '');
+  let data: unknown = null;
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch {
+    data = null;
   }
 
-  return { ok: true };
+  if (!response.ok) {
+    return { ok: false, status: response.status, error: 'legacy_webhook_failed', response: safeResponseExcerpt(text) };
+  }
+
+  if (data && typeof data === 'object' && 'ok' in data && (data as { ok?: unknown }).ok === false) {
+    return { ok: false, status: response.status, error: 'legacy_webhook_rejected', response: data };
+  }
+
+  return { ok: true, status: response.status, data: data ?? safeResponseExcerpt(text) };
 }
 
 export async function POST(request: Request) {
@@ -218,26 +292,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: validationError }, { status: 422 });
   }
 
-  const deliveries: Record<string, unknown> = {};
-  const warnings: string[] = [];
+  const deliveries = {
+    hub: await deliverToHub(lead),
+    legacyWebhook: await deliverToLegacyWebhook(lead)
+  };
 
-  try {
-    deliveries.hub = await deliverToHub(lead);
-  } catch (error) {
-    warnings.push(error instanceof Error ? error.message : 'hub_failed');
-    deliveries.hub = { ok: false };
+  const delivered = Object.values(deliveries).some((delivery) => delivery.ok === true);
+
+  if (!delivered) {
+    const allSkipped = Object.values(deliveries).every((delivery) => delivery.skipped === true);
+    return NextResponse.json({
+      ok: false,
+      error: allSkipped ? 'lead_delivery_not_configured' : 'lead_delivery_failed',
+      deliveries
+    }, { status: allSkipped ? 500 : 502 });
   }
 
-  try {
-    deliveries.legacyWebhook = await deliverToLegacyWebhook(lead);
-  } catch (error) {
-    warnings.push(error instanceof Error ? error.message : 'legacy_webhook_failed');
-    deliveries.legacyWebhook = { ok: false };
-  }
-
-  if (warnings.length > 0 && !process.env.TEHKNE_HUB_LEADS_URL && !process.env.LEADS_WEBHOOK_URL) {
-    return NextResponse.json({ ok: false, error: 'no_delivery_configured' }, { status: 500 });
-  }
-
-  return NextResponse.json({ ok: true, deliveries, warnings });
+  return NextResponse.json({ ok: true, deliveries });
 }
