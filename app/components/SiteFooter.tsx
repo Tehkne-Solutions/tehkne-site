@@ -55,7 +55,7 @@ export default function SiteFooter() {
       </div>
       <div>
         <h4>Responsável</h4>
-        <a href="/sobre">Thales Wallison</a>
+        <a href="/sobre/thales-wallison">Thales Wallison</a>
         <span>Founder & CTO</span>
         <span>Arquiteto de soluções</span>
         <span>Desenvolvedor sênior</span>
