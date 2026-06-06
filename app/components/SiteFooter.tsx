@@ -18,12 +18,13 @@ export default function SiteFooter() {
             <small>SOLUTIONS</small>
           </div>
         </a>
-        <p>Produtos digitais, software sob medida e WordPress avançado para transformar sites, vendas e operações em sistemas evolutivos.</p>
+        <p>Tehkné Solutions é uma software house de Campinas/SP especializada em sites, sistemas, IA, automações, integrações e produtos digitais para empresas que precisam vender mais, reduzir retrabalho e escalar com segurança.</p>
       </div>
       <div>
         <h4>Produtos</h4>
         <a href="/produtos">Hub de Produtos</a>
         <a href="/produtos/wp-business-hub">WP Business Hub</a>
+        <a href="/produtos/delivery-wp">Delivery WP</a>
         <a href="/produtos/flow-wp">Tehkné Flow WP</a>
         <a href="/produtos/crm-wp">Tehkné CRM WP</a>
         <a href="/produtos/integracoes-wp">Integrações WP</a>
@@ -32,6 +33,7 @@ export default function SiteFooter() {
         <h4>Soluções</h4>
         <a href="/servicos/site-institucional-alta-performance">Site premium</a>
         <a href="/servicos/plataforma-web-sob-medida">Sistema sob medida</a>
+        <a href="/servicos/solucoes-ia">Soluções com IA</a>
         <a href="/servicos/integracoes-crm-erp-apis">CRM, ERP e APIs</a>
         <a href="/servicos/governanca-seguranca-sustentacao">Sustentação técnica</a>
         <a href="/servicos/white-label-tecnico-agencias">White label para agências</a>
@@ -48,14 +50,22 @@ export default function SiteFooter() {
         <a href="/sobre">Sobre a Tehkné</a>
         <a href="/metodo">Método GIP Tehkné</a>
         <a href="/contato#localizacao">Campinas, SP • Brasil</a>
+        <a href="mailto:contato@tehknesolutions.com.br">contato@tehknesolutions.com.br</a>
         <a href={href} target="_blank" rel="noreferrer">{WHATSAPP_DISPLAY}</a>
       </div>
       <div>
+        <h4>Responsável</h4>
+        <a href="/sobre">Thales Wallison</a>
+        <span>Founder & CTO</span>
+        <span>Arquiteto de soluções</span>
+        <span>Desenvolvedor sênior</span>
+      </div>
+      <div>
         <h4>Começar</h4>
-        <a href="/contato#contato-form">Solicitar diagnóstico</a>
+        <a href="/contato#contato-form">Solicitar diagnóstico <ArrowUpRight size={13} /></a>
+        <a href="/servicos/solucoes-ia">Mapear oportunidades com IA</a>
         <a href="/produtos/wp-business-hub">Quero o WP Business Hub</a>
         <a href="/produtos/crm-wp">Quero organizar leads</a>
-        <a href="/produtos/flow-wp">Quero organizar tarefas</a>
       </div>
       <div>
         <h4>Legal</h4>
