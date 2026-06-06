@@ -5,7 +5,7 @@ import { productPages } from './produtos/product-data';
 import { servicePages } from './servicos/service-data';
 
 const siteUrl = 'https://tehknesolutions.com.br';
-const staticPages = ['/', '/sobre', '/solucoes', '/portfolio', '/metodo', '/blog', '/contato', '/produtos', '/servicos', '/privacidade', '/termos-de-uso'];
+const staticPages = ['/', '/sobre', '/sobre/thales-wallison', '/solucoes', '/portfolio', '/metodo', '/blog', '/contato', '/produtos', '/servicos', '/privacidade', '/termos-de-uso'];
 
 function canonicalServiceSlug(slug: string) {
   return slug === 'ia-automacoes-agentes-inteligentes' ? 'solucoes-ia' : slug;
