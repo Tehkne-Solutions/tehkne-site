@@ -17,12 +17,13 @@ import './mobile-first-hardening.css';
 import './mobile-overflow-kill.css';
 import './metodo-mobile-repair.css';
 
-const siteUrl = 'https://tehknesolutions.com.br';
+const siteUrl = 'https://www.tehknesolutions.com.br';
 const siteName = 'Tehkné Solutions';
 const authorName = 'Thales Wallison';
 const phoneNumber = '+55 19 99893-0846';
+const email = 'contato@tehknesolutions.com.br';
 const logoPath = '/images/tehkne-simbolo-isolado-logo.png';
-const socialImagePath = '/images/tehkne-simbolo-isolado-logo.png?v=linkedin-logo-v3';
+const socialImagePath = '/images/tehkne-simbolo-isolado-logo.png?v=linkedin-logo-v5';
 const absoluteLogoUrl = `${siteUrl}${logoPath}`;
 const absoluteSocialImageUrl = `${siteUrl}${socialImagePath}`;
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID ?? 'G-MB46DPYC6K';
@@ -34,20 +35,32 @@ const socialDescription =
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': ['Organization', 'ProfessionalService'],
+  '@id': `${siteUrl}/#organization`,
   name: siteName,
-  alternateName: 'Tehkne Solutions',
+  legalName: siteName,
+  alternateName: ['Tehkne Solutions', 'Tehkné'],
   slogan: socialSlogan,
   url: siteUrl,
   logo: absoluteLogoUrl,
-  image: absoluteLogoUrl,
+  image: absoluteSocialImageUrl,
   description: socialDescription,
   telephone: phoneNumber,
+  email,
   founder: {
     '@type': 'Person',
-    name: authorName
+    name: authorName,
+    jobTitle: 'Founder & CTO',
+    url: `${siteUrl}/sobre/thales-wallison`,
+    sameAs: ['https://www.linkedin.com/in/thales-wallison-ferreira/']
   },
   areaServed: ['Campinas', 'São Paulo', 'Brasil'],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Campinas',
+    addressRegion: 'SP',
+    addressCountry: 'BR'
+  },
   knowsAbout: [
     'Arquitetura de Soluções',
     'Desenvolvimento Web',
@@ -59,20 +72,36 @@ const organizationJsonLd = {
     'Automações',
     'Sistemas sob medida',
     'Manutenção e gestão de sites',
-    'Sustentação digital'
+    'Sustentação digital',
+    'Integrações CRM ERP API'
   ],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
     telephone: phoneNumber,
+    email,
     availableLanguage: ['Portuguese', 'English', 'Spanish']
+  },
+  sameAs: ['https://www.linkedin.com/in/thales-wallison-ferreira/']
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  name: siteName,
+  url: siteUrl,
+  description: socialDescription,
+  inLanguage: 'pt-BR',
+  publisher: {
+    '@id': `${siteUrl}/#organization`
   }
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: siteName,
-  authors: [{ name: authorName }],
+  authors: [{ name: authorName, url: `${siteUrl}/sobre/thales-wallison` }],
   creator: authorName,
   publisher: siteName,
   title: {
@@ -102,7 +131,7 @@ export const metadata: Metadata = {
     google: googleSiteVerificationToken
   },
   alternates: {
-    canonical: '/'
+    canonical: siteUrl
   },
   robots: {
     index: true,
@@ -138,6 +167,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_BR',
     phoneNumbers: [phoneNumber],
+    emails: [email],
     images: [
       {
         url: absoluteSocialImageUrl,
@@ -189,6 +219,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <Script
+          id="website-json-ld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <CTAAnalytics />
         <RuntimeTextUpgrades />
