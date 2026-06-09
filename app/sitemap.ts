@@ -4,7 +4,7 @@ import { portfolioCases } from './portfolio/portfolio-data';
 import { productPages } from './produtos/product-data';
 import { servicePages } from './servicos/service-data';
 
-const siteUrl = 'https://tehknesolutions.com.br';
+const siteUrl = 'https://www.tehknesolutions.com.br';
 const staticPages = ['/', '/sobre', '/sobre/thales-wallison', '/solucoes', '/portfolio', '/metodo', '/blog', '/contato', '/produtos', '/servicos', '/privacidade', '/termos-de-uso'];
 
 function canonicalServiceSlug(slug: string) {
