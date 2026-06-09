@@ -1,0 +1,23 @@
+/* TEAM */
+
+Company: Tehkné Solutions
+Founder & CTO: Thales Wallison
+LinkedIn: https://www.linkedin.com/in/thales-wallison-ferreira/
+Contact: contato@tehknesolutions.com.br
+WhatsApp: +55 19 99893-0846
+Location: Campinas/SP, Brasil
+
+/* SITE */
+
+URL: https://www.tehknesolutions.com.br
+Language: Portuguese / pt-BR
+Stack: Next.js, React, TypeScript, Vercel
+Focus: software house, produto digital, IA, automações, WordPress avançado, integrações e manutenção técnica.
+
+/* VALUES */
+
+A técnica como arte. A arte como sistema. O sistema como solução real.
+
+/* THANKS */
+
+Produto desenvolvido por Tehkné Solutions.
