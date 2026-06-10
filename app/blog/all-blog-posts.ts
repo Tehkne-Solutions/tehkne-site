@@ -11,7 +11,56 @@ import { seoPillarBlogPosts8 } from './blog-seo-pillar-posts-8';
 import { seoPillarBlogPosts9 } from './blog-seo-pillar-posts-9';
 import { seoPillarBlogPosts10 } from './blog-seo-pillar-posts-10';
 
-export const allBlogPosts: BlogPost[] = [...seoPillarBlogPosts10, ...seoPillarBlogPosts9, ...seoPillarBlogPosts8, ...seoPillarBlogPosts7, ...seoPillarBlogPosts6, ...seoPillarBlogPosts5, ...seoPillarBlogPosts4, ...seoPillarBlogPosts3, ...seoPillarBlogPosts2, ...seoPillarBlogPosts, ...newBlogPosts, ...blogPosts];
+const sourcePosts: BlogPost[] = [
+  ...seoPillarBlogPosts10,
+  ...seoPillarBlogPosts9,
+  ...seoPillarBlogPosts8,
+  ...seoPillarBlogPosts7,
+  ...seoPillarBlogPosts6,
+  ...seoPillarBlogPosts5,
+  ...seoPillarBlogPosts4,
+  ...seoPillarBlogPosts3,
+  ...seoPillarBlogPosts2,
+  ...seoPillarBlogPosts,
+  ...newBlogPosts,
+  ...blogPosts
+];
+
+const editorialAuthor = 'Thales Da Vinci - TKN';
+const latestDate = '2026-06-10';
+
+function formatIsoDate(date: Date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function getPreviousWeekday(date: Date) {
+  const result = new Date(date);
+  result.setDate(result.getDate() - 1);
+
+  while (result.getDay() === 0 || result.getDay() === 6) {
+    result.setDate(result.getDate() - 1);
+  }
+
+  return result;
+}
+
+function normalizePosts(posts: BlogPost[]) {
+  let dateCursor = new Date(`${latestDate}T12:00:00.000Z`);
+
+  return posts.map((post, index) => {
+    if (index > 0) {
+      dateCursor = getPreviousWeekday(dateCursor);
+    }
+
+    return {
+      ...post,
+      author: editorialAuthor,
+      date: formatIsoDate(dateCursor)
+    };
+  });
+}
+
+export const allBlogPosts: BlogPost[] = normalizePosts(sourcePosts);
 
 export function getAllBlogPost(slug: string) {
   return allBlogPosts.find((post) => post.slug === slug);
