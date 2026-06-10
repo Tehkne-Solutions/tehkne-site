@@ -64,20 +64,30 @@ export default function BlogIndexClient({ posts }: BlogIndexClientProps) {
 
   return (
     <div className="blog-index-ux">
-      <div className="blog-filter-panel" aria-label="Filtros do blog">
+      <div className="blog-filter-panel premium-filter-panel" aria-label="Filtros do blog">
+        <div className="blog-filter-topline">
+          <div>
+            <span className="filter-kicker"><Filter size={14} /> Refinar biblioteca</span>
+            <strong>Encontre o guia certo para sua etapa.</strong>
+          </div>
+          <div className="blog-filter-count">
+            <Layers3 size={15} />
+            <span>{filteredPosts.length} artigo{filteredPosts.length === 1 ? '' : 's'}</span>
+          </div>
+        </div>
+
         <div className="blog-filter-search">
           <Search size={17} />
           <input
             type="search"
             value={searchTerm}
             onChange={(event) => handleSearchChange(event.target.value)}
-            placeholder="Buscar por tema, tecnologia ou dor..."
+            placeholder="Buscar por tema, tecnologia, dor ou solução..."
             aria-label="Buscar artigos"
           />
         </div>
 
         <div className="blog-category-filter" aria-label="Filtrar por tema">
-          <span><Filter size={15} /> Temas</span>
           <div className="blog-category-buttons">
             {categories.map((category) => (
               <button
@@ -94,7 +104,7 @@ export default function BlogIndexClient({ posts }: BlogIndexClientProps) {
       </div>
 
       <div className="blog-index-summary">
-        <span><Layers3 size={15} /> {filteredPosts.length} artigo{filteredPosts.length === 1 ? '' : 's'} encontrado{filteredPosts.length === 1 ? '' : 's'}</span>
+        <span>Filtro ativo: <strong>{selectedCategory}</strong></span>
         <span>Exibindo {visiblePosts.length} de {filteredPosts.length}</span>
       </div>
 
