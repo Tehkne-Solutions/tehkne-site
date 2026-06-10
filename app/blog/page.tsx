@@ -1,5 +1,6 @@
-import { ArrowUpRight, BookOpen, Clock, Layers3 } from 'lucide-react';
+import { BookOpen, Clock, Layers3 } from 'lucide-react';
 import { allBlogPosts } from './all-blog-posts';
+import BlogIndexClient from './BlogIndexClient';
 
 export const metadata = {
   title: 'Blog | Tehkné Solutions',
@@ -50,37 +51,11 @@ export default function BlogPage() {
             <h2>Artigos publicados</h2>
           </div>
           <p>
-            A linha editorial da Tehkné é consultiva: cada post explica um termo técnico,
-            mostra o problema real que ele resolve e conecta com uma aplicação prática.
+            Filtre por tema, encontre o assunto certo e avance pela biblioteca sem carregar dezenas de cards de uma vez.
           </p>
         </div>
 
-        <div className="blog-grid">
-          {allBlogPosts.map((post) => (
-            <article className="blog-card" key={post.slug}>
-              <div className="blog-card-cover generated-cover" aria-hidden="true">
-                <img src={getGeneratedCover(post.slug)} alt="" />
-                <span>{post.category}</span>
-              </div>
-              <div className="blog-card-body">
-                <div className="blog-card-meta">
-                  <span>{post.date}</span>
-                  <span>{post.readingTime}</span>
-                </div>
-                <h3>{post.title}</h3>
-                <p>{post.description}</p>
-                <div className="blog-tags">
-                  {post.tags.slice(0, 3).map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-                <a className="btn btn-secondary" href={`/blog/${post.slug}`}>
-                  Ler artigo <ArrowUpRight size={15} />
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
+        <BlogIndexClient posts={allBlogPosts} />
       </section>
 
       <section className="section-frame blog-cta">
@@ -93,7 +68,7 @@ export default function BlogPage() {
           </p>
         </div>
         <a className="btn btn-primary coin" href="/contato#contato-form">
-          Solicitar diagnóstico <ArrowUpRight size={16} />
+          Solicitar diagnóstico
         </a>
       </section>
     </main>
