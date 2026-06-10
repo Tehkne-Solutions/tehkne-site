@@ -7,7 +7,7 @@ const sh = (text: string): BlogBlock => ({ type: 'subheading', text });
 const ul = (items: string[]): BlogBlock => ({ type: 'list', items });
 const cta = (text: string, label = 'Solicitar diagnóstico'): BlogBlock => ({ type: 'quote', text, cta: label, href: contactHref });
 const code = (text: string): BlogBlock => ({ type: 'code', text });
-const cmp = (leftTitle: string, left: string[], rightTitle: string, rightTitle2: string[], rightLabel = 'WordPress avançado'): BlogBlock => ({ type: 'compare', leftTitle, left, rightTitle: rightLabel, right: rightTitle2 });
+const cmp = (leftTitle: string, left: string[], rightTitle: string, right: string[]): BlogBlock => ({ type: 'compare', leftTitle, left, rightTitle, right });
 
 export const seoPillarBlogPosts8: BlogPost[] = [
   {
@@ -38,7 +38,7 @@ export const seoPillarBlogPosts8: BlogPost[] = [
 
       h('WordPress simples vs WordPress avançado'),
       p('A diferença não está apenas no visual. Dois sites podem parecer parecidos para o usuário, mas ter arquiteturas completamente diferentes por trás. Um pode depender de páginas montadas manualmente com blocos soltos. Outro pode ter dados estruturados, componentes reutilizáveis, campos seguros e regras centralizadas em plugin próprio.'),
-      cmp('WordPress comum', ['Tema pronto sem customização profunda', 'Muitos plugins para qualquer regra', 'Conteúdo manual e pouco estruturado', 'Performance instável', 'Difícil de manter', 'Regras misturadas no tema'], ['Tema próprio e componentizado', 'Plugin próprio para regras de negócio', 'CPTs e campos personalizados', 'Performance planejada', 'Manutenção previsível', 'Conteúdo estruturado e escalável']),
+      cmp('WordPress comum', ['Tema pronto sem customização profunda', 'Muitos plugins para qualquer regra', 'Conteúdo manual e pouco estruturado', 'Performance instável', 'Difícil de manter', 'Regras misturadas no tema'], 'WordPress avançado', ['Tema próprio e componentizado', 'Plugin próprio para regras de negócio', 'CPTs e campos personalizados', 'Performance planejada', 'Manutenção previsível', 'Conteúdo estruturado e escalável']),
       p('O WordPress comum pode ser suficiente para sites pequenos e com pouca evolução. O WordPress avançado faz sentido quando a empresa precisa de controle, escalabilidade editorial, SEO, integrações ou funcionalidades específicas.'),
 
       h('Custom Post Types: a base do conteúdo estruturado'),
