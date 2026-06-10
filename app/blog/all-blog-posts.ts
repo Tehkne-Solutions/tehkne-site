@@ -9,8 +9,9 @@ import { seoPillarBlogPosts6 } from './blog-seo-pillar-posts-6';
 import { seoPillarBlogPosts7 } from './blog-seo-pillar-posts-7';
 import { seoPillarBlogPosts8 } from './blog-seo-pillar-posts-8';
 import { seoPillarBlogPosts9 } from './blog-seo-pillar-posts-9';
+import { seoPillarBlogPosts10 } from './blog-seo-pillar-posts-10';
 
-export const allBlogPosts: BlogPost[] = [...seoPillarBlogPosts9, ...seoPillarBlogPosts8, ...seoPillarBlogPosts7, ...seoPillarBlogPosts6, ...seoPillarBlogPosts5, ...seoPillarBlogPosts4, ...seoPillarBlogPosts3, ...seoPillarBlogPosts2, ...seoPillarBlogPosts, ...newBlogPosts, ...blogPosts];
+export const allBlogPosts: BlogPost[] = [...seoPillarBlogPosts10, ...seoPillarBlogPosts9, ...seoPillarBlogPosts8, ...seoPillarBlogPosts7, ...seoPillarBlogPosts6, ...seoPillarBlogPosts5, ...seoPillarBlogPosts4, ...seoPillarBlogPosts3, ...seoPillarBlogPosts2, ...seoPillarBlogPosts, ...newBlogPosts, ...blogPosts];
 
 export function getAllBlogPost(slug: string) {
   return allBlogPosts.find((post) => post.slug === slug);
