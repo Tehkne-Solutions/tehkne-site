@@ -20,6 +20,7 @@ import './mobile-readability-cleanup.css';
 import './mobile-home-kill-effects.css';
 import './mobile-client-proof-fix.css';
 import './mobile-card-flow-fix.css';
+import './mobile-no-section-animation.css';
 
 const siteUrl = 'https://www.tehknesolutions.com.br';
 const siteName = 'Tehkné Solutions';
