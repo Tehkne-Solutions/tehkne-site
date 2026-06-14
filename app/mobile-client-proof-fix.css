@@ -1,0 +1,41 @@
+@media (max-width: 768px) {
+  .client-logo-marquee {
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  .client-logo-marquee::before,
+  .client-logo-marquee::after {
+    display: none !important;
+  }
+
+  .client-logo-track {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .client-logo-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    height: auto !important;
+    transform: none !important;
+  }
+
+  .client-logo-card * {
+    transform: none !important;
+    white-space: normal !important;
+  }
+
+  .client-logo-card strong,
+  .client-logo-card small {
+    display: block !important;
+    line-height: 1.35 !important;
+  }
+}
