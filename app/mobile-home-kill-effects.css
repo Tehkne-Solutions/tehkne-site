@@ -1,0 +1,25 @@
+@media (max-width: 768px) {
+  .background-grid,
+  .home-proof-stage,
+  .proof-core-card,
+  .proof-orbit,
+  .proof-signal,
+  .metatron-card,
+  .orbit,
+  .node,
+  .core-glow {
+    display: none !important;
+  }
+
+  .visual-section,
+  .home-proof-lab,
+  .client-proof-section,
+  .portfolio-carousel-section {
+    background: #030711 !important;
+  }
+
+  .back-to-top,
+  .to-top {
+    display: none !important;
+  }
+}
