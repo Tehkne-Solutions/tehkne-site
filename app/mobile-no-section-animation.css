@@ -1,0 +1,24 @@
+@media (max-width: 768px) {
+  .section-frame:not(.hero) {
+    animation: none !important;
+  }
+
+  .visual-section,
+  .section-frame,
+  .pain-grid,
+  .visual-chip-grid {
+    background-image: none !important;
+    filter: none !important;
+  }
+
+  .visual-section::before,
+  .visual-section::after,
+  .section-frame::before,
+  .section-frame::after,
+  .pain-grid::before,
+  .pain-grid::after,
+  .visual-chip-grid::before,
+  .visual-chip-grid::after {
+    display: none !important;
+  }
+}
