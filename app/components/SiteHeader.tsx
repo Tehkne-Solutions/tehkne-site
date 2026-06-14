@@ -6,10 +6,17 @@ import { ArrowUpRight, ChevronDown } from 'lucide-react';
 const navItems = [
   ['Soluções', '/solucoes'],
   ['Portfólio', '/portfolio'],
-  ['Método', '/metodo'],
   ['Blog', '/blog'],
   ['Sobre', '/sobre'],
   ['Contato', '/contato']
+];
+
+const methodMenu = [
+  ['Visão do método', '/metodo'],
+  ['Manual GIP Tehkné', '/metodo/manual-gip-tehkne'],
+  ['Artigo pilar GIP', '/blog/metodo-gip-tehkne-modelagem-genios-processos-ia'],
+  ['Da Vinci aplicado', '/blog/leonardo-da-vinci-produto-digital-design-sistemico'],
+  ['Discovery Disney', '/blog/walt-disney-product-discovery-sonhador-realista-critico']
 ];
 
 const productMenu = [
@@ -63,6 +70,12 @@ export default function SiteHeader() {
             {productMenu.map(([label, url]) => <a key={label} href={url}>{label}</a>) }
           </div>
         </div>
+        <div className="nav-dropdown">
+          <a href="/metodo" className="nav-dropdown-trigger">Método <ChevronDown size={13} /></a>
+          <div className="nav-dropdown-menu" aria-label="Submenu do método GIP Tehkné">
+            {methodMenu.map(([label, url]) => <a key={label} href={url}>{label}</a>)}
+          </div>
+        </div>
         {navItems.map(([label, url]) => (
           <a key={label} href={url}>{label}</a>
         ))}
@@ -90,6 +103,8 @@ export default function SiteHeader() {
         {serviceMenu.map(([label, url]) => <a key={label} href={url} onClick={() => setMobileOpen(false)}>— {label}</a>)}
         <a href="/produtos" onClick={() => setMobileOpen(false)}>Produtos</a>
         {productMenu.slice(1).map(([label, url]) => <a key={label} href={url} onClick={() => setMobileOpen(false)}>— {label}</a>)}
+        <a href="/metodo" onClick={() => setMobileOpen(false)}>Método GIP Tehkné</a>
+        {methodMenu.slice(1).map(([label, url]) => <a key={label} href={url} onClick={() => setMobileOpen(false)}>— {label}</a>)}
         {navItems.map(([label, url]) => (
           <a key={label} href={url} onClick={() => setMobileOpen(false)}>{label}</a>
         ))}
