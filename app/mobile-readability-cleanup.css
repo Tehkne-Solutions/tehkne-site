@@ -1,0 +1,30 @@
+@media (max-width: 768px) {
+  .client-logo-track {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    animation: none;
+    transform: none;
+  }
+
+  .client-logo-marquee {
+    overflow: visible;
+  }
+
+  .client-logo-marquee::before,
+  .client-logo-marquee::after {
+    display: none;
+  }
+
+  .client-logo-card {
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
+    transform: none;
+  }
+
+  .client-logo-card * {
+    transform: none;
+    white-space: normal;
+  }
+}
