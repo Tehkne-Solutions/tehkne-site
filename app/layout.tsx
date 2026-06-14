@@ -16,6 +16,7 @@ import './mobile-qa-fixes.css';
 import './mobile-first-hardening.css';
 import './mobile-overflow-kill.css';
 import './metodo-mobile-repair.css';
+import './mobile-readability-cleanup.css';
 
 const siteUrl = 'https://www.tehknesolutions.com.br';
 const siteName = 'Tehkné Solutions';
