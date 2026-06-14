@@ -1,4 +1,5 @@
 import { blogPosts, type BlogPost } from './blog-data';
+import { gipMethodBlogPosts } from './blog-gip-method-posts';
 import { newBlogPosts } from './blog-new-posts';
 import { seoPillarBlogPosts } from './blog-seo-pillar-posts';
 import { seoPillarBlogPosts2 } from './blog-seo-pillar-posts-2';
@@ -12,6 +13,7 @@ import { seoPillarBlogPosts9 } from './blog-seo-pillar-posts-9';
 import { seoPillarBlogPosts10 } from './blog-seo-pillar-posts-10';
 
 const sourcePosts: BlogPost[] = [
+  ...gipMethodBlogPosts,
   ...seoPillarBlogPosts10,
   ...seoPillarBlogPosts9,
   ...seoPillarBlogPosts8,
