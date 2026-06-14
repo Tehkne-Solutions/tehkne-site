@@ -5,7 +5,26 @@ import { productPages } from './produtos/product-data';
 import { servicePages } from './servicos/service-data';
 
 const siteUrl = 'https://www.tehknesolutions.com.br';
-const staticPages = ['/', '/sobre', '/sobre/thales-wallison', '/solucoes', '/portfolio', '/metodo', '/blog', '/contato', '/produtos', '/servicos', '/privacidade', '/termos-de-uso'];
+const staticPages = [
+  '/',
+  '/sobre',
+  '/sobre/thales-wallison',
+  '/solucoes',
+  '/portfolio',
+  '/metodo',
+  '/metodo/manual-gip-tehkne',
+  '/metodo/formacao-gip-tehkne',
+  '/metodo/agentes-gip-tehkne',
+  '/metodo/gip-para-agencias',
+  '/metodo/gip-para-escolas-e-cursos',
+  '/metodo/gip-para-empresas-de-tecnologia',
+  '/blog',
+  '/contato',
+  '/produtos',
+  '/servicos',
+  '/privacidade',
+  '/termos-de-uso'
+];
 
 function canonicalServiceSlug(slug: string) {
   return slug === 'ia-automacoes-agentes-inteligentes' ? 'solucoes-ia' : slug;
@@ -17,8 +36,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticUrls = staticPages.map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: now,
-    changeFrequency: path === '/' ? 'weekly' : 'monthly',
-    priority: path === '/' ? 1 : path === '/solucoes' || path === '/contato' || path === '/produtos' || path === '/servicos' ? 0.9 : 0.75
+    changeFrequency: path === '/' ? 'weekly' : path.startsWith('/metodo') ? 'weekly' : 'monthly',
+    priority: path === '/' ? 1 : path === '/metodo' || path === '/solucoes' || path === '/contato' || path === '/produtos' || path === '/servicos' ? 0.9 : path.startsWith('/metodo') ? 0.82 : 0.75
   })) satisfies MetadataRoute.Sitemap;
 
   const serviceUrls = servicePages.map((service) => ({
@@ -39,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${siteUrl}/blog/${post.slug}`,
     lastModified: post.date,
     changeFrequency: 'monthly',
-    priority: 0.72
+    priority: post.category === 'Método GIP Tehkné' ? 0.82 : 0.72
   })) satisfies MetadataRoute.Sitemap;
 
   const portfolioUrls = portfolioCases.map((project) => ({
